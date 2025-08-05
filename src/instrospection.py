@@ -1,6 +1,55 @@
 from collections.abc import Callable
 
 class BInspected:
+    def __init__(self, class_to_b_inspected):
+        """
+        Initializes a inspector with the class intended to be inspected.
+        
+        Params:
+            class_to_b_inpsected: (object) The class that is going to be inspected.
+        """
+        
+        self._class_to_b_inspected = class_to_b_inspected
+    @property
+    def pull_all_methods(self):
+        """ 
+        Provides access to all callable methods of the class to b inspected
+        
+        Returns:
+            (dict) A dictionary containing all methods of a class
+        """
+
+        return self._pull_pull_all_methods()
+    @property
+    def dunder_methods(self):
+        """ 
+        Provides access to all dunder methods of the class to b inspected
+        
+        Returns:
+            (dict) A dictionary containing all dunder methods of a class
+        """
+
+        return self._pull_dunder_methods()
+    @property
+    def methods(self):
+        """ 
+        Provides access to all normal methods of the class to b inspected
+        
+        Returns:
+            (dict) A dictionary containing all normal methods of a class
+        """
+
+        return self._pull_methods()
+    @property
+    def properties(self):
+        """ 
+        Provides access to all properties defined by @property of the class to b inspected
+        
+        Returns:
+            (dict) A dictionary containing all properties defined by @property of a class
+        """
+
+        return self._pull_properties()
     def bview_functions(self, function_to_inspect: Callable):
         """ 
         The purpose of this method is to provide a complete mapping of the provided method or function
@@ -26,6 +75,8 @@ class BInspected:
             class_to_inspect: (object) The class whose dictionary needs to be sorted and pulled out.
         Returns:
             functions: (dict) A dictionary containing all the callable functions of the class.
+            properties: (dict) A dictionary containing all the properties of the class.
+            cls dict: (dict) A dictionary containing the entire class.
         """
         
         cls_dict = class_to_inspect.__dict__.copy()
@@ -40,7 +91,3 @@ class BInspected:
                 properties[key] = value
                 del cls_dict[key]
         return functions, properties, cls_dict
-    def pull_dunder_methods(self, class_to_inspect):
-        pass
-    def loop_dict(self, class_to_inspect):
-        pass
