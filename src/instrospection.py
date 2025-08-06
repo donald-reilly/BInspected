@@ -11,7 +11,7 @@ class BInspected:
         
         self._class_to_b_inspected = class_to_b_inspected
     @property
-    def pull_all_methods(self):
+    def all_methods(self)-> dict:
         """ 
         Provides access to all callable methods of the class to b inspected
         
@@ -19,9 +19,9 @@ class BInspected:
             (dict) A dictionary containing all methods of a class
         """
 
-        return self._pull_pull_all_methods()
+        return self._pull_all_methods()
     @property
-    def dunder_methods(self):
+    def dunder_methods(self)-> dict:
         """ 
         Provides access to all dunder methods of the class to b inspected
         
@@ -31,7 +31,7 @@ class BInspected:
 
         return self._pull_dunder_methods()
     @property
-    def methods(self):
+    def methods(self)-> dict:
         """ 
         Provides access to all normal methods of the class to b inspected
         
@@ -41,7 +41,7 @@ class BInspected:
 
         return self._pull_methods()
     @property
-    def properties(self):
+    def properties(self)-> dict:
         """ 
         Provides access to all properties defined by @property of the class to b inspected
         
@@ -50,6 +50,61 @@ class BInspected:
         """
 
         return self._pull_properties()
+    def _pull_all_methods(self)-> dict:
+        """
+        Creates a dictionary containing references to the callable methods of a class
+        
+        Returns:
+            _methods: (dict) The dictionary containing refrences to the callable methods
+        """
+        # A dictionary comprehension that pulls all Callables out of a classes dict
+
+        return self._pull_provided_type(Callable)
+    def _pull_dunder_methods(self)-> dict:
+        """
+        Creates a dictionary containing references to the dunder methods of a class
+        
+        Returns:
+            _dudner_methods: (dict) The dictionary containing refrences to the cdunder methods
+        """
+        # A dictionary comprehension that pulls all dudner methods out of the callables methods.
+        _dunder_methods = {name : method
+                           for name, method in self.all_methods.items()
+                           if name.startswith("__") and name.endswith("__")}
+        return _dunder_methods
+    def _pull_methods(self)-> dict:
+        """
+        Creates a dictionary containing references to the normal methods of a class
+        
+        Returns:
+            _dudner_methods: (dict) The dictionary containing refrences to the normal methods.
+        """
+        # A dictionary comprehension that pulls all normal methods out of the callables methods.
+        _normal_methods = {name : method
+                           for name, method in self.all_methods.items()
+                           if not name.startswith("__") and  not name.endswith("__")}
+        return _normal_methods
+    def _pull_properties(self)-> dict:
+        """ 
+        Creates a dictionary containing references to the properties of a class
+        
+        Returns:
+            (dict): A dictionary containing references to the properties of a class
+        """
+
+        return self._pull_provided_type(property)
+    def _pull_provided_type(self, provided_type):
+        """
+        Creates a dictionary from the classes __dict__ method, the dicitonary contains only types that match the provided type
+        
+        Returns: 
+            (dict): A dictionary containg only the attributes that are of the provided type
+        """
+        # A dictionary comprehension that seperates and returns the provided type
+        _provided_type= {name: attributes
+            for name, attributes in self._class_to_b_inspected.__dict__.items() 
+            if isinstance(attributes, provided_type)}
+        return _provided_type
     def bview_functions(self, function_to_inspect: Callable):
         """ 
         The purpose of this method is to provide a complete mapping of the provided method or function
