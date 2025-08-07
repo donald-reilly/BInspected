@@ -12,7 +12,7 @@ class BInspected:
         self._class_to_b_inspected = class_to_b_inspected
         self._method_args = {}
     def __call__(self, method_to_pull_args):
-        self._method_args = self._pull_method_args(method_to_pull_args)
+        self._method_args = self._parse_method_args(method_to_pull_args)
         self._method_name = method_to_pull_args.__name__
         self._method_doc = method_to_pull_args.__doc__
     @property
@@ -157,7 +157,7 @@ class BInspected:
             "annotations": method_to_map.__annotations__
         }
         return mapped_args
-    def _parse_method_args(self, mapped_args)-> dict:
+    def _parse_method_args(self, method_to_map)-> dict:
         """
         Parse the args required for creating an instance of the class.
         
@@ -166,53 +166,14 @@ class BInspected:
         Returns:
             method_args:(dict) A dictionary containing kwargs necassary for creating an instance of the class
         """
-
-        method_args = {}
-        for arg in mapped_args['all_vars']:
-            if arg != 'self':
-                method_args[arg] = None
-        for arg in method_args.keys():
-            if arg in mapped_args:
-                method_args[arg] = mapped_args[arg]
-        return method_args
-    def bview_functions(self, function_to_inspect: Callable):
-        """ 
-        The purpose of this method is to provide a complete mapping of the provided method or function
         
-        Params:
-            function_to_inspect: (Callable) The method or function to B inspected
-        """
-        
-        function_to_inspect.__code__.co_varnames 
-        function_to_inspect.__code__.co_argcount 
-        function_to_inspect.__defaults__ 
-        function_to_inspect.__kwdefaults__ 
-        function_to_inspect.__annotations__ 
-        function_to_inspect.__doc__ 
-        function_to_inspect.__name__ 
-        function_to_inspect.__module__ 
-        function_to_inspect.__qualname__ 
-    def bview_class(self, class_to_inspect):
-        """
-        The purpose of this function is to seperate out the functions from the __dict__ so they can be tested.
-        
-        Params:
-            class_to_inspect: (object) The class whose dictionary needs to be sorted and pulled out.
-        Returns:
-            functions: (dict) A dictionary containing all the callable functions of the class.
-            properties: (dict) A dictionary containing all the properties of the class.
-            cls dict: (dict) A dictionary containing the entire class.
-        """
-        
-        cls_dict = class_to_inspect.__dict__.copy()
-        functions = {} # A dictionary to contain all the functions
-        properties = {}
-        # Loops through __dict__ and seperates all the callables
-        for key, value in class_to_inspect.__dict__.items():
-            if isinstance(value, Callable):
-                functions[key] = value
-                del cls_dict[key]
-            elif isinstance(value, property):
-                properties[key] = value
-                del cls_dict[key]
-        return functions, properties, cls_dict
+        mapped_args = self._pull_method_args(method_to_map)
+        method_kwargs = {}
+        for arg in mapped_args["all_vars"]:
+            if arg in mapped_args['annotations']:
+                method_kwargs[arg] = mapped_args['annotations'][arg]
+            elif arg == "self": # Not sure if I should keep this, makes my intent obvious.
+                continue
+            else:
+                method_kwargs[arg] = None
+        return method_kwargs
