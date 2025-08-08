@@ -138,7 +138,7 @@ class BInspected:
         # A dictionary comprehension that seperates and returns the provided type
         _provided_type= {name: attributes
             for name, attributes in self._class_to_b_inspected.__dict__.items() 
-            if isinstance(attributes, provided_type)}
+            if isinstance(attributes, type(provided_type))}
         return _provided_type
     def _pull_method_args(self, method_to_map: Callable)-> dict:
         """
