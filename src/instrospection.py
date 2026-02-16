@@ -1,7 +1,8 @@
 from collections.abc import Callable
+import types
 
 class BInspected:
-    def __init__(self, class_to_b_inspected: type):
+    def __init__(self):
         """
         Initializes a inspector with the class intended to be inspected.
         
@@ -9,12 +10,28 @@ class BInspected:
             class_to_b_inpsected: (object) The class that is going to be inspected.
         """
         
-        self._class_to_b_inspected = class_to_b_inspected
         self._method_args = {}
-    def __call__(self, method_to_pull_args):
-        self._method_args = self._parse_method_args(method_to_pull_args)
-        self._method_name = method_to_pull_args.__name__
-        self._method_doc = method_to_pull_args.__doc__
+        self._method_name = "Method Name"
+        self._method_doc = "Method Doc"
+    def __call__(self, method_to_pull_args = None):
+        if type(method_to_pull_args) is type:
+            return "This is a class"
+        if isinstance(method_to_pull_args, types.FunctionType):
+            return "This is a function"
+        if isinstance(method_to_pull_args, types.MethodType):
+            return "This is a method"
+        if callable(method_to_pull_args):
+            return "This is a Callable"
+        return "This is an instance of a class"
+    def __str__(self) -> str:
+        return "Dict of class eventually"
+    def _parse_method(self, method_to_pull_args):
+        method_dict = {
+            "Name" : method_to_pull_args.__name__,
+            "Doc_String" : method_to_pull_args.__doc__,
+            "Arguements" : self._parse_method_args(method_to_pull_args)
+        }
+        return method_dict
     @property
     def all_methods(self)-> dict:
         """ 
@@ -86,15 +103,16 @@ class BInspected:
         
         return self._method_doc        
     def _pull_all_methods(self)-> dict:
-        """
-        Creates a dictionary containing references to the callable methods of a class
-        
-        Returns:
-            _methods: (dict) The dictionary containing refrences to the callable methods
-        """
-        # A dictionary comprehension that pulls all Callables out of a classes dict
-
-        return self._pull_provided_type(Callable)
+        #"""
+        #Creates a dictionary containing references to the callable methods of a class
+        #
+        #Returns:
+        #    _methods: (dict) The dictionary containing refrences to the callable methods
+        #"""
+        #
+        ## A dictionary comprehension that pulls all Callables out of a classes dict
+        #return self._pull_provided_type(Callable)
+        return {}
     def _pull_dunder_methods(self)-> dict:
         """
         Creates a dictionary containing references to the dunder methods of a class
@@ -102,6 +120,7 @@ class BInspected:
         Returns:
             _dudner_methods: (dict) The dictionary containing refrences to the cdunder methods
         """
+        
         # A dictionary comprehension that pulls all dudner methods out of the callables methods.
         _dunder_methods = {name : method
                            for name, method in self.all_methods.items()
@@ -114,32 +133,35 @@ class BInspected:
         Returns:
             _dudner_methods: (dict) The dictionary containing refrences to the normal methods.
         """
+        
         # A dictionary comprehension that pulls all normal methods out of the callables methods.
         _normal_methods = {name : method
                            for name, method in self.all_methods.items()
                            if not name.startswith("__") and  not name.endswith("__")}
         return _normal_methods
     def _pull_properties(self)-> dict:
-        """ 
-        Creates a dictionary containing references to the properties of a class
-        
-        Returns:
-            (dict): A dictionary containing references to the properties of a class
-        """
-
-        return self._pull_provided_type(property)
-    def _pull_provided_type(self, provided_type: Callable|property):
+        #    """ 
+        #    Creates a dictionary containing references to the properties of a class
+        #    
+        #    Returns:
+        #        (dict): A dictionary containing references to the properties of a class
+        #    """
+        #
+        #    return self._pull_provided_type(property)
+            return {}
+    def _pull_provided_type(self, provided_type):
         """
         Creates a dictionary from the classes __dict__ method, the dicitonary contains only types that match the provided type
         
         Returns: 
             (dict): A dictionary containg only the attributes that are of the provided type
         """
+        
         # A dictionary comprehension that seperates and returns the provided type
-        _provided_type= {name: attributes
-            for name, attributes in self._class_to_b_inspected.__dict__.items() 
-            if isinstance(attributes, type(provided_type))}
-        return _provided_type
+        ###_provided_type= {name: attributes
+        ###    for name, attributes in self._class_to_b_inspected.__dict__.items() 
+        ###    if isinstance(attributes, provided_type)}
+        ###return _provided_type
     def _pull_method_args(self, method_to_map: Callable)-> dict:
         """
         Sort this methods arguements. Provide a dictionary of each arguement and the required types.
