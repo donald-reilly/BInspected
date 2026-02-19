@@ -25,7 +25,6 @@ class BInspected:
         """
         
         # Logic gate to classify provided object for parsing.
-        
         if isinstance(object_to_classify, type):# Classifies classes.
             return self._parse_class(object_to_classify)
         if isinstance(object_to_classify, (types.FunctionType, types.MethodType)):# Classifies methods and functions.
@@ -35,7 +34,7 @@ class BInspected:
         return self._parse_instance(object_to_classify)# classifies instances of user-defined classes.
     def _parse_instance(self, instance_to_parse)-> dict[str]:
         """
-        Parse instance of a class for consumption
+        Creates structure for unique instances of a provided class and returns the introspection dictionary.
         
         Param:
             param instance_to_parse: Instance of a class to be parsed.
@@ -43,19 +42,23 @@ class BInspected:
             Dictionary representation of the the parsed instance of a class.
         """
         
-        class_dict = self._parse_class(instance_to_parse.__class__)
-        class_dict["Name"] = f"Instance of {class_dict["Name"]}"
-        class_dict["Instance Variables"] = instance_to_parse.__dict__
-        return class_dict
-        
-    def _parse_class(self, class_to_parse)-> dict:
+        # Creates and structures the introspection dictionary for instances of a class
+        instance_dict["Name"] = f"Instance of {instance_to_parse.__class__["Name"]}" # Provides unique name for the instance.
+        instance_dict["Instance Variables"] = instance_to_parse.__dict__ # Pulls instance specific variables.
+        class_dict = self._parse_class(instance_to_parse.__class__) # Parses the underlying class.
+        instance_dict = instance_dict | class_dict # Merges the two dictionaries.
+        return instance_dict
+    def _parse_class(self, class_to_parse: type)-> dict[str]:
         """
-        Parse class for consumption.
+        Parses class object and returns an introspection dictionary.
 
-        :param class_to_parse: Class to be parsed.
-        :return: Dictionary representaion of parsed class.
-        :rtype: dict[str, Any]
+        Param:
+            class_to_parse: Class to be parsed.
+        Return: 
+            Dictionary representaion of parsed class.
         """
+        
+        # Creates the introspection of the class object.
         class_dict = {
             "Name" : class_to_parse.__name__,
             "Qualified Name" : class_to_parse.__qualname__,
@@ -63,31 +66,36 @@ class BInspected:
             "Bases" : class_to_parse.__bases__,
             "DocString" : class_to_parse.__doc__,
             "Type Hints" : class_to_parse.__annotations__,
-            "Callables" : self._parse_callables(class_to_parse),
-            "Property" : self._parse_properties(class_to_parse)
+            "Callables" : self._parse_callables(class_to_parse), # Parses callables in the class.
+            "Property" : self._parse_properties(class_to_parse) # Parses properties in the class.
         }
         return class_dict
-    def _parse_callables(self, class_to_parse)-> dict:
+    def _parse_callables(self, class_to_parse: type)-> dict[str]:
         """
-        Parses all callabales of a given class.
+        Parses all callables of a given class.
         
-        :param class_to_parse: Class to be parsed.
-        :return: Description
-        :rtype: dict[str, Any]
+        Param: 
+            class_to_parse: Class to be parsed.
+        Return:
+            Dictionary representation of the callables of a class.
         """
         
-        callables = self._pull_attribute(class_to_parse, Callable)
+        callables = self._pull_attribute(class_to_parse, Callable) # Pulls the callables from the class.
+        # Parses the callables in a class.
         for func in callables.keys():
             callables[func] = self._parse_method(callables[func])
         return callables
-    def _parse_properties(self, class_to_parse)-> dict:
+    def _parse_properties(self, class_to_parse: type)-> dict:
         """
         Parse all properties of a given class
         
-        :param class_to_parse: Class to be parsed
-        :return properties: Properties of a given class
-        :rtype: dict[str, Any]
+        Param:
+            class_to_parse: Class to be parsed
+        Return
+           Properties of a given class
         """
+        
+        #TODO: This needs to actually parse the property, for now it only provides the property.
         return self._pull_properties(class_to_parse)
     def _parse_method(self, method_to_parse: types.MethodType | types.FunctionType)-> dict:
         """
