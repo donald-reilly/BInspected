@@ -3,7 +3,7 @@ import types
 
 class BInspected:
 
-    def __call__(self, object_to_inspect)-> dict:
+    def __call__(self, object_to_inspect)-> dict[str]:
         """
         Classify an object and return it's introspection dictionary.
         
@@ -14,29 +14,35 @@ class BInspected:
         """
         
         return self._classify_object(object_to_inspect)
-    def _classify_object(self, object_to_classify)-> dict:
+    def _classify_object(self, object_to_classify)-> dict[str]:
         """
-        Classifies object
+        Classifies object and returns it's introspeciton dictionary.
         
+        Params:
+            object_to_inspect(object): Object to be inspected
         Returns: 
-            (dict): A dictionary containg only the attributes that are of the provided type
+            An introspection dictionary.
         """
-        if isinstance(object_to_classify, type):
+        
+        # Logic gate to classify provided object for parsing.
+        
+        if isinstance(object_to_classify, type):# Classifies classes.
             return self._parse_class(object_to_classify)
-        if isinstance(object_to_classify, (types.FunctionType, types.MethodType)):
+        if isinstance(object_to_classify, (types.FunctionType, types.MethodType)):# Classifies methods and functions.
             return self._parse_method(object_to_classify)
-        if object_to_classify.__class__.__module__ == "builtins": 
+        if object_to_classify.__class__.__module__ == "builtins":# Classifies builtin objects.
             return "builtin_instance"
-        return self._parse_instance(object_to_classify)
-    
-    def _parse_instance(self, instance_to_parse)-> dict:
+        return self._parse_instance(object_to_classify)# classifies instances of user-defined classes.
+    def _parse_instance(self, instance_to_parse)-> dict[str]:
         """
         Parse instance of a class for consumption
         
-        :param instance_to_parse: Instance of a class to be parsed.
-        :return: Dictionary representation of the the parsed instance of a class.
-        :rtype: dict[str, Any]
+        Param:
+            param instance_to_parse: Instance of a class to be parsed.
+        Return: 
+            Dictionary representation of the the parsed instance of a class.
         """
+        
         class_dict = self._parse_class(instance_to_parse.__class__)
         class_dict["Name"] = f"Instance of {class_dict["Name"]}"
         class_dict["Instance Variables"] = instance_to_parse.__dict__
