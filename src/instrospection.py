@@ -43,10 +43,12 @@ class BInspected:
         """
         
         # Creates and structures the introspection dictionary for instances of a class
-        instance_dict["Name"] = f"Instance of {instance_to_parse.__class__["Name"]}" # Provides unique name for the instance.
-        instance_dict["Instance Variables"] = instance_to_parse.__dict__ # Pulls instance specific variables.
+        instance_dict = {
+            "Name" : f"Instance of {instance_to_parse.__class__.__name__}", # Provides unique name for the instance.
+            "Instance Variables" : instance_to_parse.__dict__ # Pulls instance specific variables.
+        }
         class_dict = self._parse_class(instance_to_parse.__class__) # Parses the underlying class.
-        instance_dict = instance_dict | class_dict # Merges the two dictionaries.
+        instance_dict = class_dict | instance_dict # Merges the two dictionaries.
         return instance_dict
     def _parse_class(self, class_to_parse: type)-> dict[str]:
         """
@@ -87,22 +89,24 @@ class BInspected:
         return callables
     def _parse_properties(self, class_to_parse: type)-> dict:
         """
-        Parse all properties of a given class
+        Parse all properties of a given class.
         
         Param:
-            class_to_parse: Class to be parsed
-        Return
-           Properties of a given class
+            class_to_parse: Class to be parsed.
+        Return:
+           Properties of a given class.
         """
         
         #TODO: This needs to actually parse the property, for now it only provides the property.
         return self._pull_properties(class_to_parse)
     def _parse_method(self, method_to_parse: types.MethodType | types.FunctionType)-> dict:
         """
-        Docstring for _parse_method
+        Parses provided bound method.
         
-        :return: Description
-        :rtype: dict[Any, Any]
+        Param:
+            method_to_parse: Method to be parsed.
+        Return:
+            Introspection dictionary of the bound method.
         """
 
         mtp = method_to_parse
@@ -123,6 +127,8 @@ class BInspected:
             _parsed_method = {
                 "local variable names": mtp.__code__.co_varnames,
                 "number of positional arguments": mtp.__code__.co_argcount,
+                "default values for trailing positional arguments": mtp.__defaults__,
+                "default values for keyword-only arguments": mtp.__kwdefaults__,
                 "type hints for paramenters and return value": mtp.__annotations__,
                 "function docstring": mtp.__doc__,
                 "function name": mtp.__name__,
