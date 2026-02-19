@@ -2,117 +2,136 @@ from collections.abc import Callable
 import types
 
 class BInspected:
-    def __init__(self):
+
+    def __call__(self, object_to_inspect)-> dict:
         """
-        Initializes a inspector with the class intended to be inspected.
+        Classify an object and return it's introspection dictionary.
         
         Params:
-            class_to_b_inpsected: (object) The class that is going to be inspected.
+            object_to_inspect(object): Object to be inspected.
+        Returns:
+            (dict): An introspectin dictionary.
         """
         
-        self._method_args = {}
-        self._method_name = "Method Name"
-        self._method_doc = "Method Doc"
-    def __call__(self, method_to_pull_args = None):
-        if type(method_to_pull_args) is type:
-            return "This is a class"
-        if isinstance(method_to_pull_args, types.FunctionType):
-            return "This is a function"
-        if isinstance(method_to_pull_args, types.MethodType):
-            return "This is a method"
-        if callable(method_to_pull_args):
-            return "This is a Callable"
-        return "This is an instance of a class"
-    def __str__(self) -> str:
-        return "Dict of class eventually"
-    def _parse_method(self, method_to_pull_args):
-        method_dict = {
-            "Name" : method_to_pull_args.__name__,
-            "Doc_String" : method_to_pull_args.__doc__,
-            "Arguements" : self._parse_method_args(method_to_pull_args)
+        return self._classify_object(object_to_inspect)
+    def _classify_object(self, object_to_classify)-> dict:
+        """
+        Classifies object
+        
+        Returns: 
+            (dict): A dictionary containg only the attributes that are of the provided type
+        """
+        if isinstance(object_to_classify, type):
+            return self._parse_class(object_to_classify)
+        if isinstance(object_to_classify, (types.FunctionType, types.MethodType)):
+            return self._parse_method(object_to_classify)
+        if object_to_classify.__class__.__module__ == "builtins": 
+            return "builtin_instance"
+        return self._parse_instance(object_to_classify)
+    
+    def _parse_instance(self, instance_to_parse)-> dict:
+        """
+        Parse instance of a class for consumption
+        
+        :param instance_to_parse: Instance of a class to be parsed.
+        :return: Dictionary representation of the the parsed instance of a class.
+        :rtype: dict[str, Any]
+        """
+        class_dict = self._parse_class(instance_to_parse.__class__)
+        class_dict["Name"] = f"Instance of {class_dict["Name"]}"
+        class_dict["Instance Variables"] = instance_to_parse.__dict__
+        return class_dict
+        
+    def _parse_class(self, class_to_parse)-> dict:
+        """
+        Parse class for consumption.
+
+        :param class_to_parse: Class to be parsed.
+        :return: Dictionary representaion of parsed class.
+        :rtype: dict[str, Any]
+        """
+        class_dict = {
+            "Name" : class_to_parse.__name__,
+            "Qualified Name" : class_to_parse.__qualname__,
+            "Module Name" : class_to_parse.__module__,
+            "Bases" : class_to_parse.__bases__,
+            "DocString" : class_to_parse.__doc__,
+            "Type Hints" : class_to_parse.__annotations__,
+            "Callables" : self._parse_callables(class_to_parse),
+            "Property" : self._parse_properties(class_to_parse)
         }
-        return method_dict
-    @property
-    def all_methods(self)-> dict:
-        """ 
-        Provides access to all callable methods of the class to b inspected
+        return class_dict
+    def _parse_callables(self, class_to_parse)-> dict:
+        """
+        Parses all callabales of a given class.
         
-        Returns:
-            (dict) A dictionary containing all methods of a class
+        :param class_to_parse: Class to be parsed.
+        :return: Description
+        :rtype: dict[str, Any]
+        """
+        
+        callables = self._pull_attribute(class_to_parse, Callable)
+        for func in callables.keys():
+            callables[func] = self._parse_method(callables[func])
+        return callables
+    def _parse_properties(self, class_to_parse)-> dict:
+        """
+        Parse all properties of a given class
+        
+        :param class_to_parse: Class to be parsed
+        :return properties: Properties of a given class
+        :rtype: dict[str, Any]
+        """
+        return self._pull_properties(class_to_parse)
+    def _parse_method(self, method_to_parse: types.MethodType | types.FunctionType)-> dict:
+        """
+        Docstring for _parse_method
+        
+        :return: Description
+        :rtype: dict[Any, Any]
         """
 
-        return self._pull_all_methods()
-    @property
-    def dunder_methods(self)-> dict:
-        """ 
-        Provides access to all dunder methods of the class to b inspected
-        
-        Returns:
-            (dict) A dictionary containing all dunder methods of a class
-        """
+        mtp = method_to_parse
+        if isinstance(mtp, types.MethodType):
+            _parsed_method = {
+                "local variable names": mtp.__code__.co_varnames,
+                "number of positional arguments": mtp.__code__.co_argcount,
+                "default values for trailing positional arguments": mtp.__func__.__defaults__,
+                "default values for keyword-only arguments": mtp.__func__.__kwdefaults__,
+                "type hints for paramenters and return value": mtp.__annotations__,
+                "function docstring": mtp.__doc__,
+                "function name": mtp.__name__,
+                "module name": mtp.__module__,
+                "fully qualified name": mtp.__qualname__,
+            }
 
-        return self._pull_dunder_methods()
-    @property
-    def methods(self)-> dict:
-        """ 
-        Provides access to all normal methods of the class to b inspected
-        
-        Returns:
-            (dict) A dictionary containing all normal methods of a class
+        elif isinstance(mtp, types.FunctionType):
+            _parsed_method = {
+                "local variable names": mtp.__code__.co_varnames,
+                "number of positional arguments": mtp.__code__.co_argcount,
+                "type hints for paramenters and return value": mtp.__annotations__,
+                "function docstring": mtp.__doc__,
+                "function name": mtp.__name__,
+                "module name": mtp.__module__,
+                "fully qualified name": mtp.__qualname__,
+            }
+            
+        else:
+            _parsed_method = {"error" : f"{mtp} is of type {type(mtp)} not Function or Method"}
+        return _parsed_method
+    def _pull_attribute(self, class_to_parse,  provided_type):
         """
-
-        return self._pull_methods()
-    @property
-    def properties(self)-> dict:
-        """ 
-        Provides access to all properties defined by @property of the class to b inspected
+        Creates a dictionary from the classes __dict__ method, the dicitonary contains only types that match the provided type
         
-        Returns:
-            (dict) A dictionary containing all properties defined by @property of a class
-        """
-
-        return self._pull_properties()
-    @property
-    def method_args(self)-> dict:
-        """
-        Provides access to the private variable _method_args
-        
-        Return:
-            _methods_args: (dict) A dictionary containing all the arguements neccassary for call the method provided in __call__
+        Returns: 
+            (dict): A dictionary containg only the attributes that are of the provided type
         """
         
-        return self._method_args
-    @property
-    def method_name(self)-> str:
-        """
-        Provides access to the private variable _method_name
-        
-        Return:
-            _method_name: (str) The name of the method provided to __call__
-        """
-        
-        return self._method_name        
-    @property
-    def method_doc(self)-> str:
-        """
-        Provides access to the private variable _method_doc
-        
-        Return:
-            _method_doc: (str) The name of the method provided to __call__
-        """
-        
-        return self._method_doc        
-    def _pull_all_methods(self)-> dict:
-        #"""
-        #Creates a dictionary containing references to the callable methods of a class
-        #
-        #Returns:
-        #    _methods: (dict) The dictionary containing refrences to the callable methods
-        #"""
-        #
-        ## A dictionary comprehension that pulls all Callables out of a classes dict
-        #return self._pull_provided_type(Callable)
-        return {}
+        # A dictionary comprehension that seperates and returns the provided type
+        _provided_type= {name: attributes
+            for name, attributes in class_to_parse.__dict__.items() 
+            if isinstance(attributes, provided_type)}
+        return _provided_type
     def _pull_dunder_methods(self)-> dict:
         """
         Creates a dictionary containing references to the dunder methods of a class
@@ -139,29 +158,15 @@ class BInspected:
                            for name, method in self.all_methods.items()
                            if not name.startswith("__") and  not name.endswith("__")}
         return _normal_methods
-    def _pull_properties(self)-> dict:
-        #    """ 
-        #    Creates a dictionary containing references to the properties of a class
-        #    
-        #    Returns:
-        #        (dict): A dictionary containing references to the properties of a class
-        #    """
-        #
-        #    return self._pull_provided_type(property)
-            return {}
-    def _pull_provided_type(self, provided_type):
-        """
-        Creates a dictionary from the classes __dict__ method, the dicitonary contains only types that match the provided type
+    def _pull_properties(self, class_to_parse)-> dict:
+            """ 
+            Creates a dictionary containing references to the properties of a class
+            
+            Returns:
+                (dict): A dictionary containing references to the properties of a class
+            """
         
-        Returns: 
-            (dict): A dictionary containg only the attributes that are of the provided type
-        """
-        
-        # A dictionary comprehension that seperates and returns the provided type
-        ###_provided_type= {name: attributes
-        ###    for name, attributes in self._class_to_b_inspected.__dict__.items() 
-        ###    if isinstance(attributes, provided_type)}
-        ###return _provided_type
+            return self._pull_attribute(class_to_parse, property)
     def _pull_method_args(self, method_to_map: Callable)-> dict:
         """
         Sort this methods arguements. Provide a dictionary of each arguement and the required types.
@@ -179,7 +184,7 @@ class BInspected:
             "annotations": method_to_map.__annotations__
         }
         return mapped_args
-    def _parse_method_args(self, method_to_map)-> dict:
+    def _parse_method_args_for_instantiation(self, method_to_map)-> dict:
         """
         Parse the args required for creating an instance of the class.
         
