@@ -1,25 +1,25 @@
 from collections.abc import Callable
-import types
+import types 
 
 class BInspected:
 
-    def __call__(self, object_to_inspect)-> dict[str]:
+    def __call__(self, object_to_inspect)-> dict | str:
         """
         Classify an object and return it's introspection dictionary.
         
         Params:
             object_to_inspect(object): Object to be inspected.
         Returns:
-            (dict): An introspectin dictionary.
+            An introspection dictionary.
         """
         
         return self._classify_object(object_to_inspect)
-    def _classify_object(self, object_to_classify)-> dict[str]:
+    def _classify_object(self, object_to_classify)-> dict | str:
         """
         Classifies object and returns it's introspeciton dictionary.
         
         Params:
-            object_to_inspect(object): Object to be inspected
+            object_to_inspect(object): Object to be inspected.
         Returns: 
             An introspection dictionary.
         """
@@ -32,7 +32,7 @@ class BInspected:
         if object_to_classify.__class__.__module__ == "builtins":# Classifies builtin objects.
             return "builtin_instance"
         return self._parse_instance(object_to_classify)# classifies instances of user-defined classes.
-    def _parse_instance(self, instance_to_parse)-> dict[str]:
+    def _parse_instance(self, instance_to_parse)-> dict:
         """
         Creates structure for unique instances of a provided class and returns the introspection dictionary.
         
@@ -44,13 +44,13 @@ class BInspected:
         
         # Creates and structures the introspection dictionary for instances of a class
         instance_dict = {
-            "Name" : f"Instance of {instance_to_parse.__class__.__name__}", # Provides unique name for the instance.
-            "Instance Variables" : instance_to_parse.__dict__ # Pulls instance specific variables.
+            "Name" : f"Instance of {instance_to_parse.__class__.__name__}",# Provides unique name for the instance.
+            "Instance Variables" : instance_to_parse.__dict__# Pulls instance specific variables.
         }
-        class_dict = self._parse_class(instance_to_parse.__class__) # Parses the underlying class.
+        class_dict = self._parse_class(instance_to_parse.__class__)# Parses the underlying class.
         instance_dict = class_dict | instance_dict # Merges the two dictionaries.
         return instance_dict
-    def _parse_class(self, class_to_parse: type)-> dict[str]:
+    def _parse_class(self, class_to_parse: type)-> dict:
         """
         Parses class object and returns an introspection dictionary.
 
@@ -68,11 +68,11 @@ class BInspected:
             "Bases" : class_to_parse.__bases__,
             "DocString" : class_to_parse.__doc__,
             "Type Hints" : class_to_parse.__annotations__,
-            "Callables" : self._parse_callables(class_to_parse), # Parses callables in the class.
-            "Property" : self._parse_properties(class_to_parse) # Parses properties in the class.
+            "Callables" : self._parse_callables(class_to_parse),# Parses callables in the class.
+            "Property" : self._parse_properties(class_to_parse)# Parses properties in the class.
         }
         return class_dict
-    def _parse_callables(self, class_to_parse: type)-> dict[str]:
+    def _parse_callables(self, class_to_parse: type)-> dict:
         """
         Parses all callables of a given class.
         
@@ -121,9 +121,12 @@ class BInspected:
                 "function name": mtp.__name__,
                 "module name": mtp.__module__,
                 "fully qualified name": mtp.__qualname__,
+                "Callable type": type(mtp)
             }
 
         elif isinstance(mtp, types.FunctionType):
+            print(type(mtp))
+            print(mtp)
             _parsed_method = {
                 "local variable names": mtp.__code__.co_varnames,
                 "number of positional arguments": mtp.__code__.co_argcount,
@@ -134,6 +137,7 @@ class BInspected:
                 "function name": mtp.__name__,
                 "module name": mtp.__module__,
                 "fully qualified name": mtp.__qualname__,
+                "Callable type": type(mtp)
             }
             
         else:
@@ -159,7 +163,7 @@ class BInspected:
         Returns:
             _dudner_methods: (dict) The dictionary containing refrences to the cdunder methods
         """
-        
+        #TODO: Need to fix this. Class in now a singleton. Doesn't hold references to methods anymore.
         # A dictionary comprehension that pulls all dudner methods out of the callables methods.
         _dunder_methods = {name : method
                            for name, method in self.all_methods.items()
@@ -172,7 +176,7 @@ class BInspected:
         Returns:
             _dudner_methods: (dict) The dictionary containing refrences to the normal methods.
         """
-        
+        #TODO: Need to fix this. Class in now a singleton. Doesn't hold references to methods anymore.
         # A dictionary comprehension that pulls all normal methods out of the callables methods.
         _normal_methods = {name : method
                            for name, method in self.all_methods.items()
