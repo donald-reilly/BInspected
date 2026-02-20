@@ -3,3 +3,9 @@ src/BInspected.egg-info/dependency_links.txt
 src/BInspected.egg-info/PKG-INFO
 src/BInspected.egg-info/SOURCES.txt
 src/BInspected.egg-info/top_level.txt
+vscode/tasks.json
+docs/template
+examples/template
+examples/uses.py
+scripts/template
+tests/template
