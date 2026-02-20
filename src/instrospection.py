@@ -84,8 +84,11 @@ class BInspected:
         
         callables = self._pull_attribute(class_to_parse, Callable) # Pulls the callables from the class.
         # Parses the callables in a class.
-        for func in callables.keys():
-            callables[func] = self._parse_method(callables[func])
+        for func in callables.values():
+            if isinstance(func, types.MethodType):
+                func = self._parse_method(func)
+            elif isinstance(func, types.FunctionType):
+                func = self._parse_function(func)
         return callables
     def _parse_properties(self, class_to_parse: type)-> dict:
         """
@@ -112,36 +115,31 @@ class BInspected:
         mtp = method_to_parse
         if isinstance(mtp, types.MethodType):
             _parsed_method = {
+                "function name": mtp.__name__,
+                "Qualified Name": mtp.__qualname__,
+                "Callable type": type(mtp),
+                "module name": mtp.__module__,
+                "function docstring": mtp.__doc__,
                 "local variable names": mtp.__code__.co_varnames,
                 "number of positional arguments": mtp.__code__.co_argcount,
                 "default values for trailing positional arguments": mtp.__func__.__defaults__,
                 "default values for keyword-only arguments": mtp.__func__.__kwdefaults__,
-                "type hints for paramenters and return value": mtp.__annotations__,
-                "function docstring": mtp.__doc__,
-                "function name": mtp.__name__,
-                "module name": mtp.__module__,
-                "fully qualified name": mtp.__qualname__,
-                "Callable type": type(mtp)
+                "type hints for paramenters and return value": mtp.__annotations__
             }
-
-        elif isinstance(mtp, types.FunctionType):
-            print(type(mtp))
-            print(mtp)
-            _parsed_method = {
-                "local variable names": mtp.__code__.co_varnames,
-                "number of positional arguments": mtp.__code__.co_argcount,
-                "default values for trailing positional arguments": mtp.__defaults__,
-                "default values for keyword-only arguments": mtp.__kwdefaults__,
-                "type hints for paramenters and return value": mtp.__annotations__,
-                "function docstring": mtp.__doc__,
-                "function name": mtp.__name__,
-                "module name": mtp.__module__,
-                "fully qualified name": mtp.__qualname__,
-                "Callable type": type(mtp)
+        return _parsed_method
+    def _parse_function(self, ftp):
+        _parsed_method = {
+                "function name": ftp.__name__,
+                "fully qualified name": ftp.__qualname__,
+                "Callable type": type(ftp),
+                "module name": ftp.__module__,
+                "function docstring": ftp.__doc__,
+                "local variable names": ftp.__code__.co_varnames,
+                "number of positional arguments": ftp.__code__.co_argcount,
+                "default values for trailing positional arguments": ftp.__defaults__,
+                "default values for keyword-only arguments": ftp.__kwdefaults__,
+                "type hints for paramenters and return value": ftp.__annotations__
             }
-            
-        else:
-            _parsed_method = {"error" : f"{mtp} is of type {type(mtp)} not Function or Method"}
         return _parsed_method
     def _pull_attribute(self, class_to_parse,  provided_type):
         """
