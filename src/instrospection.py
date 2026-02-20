@@ -3,7 +3,7 @@ import types
 
 class BInspected:
 
-    def __call__(self, object_to_inspect)-> dict | str:
+    def __call__(self, object_to_inspect: type)-> dict | str:
         """
         Classify an object and return it's introspection dictionary.
         
@@ -27,11 +27,14 @@ class BInspected:
         # Logic gate to classify provided object for parsing.
         if isinstance(object_to_classify, type):# Classifies classes.
             return self._parse_class(object_to_classify)
-        if isinstance(object_to_classify, (types.FunctionType, types.MethodType)):# Classifies methods and functions.
+        if isinstance(object_to_classify, (types.MethodType)):# Classifies methods and functions.
             return self._parse_method(object_to_classify)
+        if isinstance(object_to_classify, types.FunctionType):
+            return self._parse_function(object_to_classify)
         if object_to_classify.__class__.__module__ == "builtins":# Classifies builtin objects.
             return "builtin_instance"
         return self._parse_instance(object_to_classify)# classifies instances of user-defined classes.
+    
     def _parse_instance(self, instance_to_parse)-> dict:
         """
         Creates structure for unique instances of a provided class and returns the introspection dictionary.
@@ -102,7 +105,7 @@ class BInspected:
         
         #TODO: This needs to actually parse the property, for now it only provides the property.
         return self._pull_properties(class_to_parse)
-    def _parse_method(self, method_to_parse: types.MethodType | types.FunctionType)-> dict:
+    def _parse_method(self, method_to_parse: types.MethodType )-> dict:
         """
         Parses provided bound method.
         
@@ -127,7 +130,7 @@ class BInspected:
                 "type hints for paramenters and return value": mtp.__annotations__
             }
         return _parsed_method
-    def _parse_function(self, ftp):
+    def _parse_function(self, ftp: types.FunctionType):
         _parsed_method = {
                 "function name": ftp.__name__,
                 "fully qualified name": ftp.__qualname__,
