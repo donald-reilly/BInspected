@@ -9,3 +9,4 @@ examples/template
 examples/uses.py
 scripts/template
 tests/template
+.vscode/tasks.json
