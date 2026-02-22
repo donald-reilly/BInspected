@@ -3,7 +3,7 @@ import types
 
 class BInspected:
 
-    def __call__(self, object_to_inspect: type)-> dict | str:
+    def __call__(self, object_to_inspect: type)-> dict[str, str]:
         """
         Classify an object and return it's introspection dictionary.
         
@@ -14,7 +14,7 @@ class BInspected:
         """
         
         return self._classify_object(object_to_inspect)
-    def _classify_object(self, object_to_classify)-> dict | str:
+    def _classify_object(self, object_to_classify)-> dict[str, str] | str:
         """
         Classifies object and returns it's introspeciton dictionary.
         
@@ -27,15 +27,15 @@ class BInspected:
         # Logic gate to classify provided object for parsing.
         if isinstance(object_to_classify, type):# Classifies classes.
             return self._parse_class(object_to_classify)
-        if isinstance(object_to_classify, (types.MethodType)):# Classifies methods and functions.
+        if isinstance(object_to_classify, (types.MethodType)): # Classifies methods.
             return self._parse_method(object_to_classify)
-        if isinstance(object_to_classify, types.FunctionType):
+        if isinstance(object_to_classify, types.FunctionType): # Classifies fucntions
             return self._parse_function(object_to_classify)
-        if object_to_classify.__class__.__module__ == "builtins":# Classifies builtin objects.
+        if object_to_classify.__class__.__module__ == "builtins": # Classifies builtin objects.
             return "builtin_instance"
-        return self._parse_instance(object_to_classify)# classifies instances of user-defined classes.
+        return self._parse_instance(object_to_classify) # classifies instances of user-defined classes.
     
-    def _parse_instance(self, instance_to_parse)-> dict:
+    def _parse_instance(self, instance_to_parse)-> dict[str, str]:
         """
         Creates structure for unique instances of a provided class and returns the introspection dictionary.
         
@@ -51,7 +51,7 @@ class BInspected:
             "Instance Variables" : instance_to_parse.__dict__# Pulls instance specific variables.
         }
         class_dict = self._parse_class(instance_to_parse.__class__)# Parses the underlying class.
-        instance_dict = class_dict | instance_dict # Merges the two dictionaries.
+        instance_dict = class_dict | instance_dict# Merges the two dictionaries.
         return instance_dict
     def _parse_class(self, class_to_parse: type)-> dict:
         """
@@ -65,6 +65,7 @@ class BInspected:
         
         # Creates the introspection of the class object.
         class_dict = {
+            #TODO This is a good place to start doing some small testing for benchmarks. Before and after on things like this and iterations.
             "Name" : class_to_parse.__name__,
             "Qualified Name" : class_to_parse.__qualname__,
             "Module Name" : class_to_parse.__module__,
@@ -93,6 +94,57 @@ class BInspected:
             elif isinstance(func, types.FunctionType):
                 func = self._parse_function(func)
         return callables
+    def _parse_method(self, method_to_parse: types.MethodType )-> dict:
+        """
+        Parses provided bound method.
+        
+        Param:
+            method_to_parse: Method to be parsed.
+        Return:
+            Introspection dictionary of the bound method.
+        """
+        #TODO: same thing here with benchmark.
+        # Creates the introspection of the method object.
+        method_to_parse = method_to_parse
+        _parsed_method = {
+            "function name": method_to_parse.__name__,
+            "Qualified Name": method_to_parse.__qualname__,
+            "Callable type": type(method_to_parse),
+            "module name": method_to_parse.__module__,
+            "function docstring": method_to_parse.__doc__,
+            "local variable names": method_to_parse.__code__.co_varnames,
+            "number of positional arguments": method_to_parse.__code__.co_argcount,
+            "default values for trailing positional arguments": method_to_parse.__func__.__defaults__,
+            "default values for keyword-only arguments": method_to_parse.__func__.__kwdefaults__,
+            "type hints for paramenters and return value": method_to_parse.__annotations__
+        }
+        return _parsed_method
+    def _parse_function(self, function_to_parse: types.FunctionType)-> dict:
+        """
+        Parses provided function.
+
+        Param:
+            function_to_parse: Function to be parsed.
+        Return:
+            Introspection dictionary of the function.
+        """
+        #TODO: lost my thought here but fix this please
+        
+        # Creates the introspection of the function object.
+        ftp = function_to_parse
+        _parsed_method = {
+            "function name": ftp.__name__,
+            "fully qualified name": ftp.__qualname__,
+            "Callable type": type(ftp),
+            "module name": ftp.__module__,
+            "function docstring": ftp.__doc__,
+            "local variable names": ftp.__code__.co_varnames,
+            "number of positional arguments": ftp.__code__.co_argcount,
+            "default values for trailing positional arguments": ftp.__defaults__,
+            "default values for keyword-only arguments": ftp.__kwdefaults__,
+            "type hints for paramenters and return value": ftp.__annotations__
+        }
+        return _parsed_method
     def _parse_properties(self, class_to_parse: type)-> dict:
         """
         Parse all properties of a given class.
@@ -105,45 +157,6 @@ class BInspected:
         
         #TODO: This needs to actually parse the property, for now it only provides the property.
         return self._pull_properties(class_to_parse)
-    def _parse_method(self, method_to_parse: types.MethodType )-> dict:
-        """
-        Parses provided bound method.
-        
-        Param:
-            method_to_parse: Method to be parsed.
-        Return:
-            Introspection dictionary of the bound method.
-        """
-
-        mtp = method_to_parse
-        if isinstance(mtp, types.MethodType):
-            _parsed_method = {
-                "function name": mtp.__name__,
-                "Qualified Name": mtp.__qualname__,
-                "Callable type": type(mtp),
-                "module name": mtp.__module__,
-                "function docstring": mtp.__doc__,
-                "local variable names": mtp.__code__.co_varnames,
-                "number of positional arguments": mtp.__code__.co_argcount,
-                "default values for trailing positional arguments": mtp.__func__.__defaults__,
-                "default values for keyword-only arguments": mtp.__func__.__kwdefaults__,
-                "type hints for paramenters and return value": mtp.__annotations__
-            }
-        return _parsed_method
-    def _parse_function(self, ftp: types.FunctionType):
-        _parsed_method = {
-                "function name": ftp.__name__,
-                "fully qualified name": ftp.__qualname__,
-                "Callable type": type(ftp),
-                "module name": ftp.__module__,
-                "function docstring": ftp.__doc__,
-                "local variable names": ftp.__code__.co_varnames,
-                "number of positional arguments": ftp.__code__.co_argcount,
-                "default values for trailing positional arguments": ftp.__defaults__,
-                "default values for keyword-only arguments": ftp.__kwdefaults__,
-                "type hints for paramenters and return value": ftp.__annotations__
-            }
-        return _parsed_method
     def _pull_attribute(self, class_to_parse,  provided_type):
         """
         Creates a dictionary from the classes __dict__ method, the dicitonary contains only types that match the provided type
@@ -164,12 +177,14 @@ class BInspected:
         Returns:
             _dudner_methods: (dict) The dictionary containing refrences to the cdunder methods
         """
-        #TODO: Need to fix this. Class in now a singleton. Doesn't hold references to methods anymore.
-        # A dictionary comprehension that pulls all dudner methods out of the callables methods.
-        _dunder_methods = {name : method
-                           for name, method in self.all_methods.items()
-                           if name.startswith("__") and name.endswith("__")}
-        return _dunder_methods
+
+        #TODO: Need to fix this. Class is going to be a singleton. WOn't hold references to methods anymore.
+        ## A dictionary comprehension that pulls all dudner methods out of the callables methods.
+        #_dunder_methods = {name : method
+        #                   for name, method in self.all_methods.items()
+        #                   if name.startswith("__") and name.endswith("__")}
+        #return _dunder_methods
+        pass
     def _pull_methods(self)-> dict:
         """
         Creates a dictionary containing references to the normal methods of a class
@@ -177,12 +192,14 @@ class BInspected:
         Returns:
             _dudner_methods: (dict) The dictionary containing refrences to the normal methods.
         """
+
         #TODO: Need to fix this. Class in now a singleton. Doesn't hold references to methods anymore.
-        # A dictionary comprehension that pulls all normal methods out of the callables methods.
-        _normal_methods = {name : method
-                           for name, method in self.all_methods.items()
-                           if not name.startswith("__") and  not name.endswith("__")}
-        return _normal_methods
+        ## A dictionary comprehension that pulls all normal methods out of the callables methods.
+        #_normal_methods = {name : method
+        #                   for name, method in self.all_methods.items()
+        #                   if not name.startswith("__") and  not name.endswith("__")}
+        #return _normal_methods
+        pass
     def _pull_properties(self, class_to_parse)-> dict:
             """ 
             Creates a dictionary containing references to the properties of a class
