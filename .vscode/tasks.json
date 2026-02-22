@@ -18,4 +18,4 @@
         "command": "ruff check src/ tests/"
         }
     ]
-}
+} 
