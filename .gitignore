@@ -7,3 +7,5 @@ tests/just_playing_around.py
 .vscode/settings.json
 docs/.gitignore
 .gitignore
+src/__pycache__/classifier.cpython-313.pyc
+tests/fucking_around.py
