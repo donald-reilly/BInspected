@@ -5,7 +5,7 @@ class BInspected:
     #TODO: Alllrighty then. Going to get back to having some fun with these. Brighten the mood a little bit with this work shit.
     #TODO: Never actually went about using the singleton type deal yet. Make that shit happen brotha. Lets do it. 
     #TODO: Also another thing, I noticed some issues with my logic and some improvements that I can make after everything else. I iterate through .__dict__ pretty often. Could be a one and done. Then pass those all around. Not a major deal. Just no reason to keep doing it.
-    def __call__(self, object_to_inspect: type)-> dict[str, str]:
+    def __call__(self, object_to_inspect)-> dict[str, str]:
         """
         Classify an object and return it's introspection dictionary.
         
@@ -33,9 +33,6 @@ class BInspected:
             return self._parse_method(object_to_classify)
         if isinstance(object_to_classify, types.FunctionType): # Classifies fucntions
             return self._parse_function(object_to_classify)
-        if object_to_classify.__class__.__module__ == "builtins": # Classifies builtin objects.
-            #TODO: Finish this once CLI is done.
-            return {"Name": "builtin_instance"}
         
         return self._parse_instance(object_to_classify) # classifies instances of user-defined classes.
     def _parse_instance(self, instance_to_parse)-> dict[str, str]:
@@ -92,11 +89,11 @@ class BInspected:
         
         callables = self._pull_attribute(class_to_parse, Callable) # Pulls the callables from the class.
         # Parses the callables in a class.
-        for func in callables.values():
+        for key, func in callables.items():
             if isinstance(func, types.MethodType):
-                func = self._parse_method(func)
+                callables[key] = self._parse_method(func)
             elif isinstance(func, types.FunctionType):
-                func = self._parse_function(func)
+                callables[key] = self._parse_function(func)
 
         return callables
     def _parse_method(self, method_to_parse: types.MethodType )-> dict:
@@ -110,7 +107,6 @@ class BInspected:
         """
 
         # Creates the introspection of the method object.
-        method_to_parse = method_to_parse
         _parsed_method = {
             "function name": method_to_parse.__name__,
             "Qualified Name": method_to_parse.__qualname__,
@@ -251,5 +247,5 @@ class BInspected:
                 continue
             else:
                 method_kwargs[arg] = None
-                
+
         return method_kwargs
