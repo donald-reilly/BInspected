@@ -14,7 +14,7 @@ class BInspected:
         """
         
         return self._classify_object(object_to_inspect)
-    def _classify_object(self, object_to_classify)-> dict[str, str] | str:
+    def _classify_object(self, object_to_classify)-> dict[str, str]:
         """
         Classifies object and returns it's introspeciton dictionary.
         
@@ -32,9 +32,9 @@ class BInspected:
         if isinstance(object_to_classify, types.FunctionType): # Classifies fucntions
             return self._parse_function(object_to_classify)
         if object_to_classify.__class__.__module__ == "builtins": # Classifies builtin objects.
-            return "builtin_instance"
+            #TODO: Finish this once CLI is done.
+            return {"Name": "builtin_instance"}
         return self._parse_instance(object_to_classify) # classifies instances of user-defined classes.
-    
     def _parse_instance(self, instance_to_parse)-> dict[str, str]:
         """
         Creates structure for unique instances of a provided class and returns the introspection dictionary.
@@ -65,7 +65,6 @@ class BInspected:
         
         # Creates the introspection of the class object.
         class_dict = {
-            #TODO This is a good place to start doing some small testing for benchmarks. Before and after on things like this and iterations.
             "Name" : class_to_parse.__name__,
             "Qualified Name" : class_to_parse.__qualname__,
             "Module Name" : class_to_parse.__module__,
@@ -103,7 +102,7 @@ class BInspected:
         Return:
             Introspection dictionary of the bound method.
         """
-        #TODO: same thing here with benchmark.
+
         # Creates the introspection of the method object.
         method_to_parse = method_to_parse
         _parsed_method = {
@@ -128,21 +127,19 @@ class BInspected:
         Return:
             Introspection dictionary of the function.
         """
-        #TODO: lost my thought here but fix this please
-        
+
         # Creates the introspection of the function object.
-        ftp = function_to_parse
         _parsed_method = {
-            "function name": ftp.__name__,
-            "fully qualified name": ftp.__qualname__,
-            "Callable type": type(ftp),
-            "module name": ftp.__module__,
-            "function docstring": ftp.__doc__,
-            "local variable names": ftp.__code__.co_varnames,
-            "number of positional arguments": ftp.__code__.co_argcount,
-            "default values for trailing positional arguments": ftp.__defaults__,
-            "default values for keyword-only arguments": ftp.__kwdefaults__,
-            "type hints for paramenters and return value": ftp.__annotations__
+            "function name": function_to_parse.__name__,
+            "fully qualified name": function_to_parse.__qualname__,
+            "Callable type": type(function_to_parse),
+            "module name": function_to_parse.__module__,
+            "function docstring": function_to_parse.__doc__,
+            "local variable names": function_to_parse.__code__.co_varnames,
+            "number of positional arguments": function_to_parse.__code__.co_argcount,
+            "default values for trailing positional arguments": function_to_parse.__defaults__,
+            "default values for keyword-only arguments": function_to_parse.__kwdefaults__,
+            "type hints for paramenters and return value": function_to_parse.__annotations__
         }
         return _parsed_method
     def _parse_properties(self, class_to_parse: type)-> dict:
@@ -170,7 +167,7 @@ class BInspected:
             for name, attributes in class_to_parse.__dict__.items() 
             if isinstance(attributes, provided_type)}
         return _provided_type
-    def _pull_dunder_methods(self)-> dict:
+    def _pull_dunder_methods(self):
         """
         Creates a dictionary containing references to the dunder methods of a class
         
@@ -185,7 +182,7 @@ class BInspected:
         #                   if name.startswith("__") and name.endswith("__")}
         #return _dunder_methods
         pass
-    def _pull_methods(self)-> dict:
+    def _pull_methods(self):
         """
         Creates a dictionary containing references to the normal methods of a class
         
