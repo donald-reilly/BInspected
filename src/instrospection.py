@@ -2,13 +2,15 @@ from collections.abc import Callable
 import types 
 
 class BInspected:
-
+    #TODO: Alllrighty then. Going to get back to having some fun with these. Brighten the mood a little bit with this work shit.
+    #TODO: Never actually went about using the singleton type deal yet. Make that shit happen brotha. Lets do it. 
+    #TODO: Also another thing, I noticed some issues with my logic and some improvements that I can make after everything else. I iterate through .__dict__ pretty often. Could be a one and done. Then pass those all around. Not a major deal. Just no reason to keep doing it.
     def __call__(self, object_to_inspect: type)-> dict[str, str]:
         """
         Classify an object and return it's introspection dictionary.
         
         Params:
-            object_to_inspect(object): Object to be inspected.
+            object_to_inspect: Object to be inspected.
         Returns:
             An introspection dictionary.
         """
@@ -21,7 +23,7 @@ class BInspected:
         Params:
             object_to_inspect(object): Object to be inspected.
         Returns: 
-            An introspection dictionary.
+            Dictionary representation of the introspection of the provided object.
         """
         
         # Logic gate to classify provided object for parsing.
@@ -34,13 +36,14 @@ class BInspected:
         if object_to_classify.__class__.__module__ == "builtins": # Classifies builtin objects.
             #TODO: Finish this once CLI is done.
             return {"Name": "builtin_instance"}
+        
         return self._parse_instance(object_to_classify) # classifies instances of user-defined classes.
     def _parse_instance(self, instance_to_parse)-> dict[str, str]:
         """
         Creates structure for unique instances of a provided class and returns the introspection dictionary.
         
         Param:
-            param instance_to_parse: Instance of a class to be parsed.
+            instance_to_parse: Instance of a class to be parsed.
         Return: 
             Dictionary representation of the the parsed instance of a class.
         """
@@ -52,6 +55,7 @@ class BInspected:
         }
         class_dict = self._parse_class(instance_to_parse.__class__)# Parses the underlying class.
         instance_dict = class_dict | instance_dict# Merges the two dictionaries.
+
         return instance_dict
     def _parse_class(self, class_to_parse: type)-> dict:
         """
@@ -74,6 +78,7 @@ class BInspected:
             "Callables" : self._parse_callables(class_to_parse),# Parses callables in the class.
             "Property" : self._parse_properties(class_to_parse)# Parses properties in the class.
         }
+
         return class_dict
     def _parse_callables(self, class_to_parse: type)-> dict:
         """
@@ -92,6 +97,7 @@ class BInspected:
                 func = self._parse_method(func)
             elif isinstance(func, types.FunctionType):
                 func = self._parse_function(func)
+
         return callables
     def _parse_method(self, method_to_parse: types.MethodType )-> dict:
         """
@@ -117,6 +123,7 @@ class BInspected:
             "default values for keyword-only arguments": method_to_parse.__func__.__kwdefaults__,
             "type hints for paramenters and return value": method_to_parse.__annotations__
         }
+
         return _parsed_method
     def _parse_function(self, function_to_parse: types.FunctionType)-> dict:
         """
@@ -141,6 +148,7 @@ class BInspected:
             "default values for keyword-only arguments": function_to_parse.__kwdefaults__,
             "type hints for paramenters and return value": function_to_parse.__annotations__
         }
+
         return _parsed_method
     def _parse_properties(self, class_to_parse: type)-> dict:
         """
@@ -198,14 +206,14 @@ class BInspected:
         #return _normal_methods
         pass
     def _pull_properties(self, class_to_parse)-> dict:
-            """ 
-            Creates a dictionary containing references to the properties of a class
-            
-            Returns:
-                (dict): A dictionary containing references to the properties of a class
-            """
+        """ 
+        Creates a dictionary containing references to the properties of a class
         
-            return self._pull_attribute(class_to_parse, property)
+        Returns:
+            (dict): A dictionary containing references to the properties of a class
+        """
+
+        return self._pull_attribute(class_to_parse, property)
     def _pull_method_args(self, method_to_map: Callable)-> dict:
         """
         Sort this methods arguements. Provide a dictionary of each arguement and the required types.
@@ -222,6 +230,7 @@ class BInspected:
             "default_kw": method_to_map.__kwdefaults__, 
             "annotations": method_to_map.__annotations__
         }
+
         return mapped_args
     def _parse_method_args_for_instantiation(self, method_to_map)-> dict:
         """
@@ -242,4 +251,5 @@ class BInspected:
                 continue
             else:
                 method_kwargs[arg] = None
+                
         return method_kwargs
