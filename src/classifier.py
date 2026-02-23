@@ -1,8 +1,8 @@
 from types import ModuleType, MethodType, FunctionType
-class classifier:
+class Classifier:
     def __init__(self):
         pass
-    def classify_initial_object(self, object_to_classify: ModuleType | type | MethodType | FunctionType | property) -> dict:
+    def classify_initial_object(self, object_to_classify: ModuleType | type | MethodType | FunctionType | property) -> str:
         """
         Classifies objects and all of it's attributes and returns a dictionary representation of the classification.
         
@@ -12,7 +12,17 @@ class classifier:
             dictionary representation of the classification of the provided object and all of it's attributes.
         """
 
-        return {}
+        if isinstance(object_to_classify, ModuleType):
+            return "object is a module"
+        if isinstance(object_to_classify, type):
+            return "object is a class"
+        if isinstance(object_to_classify, MethodType):
+            return "object is a method"
+        if isinstance(object_to_classify, FunctionType):
+            return "object is a function"
+        if isinstance(object_to_classify, property):
+            return "object is a property"
+        return "object is an instance of a user-defined class"
     def classify_module(self, module_to_classify: ModuleType)-> dict:
         """
         Classifies modules and all of it's attributes and returns a dictionary representation of the classification.
