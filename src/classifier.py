@@ -1,6 +1,7 @@
 from types import ModuleType, MethodType, FunctionType
 class Classifier:
     #TODO: For now i'm going to keep this too expanded class. Just incase I want to expand on this later. Gonna seem like a waste for now.
+    #TODO: Need to figure out the whole instance thing and how to actaully handle the __dict__ of some objects. it's a problem that i just passed over for now.
     def __init__(self):
         pass
     def __call__(self, object_to_classify)-> str:

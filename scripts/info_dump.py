@@ -39,7 +39,7 @@ def dump_info(object_to_dump, instance_of_object_to_dump = None):
         serialize_text(instance_of_object_to_dump.__dict__, f"BInspected/object_research/{instance_of_object_to_dump}_instance_dict.txt")
 
 inspector = BInspected()
-save_inspection(inspector(Setting), "FigMan_inspection.json")
+save_inspection(inspector(GoldenClass), "FigMan_inspection.json")
 
 
 

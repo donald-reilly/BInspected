@@ -9,6 +9,7 @@ class Parser:
             "module": self.parse_module,
             "class": self.parse_class,
             "method": self.parse_method,
+            "instance": self.parse_class_instance,
             "function": self.parse_function,
             "property": self.parse_property
         }
