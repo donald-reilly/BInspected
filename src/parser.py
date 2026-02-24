@@ -113,9 +113,10 @@ class Parser:
              A dictionary representation of the parsed property function.
         """
         parsed_property_function = {
+            "local variable names": property_function_to_parse.__code__.co_varnames,
             "number of positional arguments": property_function_to_parse.__code__.co_argcount,
             "default values for trailing positional arguments": property_function_to_parse.__defaults__,
             "default values for keyword-only arguments": property_function_to_parse.__kwdefaults__,
-            "type hints for paramenters and return value": property_function_to_parse.__annotations__
+            "type hints for paramenters and return value": {key: f"{value}" for key, value in property_function_to_parse.__annotations__.items()}
             }   
         return parsed_property_function
