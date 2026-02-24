@@ -8,7 +8,10 @@ class BInspected:
     #TODO: Never actually went about using the singleton type deal yet. Make that shit happen brotha. Lets do it. 
     #TODO: Also another thing, I noticed some issues with my logic and some improvements that I can make after everything else. I iterate through .__dict__ pretty often. Could be a one and done. Then pass those all around. Not a major deal. Just no reason to keep doing it.
     def __init__(self):
-
+        """
+        Initializes the BInspected class.
+        """
+        
         self.classifier = Classifier()
     def __call__(self, object_to_inspect):
         """
