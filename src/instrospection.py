@@ -3,6 +3,7 @@ import types
 from classifier import Classifier
 
 class BInspected:
+    #TODO: Create a parser class. 
     #TODO: Alllrighty then. Going to get back to having some fun with these. Brighten the mood a little bit with this work shit.
     #TODO: Never actually went about using the singleton type deal yet. Make that shit happen brotha. Lets do it. 
     #TODO: Also another thing, I noticed some issues with my logic and some improvements that I can make after everything else. I iterate through .__dict__ pretty often. Could be a one and done. Then pass those all around. Not a major deal. Just no reason to keep doing it.
@@ -19,7 +20,7 @@ class BInspected:
             An introspection dictionary.
         """
         
-        return self.classifier.classify_initial_object(object_to_inspect)
+        return self.classifier(object_to_inspect)
     def _parse_instance(self, instance_to_parse)-> dict[str, str]:
         """
         Creates structure for unique instances of a provided class and returns the introspection dictionary.
