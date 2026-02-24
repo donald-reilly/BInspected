@@ -1,7 +1,7 @@
 from collections.abc import Callable
 import types
 from classifier import Classifier
-
+from parser import Parser
 class BInspected:
     #TODO: Create a parser class. 
     #TODO: Alllrighty then. Going to get back to having some fun with these. Brighten the mood a little bit with this work shit.
@@ -11,8 +11,9 @@ class BInspected:
         """
         Initializes the BInspected class.
         """
-        
+
         self.classifier = Classifier()
+        self.parser = Parser()
     def __call__(self, object_to_inspect):
         """
         Classify an object and return it's introspection dictionary.
@@ -23,7 +24,9 @@ class BInspected:
             An introspection dictionary.
         """
         
-        return self.classifier(object_to_inspect)
+
+        object_type = self.classifier(object_to_inspect)
+        return self.parser(object_to_inspect, object_type)
     def _parse_instance(self, instance_to_parse)-> dict[str, str]:
         """
         Creates structure for unique instances of a provided class and returns the introspection dictionary.
