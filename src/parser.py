@@ -51,7 +51,7 @@ class Parser:
         for object_to_classify in class_to_parse.__dict__.values():
             object_type = self.classifier(object_to_classify)
             if object_type in self.dispatcher:
-                classify_callables[object_to_classify.__name__] = self.dispatcher[object_type](object_to_classify)
+                classify_callables = classify_callables | self.dispatcher[object_type](object_to_classify)
         
         class_dict = {
             "Name" : class_to_parse.__name__,
@@ -92,14 +92,14 @@ class Parser:
         Returns:
              A dictionary representation of the parsed function.
         """
-
         parsed_function = {
-            "function name": function_to_parse.__name__,
-            "fully qualified name": function_to_parse.__qualname__,
-            "Callable type": type(function_to_parse),
-            "module name": function_to_parse.__module__,
-            "function docstring": function_to_parse.__doc__,
-            "variables": self.parse_variables(function_to_parse)
+            function_to_parse.__name__ : {
+                "fully qualified name": function_to_parse.__qualname__,
+                "Callable type": type(function_to_parse),
+                "module name": function_to_parse.__module__,
+                "function docstring": function_to_parse.__doc__,
+                "variables": self.parse_variables(function_to_parse)
+            }
         }
         return parsed_function
     def parse_property(self, property_to_parse)-> dict:
@@ -112,11 +112,12 @@ class Parser:
         """
 
         parsed_property = {
-            "name": property_to_parse.__name__,
-            "doc": property_to_parse.__doc__ if property_to_parse.__doc__ else "No Document",
-            "getter": self.parse_variables(property_to_parse.fget) if  property_to_parse.fget else None,
-            "setter": self.parse_variables(property_to_parse.fset) if property_to_parse.fset else None,
-            "deleter": self.parse_variables(property_to_parse.fdel) if property_to_parse.fdel else None
+            property_to_parse.__name__ : {
+                "doc": property_to_parse.__doc__ if property_to_parse.__doc__ else "No Document",
+                "getter": self.parse_variables(property_to_parse.fget) if  property_to_parse.fget else None,
+                "setter": self.parse_variables(property_to_parse.fset) if property_to_parse.fset else None,
+                "deleter": self.parse_variables(property_to_parse.fdel) if property_to_parse.fdel else None
+            }
         }
         return parsed_property
 
