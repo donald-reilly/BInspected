@@ -9,3 +9,14 @@ docs/.gitignore
 .gitignore
 src/__pycache__/classifier.cpython-313.pyc
 tests/fucking_around.py
+object_research/{'test_setting': 1}_instance_dict.txt
+object_research/{'test_setting': 1}_instance_dir.txt
+object_research/<class 'figman.FigMan'>_dict.txt
+object_research/<class 'figman.FigMan'>_dir.txt
+object_research/<class 'setting.Setting'>_dict.txt
+object_research/<class 'setting.Setting'>_dir.txt
+object_research/<figman.FigMan object at 0x78060c49da90>_instance_dict.txt
+object_research/<figman.FigMan object at 0x78060c49da90>_instance_dir.txt
+BInspected/object_research/
+src/__pycache__/parser.cpython-313.pyc
+src/__pycache__/golden_class.cpython-313.pyc
