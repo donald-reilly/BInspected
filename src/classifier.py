@@ -1,11 +1,20 @@
 from types import ModuleType, MethodType, FunctionType
 class Classifier:
-    #TODO: Ok got a good start for the day. Tomorrow finish this out and just move on to the parser.
-    #TODO: change returns to strs of the type. Super simple. 
-
+    #TODO: For now i'm going to keep this too expanded class. Just incase I want to expand on this later. Gonna seem like a waste for now.
+    #TODO: Yup this is too much for now. fuck it.
     def __init__(self):
         pass
-    def classify_initial_object(self, object_to_classify: ModuleType | type | MethodType | FunctionType | property) -> dict:
+    def __call__(self, object_to_classify)-> str:
+        """
+        Calls the classifier on an object and returns a string representation of the classification.
+
+        params:
+            object_to_classify: Object to be classified.
+        return:
+            string representation of the classification of the provided object.
+        """
+        return self.classify_initial_object(object_to_classify)
+    def classify_initial_object(self, object_to_classify: ModuleType | type | MethodType | FunctionType | property)-> str:
         """
         Classifies objects and all of it's attributes and returns a dictionary representation of the classification.
         
@@ -16,17 +25,17 @@ class Classifier:
         """
 
         if isinstance(object_to_classify, ModuleType):
-            return self.classify_module(object_to_classify)
+            return "module"
         if isinstance(object_to_classify, type):
-            return self.classify_class(object_to_classify)
+            return "class"
         if isinstance(object_to_classify, MethodType):
-            return self.classify_method(object_to_classify)
+            return "method"
         if isinstance(object_to_classify, FunctionType):
-            return self.classify_function(object_to_classify)
+            return "function"
         if isinstance(object_to_classify, property):
-            return self.classify_property(object_to_classify)
-        return self.classify_instance_of_user_defined_class(object_to_classify)
-    def classify_module(self, module_to_classify: ModuleType)-> dict:
+            return "property"
+        return "instance"
+    def classify_module(self, module_to_classify: ModuleType)-> str:
         """
         Classifies modules and all of it's attributes and returns a dictionary representation of the classification.
         
@@ -36,9 +45,9 @@ class Classifier:
             dictionary representation of the classification of the provided module and all of it's attributes.
         """
 
-        return {"Name": module_to_classify.__name__, "Type": "Module"}
+        return "module"
     
-    def classify_instance_of_user_defined_class(self, instance_to_classify: object)-> dict:
+    def classify_instance_of_user_defined_class(self, instance_to_classify: object)-> str:
         """
         Classifies instances of user-defined classes and all of it's attributes and returns a dictionary representation of the classification.
         
@@ -48,8 +57,8 @@ class Classifier:
             dictionary representation of the classification of the provided instance of a user-defined class and all of it's attributes.
         """
         
-        return {"Name": instance_to_classify.__class__.__name__, "Type": "Instance of User Defined Class"}
-    def classify_class(self, class_to_classify: type)-> dict:
+        return "instance of user-defined class"
+    def classify_class(self, class_to_classify: type)-> str:
         """
         Classifies classes and all of it's attributes and returns a dictionary representation of the classification.
         
@@ -59,8 +68,8 @@ class Classifier:
             dictionary representation of the classification of the provided class and all of it's attributes.
         """
 
-        return {"Name": class_to_classify.__name__, "Type": "Class"}
-    def classify_method(self, method_to_classify: MethodType)-> dict:
+        return "class"
+    def classify_method(self, method_to_classify: MethodType)-> str:
         """
         Classifies methods and all of it's attributes and returns a dictionary representation of the classification.
         
@@ -70,8 +79,8 @@ class Classifier:
             dictionary representation of the classification of the provided method and all of it's attributes.
         """
 
-        return {"Name": method_to_classify.__name__, "Type": "Method"}
-    def classify_function(self, function_to_classify: FunctionType)-> dict:
+        return "method"
+    def classify_function(self, function_to_classify: FunctionType)-> str:
         """
         Classifies functions and all of it's attributes and returns a dictionary representation of the classification.
         
@@ -81,8 +90,8 @@ class Classifier:
             dictionary representation of the classification of the provided function and all of it's attributes.
         """
         
-        return {"Name": function_to_classify.__name__, "Type": "Function"}
-    def classify_property(self, property_to_classify: property)-> dict:
+        return "function"
+    def classify_property(self, property_to_classify: property)-> str:
         """
         Classifies properties and all of it's attributes and returns a dictionary representation of the classification.
 
@@ -92,5 +101,5 @@ class Classifier:
             dictionary representation of the classification of the provided property and all of it's attributes.
         """
         
-        return {"Name": property_to_classify.__name__, "Type": "Property"}
+        return "property"
     
