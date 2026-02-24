@@ -26,7 +26,8 @@ class BInspected:
         
 
         object_type = self.classifier(object_to_inspect)
-        return self.parser(object_to_inspect, object_type)
+        parsed_object = self.parser(object_to_inspect, object_type)
+        return parsed_object
     def _parse_instance(self, instance_to_parse)-> dict[str, str]:
         """
         Creates structure for unique instances of a provided class and returns the introspection dictionary.
