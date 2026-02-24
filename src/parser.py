@@ -1,3 +1,4 @@
+from classifier import Classifier
 class Parser:
     def __init__(self):
         """
@@ -7,11 +8,11 @@ class Parser:
         self.dispatcher = {
             "module": self.parse_module,
             "class": self.parse_class,
-            "instance": self.parse_class_instance,
             "method": self.parse_method,
             "function": self.parse_function,
             "property": self.parse_property
         }
+        self.classifier = Classifier()
     def __call__(self, object_to_parse, type)-> dict:
         """
         Parse an object of a given type and return a dictionary representation of it.
@@ -33,7 +34,9 @@ class Parser:
         Returns:
             A dictionary representation of the parsed module.
         """
-        return {"Module Name": "module"}
+
+
+        return {"Module Name": "Module"}
     def parse_class(self, class_to_parse)-> dict:
         """
         Parse a class and return a dictionary representation of it.
@@ -44,7 +47,22 @@ class Parser:
             A dictionary representation of the parsed class.
         """
 
-        return {"Class Name": "class"}
+        classify_callables = {}
+        for object_to_classify in class_to_parse.__dict__.values():
+            object_type = self.classifier(object_to_classify)
+            if object_type in self.dispatcher:
+                classify_callables[object_to_classify.__name__] = self.dispatcher[object_type](object_to_classify)
+        
+        class_dict = {
+            "Name" : class_to_parse.__name__,
+            "Qualified Name" : class_to_parse.__qualname__,
+            "Module Name" : class_to_parse.__module__,
+            "Bases" : class_to_parse.__bases__,
+            "DocString" : class_to_parse.__doc__,
+            "Type Hints" : class_to_parse.__annotations__,
+            "Callables": classify_callables
+        }
+        return class_dict
     def parse_class_instance(self, instance_to_parse)-> dict:
         """
         Parse an instance of a class and return a dictionary representation of it.
@@ -74,10 +92,11 @@ class Parser:
         Returns:
              A dictionary representation of the parsed function.
         """
+
         parsed_function = {
             "function name": function_to_parse.__name__,
             "fully qualified name": function_to_parse.__qualname__,
-            "Callable type": f"{type(function_to_parse)}",
+            "Callable type": type(function_to_parse),
             "module name": function_to_parse.__module__,
             "function docstring": function_to_parse.__doc__,
             "variables": self.parse_variables(function_to_parse)
@@ -123,7 +142,7 @@ class Parser:
         parsed_variables = {
             "Arguements": arguements,
             "Local Variables": local_variables,
-            "return type": f"{arguement_types["return"]}"
+            "return type": arguement_types["return"] if "return" in arguement_types else "None"
         }
         return parsed_variables
     def parse_arguements(self, arguements, types, default_values)-> dict:
@@ -143,7 +162,7 @@ class Parser:
         # create the dictionary representation of the parsed arguements.
         for arg in arguements:
             arguement_map[arg] = {
-                "type":  f"{types[arg]}" if arg in types else "None",
+                "type":  {types[arg]} if arg in types else "None",
                 "default value": default_map[arg] if arg in default_map else "None"
             }
 
