@@ -112,6 +112,9 @@ class Parser:
         Returns:
              A dictionary representation of the parsed property function.
         """
+
+        #TODO: Refactor this to improve readablity and reduce redundancy within. Mainly combine the variables information into a single dicionary or something like that.
+        #TODO: For example {"variable name": {"type": "str", "default value": None}} or something similar. should probably make it a seperate function that parses args. I think i already have one actually.
         parsed_property_function = {
             "local variable names": property_function_to_parse.__code__.co_varnames,
             "number of positional arguments": property_function_to_parse.__code__.co_argcount,
@@ -120,3 +123,21 @@ class Parser:
             "type hints for paramenters and return value": {key: f"{value}" for key, value in property_function_to_parse.__annotations__.items()}
             }   
         return parsed_property_function
+    def parse_arguements(self, function_to_parse)-> dict:
+        """
+        Parse the arguements of a function and return a dictionary representation of them.
+        Params:
+            function_to_parse: The function whose arguements are to be parsed.
+        Returns:
+             A dictionary representation of the parsed arguements of the function.
+        """
+
+        #TODO: This is a disaster right this second. Actually write this tomorrow. 
+        #TODO: I know autocomplete can do it for you. don't be a pussy. 
+        #TODO: It's good for your brain to handle it yourself.
+        #TODO: You've got this, you don't need AI to do it for you.
+        all_variables = function_to_parse.__code__.co_varnames
+        arg_names = all_variables[:function_to_parse.__code__.co_argcount]
+        local_vars = all_variables[function_to_parse.__code__.co_argcount:]
+
+        return {}
