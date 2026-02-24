@@ -47,7 +47,7 @@ class BInspected:
         instance_dict = class_dict | instance_dict# Merges the two dictionaries.
 
         return instance_dict
-    def _parse_class(self, class_to_parse: type)-> dict:
+    def _parse_class(self, object_to_parse: type)-> dict:
         """
         Parses class object and returns an introspection dictionary.
 
@@ -59,14 +59,14 @@ class BInspected:
         
         # Creates the introspection of the class object.
         class_dict = {
-            "Name" : class_to_parse.__name__,
-            "Qualified Name" : class_to_parse.__qualname__,
-            "Module Name" : class_to_parse.__module__,
-            "Bases" : class_to_parse.__bases__,
-            "DocString" : class_to_parse.__doc__,
-            "Type Hints" : class_to_parse.__annotations__,
-            "Callables" : self._parse_callables(class_to_parse),# Parses callables in the class.
-            "Property" : self._parse_properties(class_to_parse)# Parses properties in the class.
+            "Name" : object_to_parse.__name__,
+            "Qualified Name" : object_to_parse.__qualname__,
+            "Module Name" : object_to_parse.__module__,
+            "Bases" : object_to_parse.__bases__,
+            "DocString" : object_to_parse.__doc__,
+            "Type Hints" : object_to_parse.__annotations__,
+            "Callables" : self._parse_callables(object_to_parse),# Parses callables in the class.
+            "Property" : self._parse_properties(object_to_parse)# Parses properties in the class.
         }
 
         return class_dict
