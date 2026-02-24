@@ -1,5 +1,9 @@
 class Parser:
     def __init__(self):
+        """
+        Initializes the Parser class.
+        """
+
         self.dispatcher = {
             "module": self.parse_module,
             "class": self.parse_class,
@@ -70,7 +74,7 @@ class Parser:
         Returns:
              A dictionary representation of the parsed function.
         """
-        return {}
+        return {"name": function_to_parse.__name__}
     def parse_property(self, property_to_parse)-> dict:
         """
         Parse a property and return a dictionary representation of it.
@@ -79,4 +83,11 @@ class Parser:
         Returns:
              A dictionary representation of the parsed property.
         """
-        return {}
+
+        parsed_property = {
+            "name": property_to_parse.__name__,
+            "getter": property_to_parse.fget if  property_to_parse.fget else None,
+            "setter": property_to_parse.fset if property_to_parse.fset else None,
+            "deleter": property_to_parse.fdel if property_to_parse.fdel else None,
+        }
+        return parsed_property
