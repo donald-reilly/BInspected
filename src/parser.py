@@ -77,14 +77,10 @@ class Parser:
         parsed_function = {
             "function name": function_to_parse.__name__,
             "fully qualified name": function_to_parse.__qualname__,
-            "Callable type": type(function_to_parse),
+            "Callable type": f"{type(function_to_parse)}",
             "module name": function_to_parse.__module__,
             "function docstring": function_to_parse.__doc__,
-            "local variable names": function_to_parse.__code__.co_varnames,
-            "number of positional arguments": function_to_parse.__code__.co_argcount,
-            "default values for trailing positional arguments": function_to_parse.__defaults__,
-            "default values for keyword-only arguments": function_to_parse.__kwdefaults__,
-            "type hints for paramenters and return value": function_to_parse.__annotations__
+            "variables": self.parse_variables(function_to_parse)
         }
         return parsed_function
     def parse_property(self, property_to_parse)-> dict:
@@ -98,46 +94,57 @@ class Parser:
 
         parsed_property = {
             "name": property_to_parse.__name__,
-            "doc": property_to_parse.__doc__ if property_to_parse.__doc__ else None,
-            "getter": self.parse_property_function(property_to_parse.fget) if  property_to_parse.fget else None,
-            "setter": self.parse_property_function(property_to_parse.fset) if property_to_parse.fset else None,
-            "deleter": self.parse_property_function(property_to_parse.fdel) if property_to_parse.fdel else None
+            "doc": property_to_parse.__doc__ if property_to_parse.__doc__ else "No Document",
+            "getter": self.parse_variables(property_to_parse.fget) if  property_to_parse.fget else None,
+            "setter": self.parse_variables(property_to_parse.fset) if property_to_parse.fset else None,
+            "deleter": self.parse_variables(property_to_parse.fdel) if property_to_parse.fdel else None
         }
         return parsed_property
-    def parse_property_function(self, property_function_to_parse)-> dict:
+
+    def parse_variables(self, function_to_parse):
         """
-        Parse a property function and return a dictionary representation of it.
+        Parse the variables of a function.
+        
         Params:
-            property_function_to_parse: The property function to be parsed.
+            function_to_parse: The functions whose variables need parsing.
         Returns:
-             A dictionary representation of the parsed property function.
+            A dictionary representation of the parsed variables.
         """
 
-        #TODO: Refactor this to improve readablity and reduce redundancy within. Mainly combine the variables information into a single dicionary or something like that.
-        #TODO: For example {"variable name": {"type": "str", "default value": None}} or something similar. should probably make it a seperate function that parses args. I think i already have one actually.
-        parsed_property_function = {
-            "local variable names": property_function_to_parse.__code__.co_varnames,
-            "number of positional arguments": property_function_to_parse.__code__.co_argcount,
-            "default values for trailing positional arguments": property_function_to_parse.__defaults__,
-            "default values for keyword-only arguments": property_function_to_parse.__kwdefaults__,
-            "type hints for paramenters and return value": {key: f"{value}" for key, value in property_function_to_parse.__annotations__.items()}
-            }   
-        return parsed_property_function
-    def parse_arguements(self, function_to_parse)-> dict:
+        all_variables = function_to_parse.__code__.co_varnames # Assign all variables
+        arguement_count = function_to_parse.__code__.co_argcount # Assign the count of arguements
+        arguement_types = function_to_parse.__annotations__ or {} # Assign the defulat types or an empty dict
+        arguement_default_values = function_to_parse.__defaults__ or () # Assign the default values or an empty list
+
+        local_variables = all_variables[arguement_count:] # Pull local variables and kwvars from all vars
+        arguements = all_variables[:arguement_count] # pull arguements from all vars
+
+        arguements = self.parse_arguements(arguements, arguement_types, arguement_default_values) # Parse the arguements
+        parsed_variables = {
+            "Arguements": arguements,
+            "Local Variables": local_variables,
+            "return type": f"{arguement_types["return"]}"
+        }
+        return parsed_variables
+    def parse_arguements(self, arguements, types, default_values)-> dict:
         """
         Parse the arguements of a function and return a dictionary representation of them.
+
         Params:
             function_to_parse: The function whose arguements are to be parsed.
         Returns:
              A dictionary representation of the parsed arguements of the function.
         """
 
-        #TODO: This is a disaster right this second. Actually write this tomorrow. 
-        #TODO: I know autocomplete can do it for you. don't be a pussy. 
-        #TODO: It's good for your brain to handle it yourself.
-        #TODO: You've got this, you don't need AI to do it for you.
-        all_variables = function_to_parse.__code__.co_varnames
-        arg_names = all_variables[:function_to_parse.__code__.co_argcount]
-        local_vars = all_variables[function_to_parse.__code__.co_argcount:]
+        num_defaults = len(default_values) # Get the number of vars with default values.
+        args_with_defaults = arguements[-num_defaults:] # Get the arguements that have default values
+        default_map = dict(zip(args_with_defaults, default_values)) # Assign the defualt values to the correct arguements
+        arguement_map = {}
+        # create the dictionary representation of the parsed arguements.
+        for arg in arguements:
+            arguement_map[arg] = {
+                "type":  f"{types[arg]}" if arg in types else "None",
+                "default value": default_map[arg] if arg in default_map else "None"
+            }
 
-        return {}
+        return arguement_map
