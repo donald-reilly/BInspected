@@ -119,13 +119,9 @@ class Parser:
         """
 
         parsed_property = {
-            property_to_parse.__name__ : {
                 "doc": property_to_parse.__doc__ if property_to_parse.__doc__ else "No Document",
-                "getter": self.parse_variables(property_to_parse.fget) if  property_to_parse.fget else None,
-                "setter": self.parse_variables(property_to_parse.fset) if property_to_parse.fset else None,
-                "deleter": self.parse_variables(property_to_parse.fdel) if property_to_parse.fdel else None
+
             }
-        }
         return parsed_property
 
     def parse_variables(self, function_to_parse):
