@@ -37,8 +37,12 @@ class Parser:
             A dictionary representation of the parsed module.
         """
 
-
-        return {"Module Name": "Module"}
+        parsed_module = {
+                "name": module_to_parse.__name__,
+                "type": "Module",
+                "children": {}
+            }
+        return parsed_module
     def parse_class(self, class_to_parse)-> dict:
         """
         Parse a class and return a dictionary representation of it.
@@ -50,11 +54,11 @@ class Parser:
         """
         #TODO: This is the issue. I need to find a better way to sort dict and pull out the callables.
         #TODO: Once I fix this issue. Then I can hanlde whatever else is in __dict__. It's classifying so many things as instance
-        classify_callables = {}
-        for object_to_classify in class_to_parse.__dict__.values():
-            object_type = self.classifier(object_to_classify)
-            if object_type in self.dispatcher and object_type != "built-in":
-                classify_callables = classify_callables | self.dispatcher[object_type](object_to_classify)
+        #classify_callables = {}
+        #for object_to_classify in class_to_parse.__dict__.values():
+        #    object_type = self.classifier(object_to_classify)
+        #    if object_type in self.dispatcher and object_type != "built-in":
+        #        classify_callables = classify_callables | self.dispatcher[object_type](object_to_classify)
         
         class_dict = {
             "Name" : class_to_parse.__name__,
@@ -63,7 +67,7 @@ class Parser:
             "Bases" : class_to_parse.__bases__,
             "DocString" : class_to_parse.__doc__,
             "Type Hints" : class_to_parse.__annotations__,
-            "Callables": classify_callables
+            "Callables": class_to_parse.__dict__
         }
         return class_dict
     def parse_class_instance(self, instance_to_parse)-> dict:
