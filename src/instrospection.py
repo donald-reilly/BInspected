@@ -11,6 +11,15 @@ class BInspected:
         Initializes the BInspected class.
         """
 
+        self.dispatcher = {
+            "module": self.inspect_module,
+            "class": self.inspect_class,
+            "method": self.inspect_method,
+            "instance": self.inspect_class_instance,
+            "property": self.inspect_property,
+            "built-in": self.inspect_built_in,
+            "function": self.inspect_function
+        }
         self.classifier = Classifier()
         self.parser = Parser()
     def __call__(self, object_to_inspect):
@@ -23,16 +32,6 @@ class BInspected:
             An introspection dictionary.
         """
 
-        self.dispatcher = {
-            "module": self.inspect_module,
-            "class": self.inspect_class,
-            "method": self.inspect_method,
-            #"instance": self.inspect_class_instance,
-            "property": self.inspect_property,
-            #"built-in": self.inspect_built_in,
-            "function": self.inspect_function,
-            "System Level Module": self.inspect_sys,
-        }
         return self._build_inspection(object_to_inspect)
     def _build_inspection(self, object_to_inspect)-> dict:
         """
@@ -58,11 +57,10 @@ class BInspected:
             "__file__",
         ]
         grouped_dict ={
-            "modules": {},
+            "module": {},
             "class": {},
             "method": {},
             "function": {},
-            "property": {},
             "property": {},
             "instance": {}
         }
@@ -73,9 +71,15 @@ class BInspected:
             if object_type in grouped_dict:
                 grouped_dict[object_type][key] = value
         return grouped_dict
-        
-    def inspect_sys(self, sys_to_inspect):
-        return{"Sytem Level Module": "To Be Added Later"}
+    def _get_children(self, object_to_get_children):
+
+
+        children_dict = self._group_children(object_to_get_children.__dict__)
+        for object_types, children_objects in children_dict.items():
+            for object_name, object_ref in children_objects.items():
+                children_objects[object_name] = self(object_ref)
+        return children_dict
+
     def inspect_module(self, module_to_inspect)-> dict:
         """
         Inspect a modules underlying data structure and provide an introspection dictionary.
@@ -87,11 +91,8 @@ class BInspected:
         """
 
         module_dict = self.parser.parse_module(module_to_inspect)
-        module_dict["children"] = self._group_children(module_to_inspect.__dict__)
+        module_dict["children"] = self._get_children(module_to_inspect)
 
-        for object_type in module_dict["children"].values():
-            for child_name, child in object_type.items():
-                object_type[child_name] = self._group_children(child.__dict__)
         return module_dict
     def inspect_class(self, class_to_inspect)-> dict:
         """
@@ -103,7 +104,7 @@ class BInspected:
             An introspection dictionary
         """
         class_dict = self.parser.parse_class(class_to_inspect)
-        children_dict = {}
+        class_dict["children"] = self._get_children(class_to_inspect)
         return class_dict
     def inspect_method(self, method_to_inspect)-> dict:
         """
@@ -124,7 +125,9 @@ class BInspected:
         Returns:
             An introspection dictionary
         """
-        return {"type funciton": "function type"}
+        function_dict = self.parser.parse_function(function_to_inspect)
+        function_dict["variables"] = self.parser.parse_variables(function_to_inspect)
+        return function_dict
     def inspect_property(self, property_to_inspect)-> dict:
         """
         Inspect a property's underlying data structure and provide an introspection dictionary.
@@ -155,3 +158,25 @@ class BInspected:
             An introspection dictionary
         """
         return {"type arguement": "arguement type"}
+    def inspect_class_instance(self, instance_to_inspect)-> dict:
+        """
+        Inspect an instances underlying data structure and provide an introspection dictionary.
+        
+        Params:
+            instance_to_inspect: instance to inspect
+        Returns:
+            An introspection dictionary
+        """
+
+        return {"Not Implemented": instance_to_inspect}
+    def inspect_built_in(self, instance_to_inspect)-> dict:
+        """
+        Inspect the built_in underlying data structure and provide an introspection dictionary.
+        
+        Params:
+            built_in_to_inspect: built_in to inspect
+        Returns:
+            An introspection dictionary
+        """
+
+        return {"Not Implemented": instance_to_inspect}
