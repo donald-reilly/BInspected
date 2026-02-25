@@ -2,8 +2,10 @@
 from classifier import Classifier
 from parser import Parser
 class BInspected:
-    #TODO: Never actually went about using the singleton type deal yet. Make that shit happen brotha. Lets do it. 
-    #TODO: Also another thing, I noticed some issues with my logic and some improvements that I can make after everything else. I iterate through .__dict__ pretty often. Could be a one and done. Then pass those all around. Not a major deal. Just no reason to keep doing it.
+    #TODO: This is a major refactor of the entire module.
+    #TODO: Plans to seperate concerns. Parser has become too crowded and must be changed to fit new scope of BInspected.
+    #TODO: This class will consistently makes calls to itself using self() to traverse an object and it's childern for the creation of an introspection dict.
+    #TODO: If all goes well this should majorly simplify the creation and recursion of these dictionaries.
     def __init__(self):
         """
         Initializes the BInspected class.
@@ -21,7 +23,15 @@ class BInspected:
             An introspection dictionary.
         """
         
-
+        self.dispatcher = {
+            "module": self.inspect_module,
+            "class": self.inspect_class,
+            "method": self.inspect_method,
+            #"instance": self.inspect_class_instance,
+            "property": self.inspect_property,
+            #"built-in": self.inspect_built_in,
+            "function": self.inspect_function,
+        }
         return self._build_inspection(object_to_inspect)
     def _build_inspection(self, object_to_inspect)-> dict:
         """
@@ -35,7 +45,7 @@ class BInspected:
 
         object_type = self.classifier(object_to_inspect)
         parsed_object = self.parser(object_to_inspect, object_type)
-        
+
         return {}
     def inspect_module(self, module_to_inspect)-> dict:
         """
@@ -77,6 +87,16 @@ class BInspected:
             An introspection dictionary
         """
         return {}
+    def inspect_property(self, property_to_inspect)-> dict:
+        """
+        Inspect a property's underlying data structure and provide an introspection dictionary.
+        
+        Params:
+            property_to_inspect: Property to inspect
+        Returns:
+            An introspection dictionary
+        """
+        return {}       
     def inspect_varibales(self, variables_to_inspect)-> dict:
         """
         Inspect a varibales underlying data structure and provide an introspection dictionary.
