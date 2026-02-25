@@ -137,7 +137,11 @@ class BInspected:
         Returns:
             An introspection dictionary
         """
-        return {"type property": "property type"}       
+        property_dict = self.parser.parse_property(property_to_inspect)
+        property_dict["getter"] = self.parser.parse_variables(property_to_inspect.fget) if  property_to_inspect.fget else None,
+        property_dict["setter"] = self.parser.parse_variables(property_to_inspect.fset) if property_to_inspect.fset else None,
+        property_dict["deleter"] = self.parser.parse_variables(property_to_inspect.fdel) if property_to_inspect.fdel else None
+        return property_dict      
     def inspect_varibales(self, variables_to_inspect)-> dict:
         """
         Inspect a varibales underlying data structure and provide an introspection dictionary.
