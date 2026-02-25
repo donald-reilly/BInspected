@@ -25,7 +25,6 @@ class Classifier:
         """
 
 
-
         if isinstance(object_to_classify, ModuleType):
             return "module"
         if isinstance(object_to_classify, type):
