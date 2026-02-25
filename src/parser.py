@@ -61,13 +61,11 @@ class Parser:
         #        classify_callables = classify_callables | self.dispatcher[object_type](object_to_classify)
         
         class_dict = {
-            "Name" : class_to_parse.__name__,
             "Qualified Name" : class_to_parse.__qualname__,
             "Module Name" : class_to_parse.__module__,
             "Bases" : class_to_parse.__bases__,
             "DocString" : class_to_parse.__doc__,
             "Type Hints" : class_to_parse.__annotations__,
-            "Callables": class_to_parse.__dict__
         }
         return class_dict
     def parse_class_instance(self, instance_to_parse)-> dict:
@@ -106,13 +104,9 @@ class Parser:
              A dictionary representation of the parsed function.
         """
         parsed_function = {
-            function_to_parse.__name__ : {
                 "fully qualified name": function_to_parse.__qualname__,
-                "Callable type": type(function_to_parse),
                 "module name": function_to_parse.__module__,
-                "function docstring": function_to_parse.__doc__,
-                "variables": self.parse_variables(function_to_parse)
-            }
+                "function docstring": function_to_parse.__doc__
         }
         return parsed_function
     def parse_property(self, property_to_parse)-> dict:
