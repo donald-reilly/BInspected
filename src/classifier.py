@@ -1,4 +1,4 @@
-from types import ModuleType, MethodType, FunctionType
+from types import ModuleType, MethodType, FunctionType, BuiltinFunctionType, BuiltinMethodType
 class Classifier:
     #TODO: For now i'm going to keep this too expanded class. Just incase I want to expand on this later. Gonna seem like a waste for now.
     #TODO: Need to figure out the whole instance thing and how to actaully handle the __dict__ of some objects. it's a problem that i just passed over for now.
@@ -24,6 +24,8 @@ class Classifier:
             dictionary representation of the classification of the provided object and all of it's attributes.
         """
 
+
+
         if isinstance(object_to_classify, ModuleType):
             return "module"
         if isinstance(object_to_classify, type):
@@ -34,6 +36,8 @@ class Classifier:
             return "function"
         if isinstance(object_to_classify, property):
             return "property"
+        if object_to_classify.__class__.__module__ == "builtins":
+            return "built-in"
         return "instance"
     def classify_module(self, module_to_classify: ModuleType)-> str:
         """
