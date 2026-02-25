@@ -11,7 +11,8 @@ class Parser:
             "method": self.parse_method,
             "instance": self.parse_class_instance,
             "function": self.parse_function,
-            "property": self.parse_property
+            "property": self.parse_property,
+            "built-in": self.parse_built_in
         }
         self.classifier = Classifier()
     def __call__(self, object_to_parse, type)-> dict:
@@ -47,11 +48,12 @@ class Parser:
         Returns:
             A dictionary representation of the parsed class.
         """
-
+        #TODO: This is the issue. I need to find a better way to sort dict and pull out the callables.
+        #TODO: Once I fix this issue. Then I can hanlde whatever else is in __dict__. It's classifying so many things as instance
         classify_callables = {}
         for object_to_classify in class_to_parse.__dict__.values():
             object_type = self.classifier(object_to_classify)
-            if object_type in self.dispatcher:
+            if object_type in self.dispatcher and object_type != "built-in":
                 classify_callables = classify_callables | self.dispatcher[object_type](object_to_classify)
         
         class_dict = {
@@ -74,7 +76,13 @@ class Parser:
             A dictionary representation of the parsed instance of a class.
         """
 
-        return {"Instance of Class Name": "instance of class"}
+        instance_dict = {
+                "Instance Variables": instance_to_parse
+            }
+        return instance_dict
+    def parse_built_in(self, built_in_to_parse)-> dict:
+        print(type(built_in_to_parse))
+        return {"some_builtin": "some_builtin"}
     def parse_method(self, method_to_parse)-> dict:
         """
         Parse a method and return a dictionary representation of it.
