@@ -4,11 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "binspected"
+version = "0.1.0"
 description = "Recursive Python introspection engine"
 readme = "README.md"
 license = { text = "MIT" }
-authors = [{ name = "Donald Reilly", email = "" }]
+authors = [{ name = "Donald Reilly", email = "donald.reilly.jr@outlook.com" }]
 dependencies = []
+
+[tool.setuptools]
+version = { use_scm = true }
 
 [tool.setuptools_scm]
 write_to = "src/binspected/_version.py"
