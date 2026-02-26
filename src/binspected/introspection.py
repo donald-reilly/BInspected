@@ -154,8 +154,10 @@ class BInspected:
         Returns:
             An introspection dictionary
         """
-
-        return {"type method": "method type"}
+        method_dict = self.parser.parse_method(method_to_inspect)
+        function_dict = self(method_to_inspect.__func__)
+        method_dict |= function_dict
+        return method_dict
     
     def _inspect_function(self, function_to_inspect)-> dict:
         """
@@ -221,8 +223,10 @@ class BInspected:
             An introspection dictionary
         """
 
-        return {"Not Implemented": instance_to_inspect}
-    
+        instance_dict = self.parser.parse_class_instance(instance_to_inspect)
+        class_dict = self(instance_to_inspect.__class__)
+        instance_dict = instance_dict | class_dict
+        return instance_dict
     def _inspect_built_in(self, instance_to_inspect)-> dict:
         """
         Inspect the built_in underlying data structure and provide an introspection dictionary.
@@ -233,5 +237,15 @@ class BInspected:
             An introspection dictionary
         """
 
-        return {"Not Implemented": instance_to_inspect}
+        return {"Not Implemented": "_inspect_built_in"}
+    
+    def _quick_helper_function(self, thing_to_inspect):
+        if type(thing_to_inspect) == dict:
+            for key, value in thing_to_inspect.items():
+                print(f"{key}, {value}")   
+            return  
+        print(dir(thing_to_inspect))
+        if thing_to_inspect.__dict__:
+            for key, value in thing_to_inspect.__dict__.items():
+                print(f"{key}, {value}")
     

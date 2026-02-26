@@ -79,10 +79,10 @@ class Parser:
         Returns:
             A dictionary representation of the parsed instance of a class.
         """
-
+    
         #TODO: Complete and add instance parsing.
         instance_dict = {
-                "Instance Variables": instance_to_parse
+                "Instance Variables": instance_to_parse.__dict__
             }
         return instance_dict
     
@@ -95,8 +95,10 @@ class Parser:
              A dictionary representation of the parsed method.
         """
 
-        #TODO: Complete and add bound method parsing.
-        return {"Method Name": "method"}
+        method_dict = {
+            "Class Instance": method_to_parse.__self__
+        }
+        return method_dict
     
     def parse_function(self, function_to_parse)-> dict:
         """
