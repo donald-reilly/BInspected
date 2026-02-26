@@ -8,5 +8,5 @@ version = "0.1.0"
 description = "Recursive Python introspection engine"
 readme = "README.md"
 license = { text = "MIT" }
-authors = [{ name = "Donald Reilly", email = "donald.reilly.jr@outlook.com" }]
+authors = [{ name = "Donald Reilly", email = "" }]
 dependencies = []
