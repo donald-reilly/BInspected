@@ -141,8 +141,8 @@ class BInspected:
             An introspection dictionary
         """
 
-        class_dict = self.parser.parse_class(class_to_inspect)
-        class_dict["children"] = self._get_children(class_to_inspect)
+        class_dict = self.parser.parse_class(class_to_inspect) # Creates the dictionary representation of the provided class.
+        class_dict["children"] = self._get_children(class_to_inspect) # Pulls out the children of the provided class and sorts them accordingly.
         return class_dict
     
     def _inspect_method(self, method_to_inspect)-> dict:
@@ -154,9 +154,10 @@ class BInspected:
         Returns:
             An introspection dictionary
         """
-        method_dict = self.parser.parse_method(method_to_inspect)
-        function_dict = self(method_to_inspect.__func__)
-        method_dict |= function_dict
+
+        method_dict = self.parser.parse_method(method_to_inspect) # Creates the dicitonary representation of the provided method.
+        function_dict = self(method_to_inspect.__func__) # Sends the underlying function to the correct inspecetion method.
+        method_dict |= function_dict # Merges the two introspection dictionaries.
         return method_dict
     
     def _inspect_function(self, function_to_inspect)-> dict:
@@ -169,8 +170,8 @@ class BInspected:
             An introspection dictionary
         """
 
-        function_dict = self.parser.parse_function(function_to_inspect)
-        function_dict["variables"] = self.parser.parse_variables(function_to_inspect)
+        function_dict = self.parser.parse_function(function_to_inspect) # Create the dictionary representation of the provided function.
+        function_dict["variables"] = self.parser.parse_variables(function_to_inspect) # Sends the functions variables for parsing.
         return function_dict
     
     def _inspect_property(self, property_to_inspect)-> dict:
@@ -183,10 +184,10 @@ class BInspected:
             An introspection dictionary
         """
 
-        property_dict = self.parser.parse_property(property_to_inspect)
-        property_dict["getter"] = self(property_to_inspect.fget) if  property_to_inspect.fget else None
-        property_dict["setter"] = self(property_to_inspect.fset) if property_to_inspect.fset else None
-        property_dict["deleter"] = self(property_to_inspect.fdel) if property_to_inspect.fdel else None
+        property_dict = self.parser.parse_property(property_to_inspect) # Creates the dictionary representation of the provided property.
+        property_dict["getter"] = self(property_to_inspect.fget) if  property_to_inspect.fget else None # Sends the underlying functions to the correct inspection method. 
+        property_dict["setter"] = self(property_to_inspect.fset) if property_to_inspect.fset else None # Sends the underlying functions to the correct inspection method.
+        property_dict["deleter"] = self(property_to_inspect.fdel) if property_to_inspect.fdel else None # Sends the underlying functions to the correct inspection method.
         return property_dict    
       
     def _inspect_variables(self, variables_to_inspect)-> dict:
@@ -199,6 +200,7 @@ class BInspected:
             An introspection dictionary
         """
 
+        #TODO: Decide if this needs to exist or if the code should exist in parser.
         return {"type variable": "variable type"}
     
     def _inspect_arguments(self, arguments_to_inspect)-> dict:
@@ -210,7 +212,7 @@ class BInspected:
         Returns:
             An introspection dictionary
         """
-
+        #TODO: Decide if this needs to exist or if the code should exist in parser.
         return {"type argument": "argument type"}
     
     def _inspect_class_instance(self, instance_to_inspect)-> dict:
@@ -223,9 +225,9 @@ class BInspected:
             An introspection dictionary
         """
 
-        instance_dict = self.parser.parse_class_instance(instance_to_inspect)
-        class_dict = self(instance_to_inspect.__class__)
-        instance_dict = instance_dict | class_dict
+        instance_dict = self.parser.parse_class_instance(instance_to_inspect) # Creates the dictionary representation of the provided instance of a class.
+        class_dict = self(instance_to_inspect.__class__) # Sends the underlying class by through self for classification and parsing.
+        instance_dict = instance_dict | class_dict # Merges the two dictionaries.
         return instance_dict
     def _inspect_built_in(self, instance_to_inspect)-> dict:
         """
@@ -237,15 +239,6 @@ class BInspected:
             An introspection dictionary
         """
 
+        #TODO: Possible feature, and flag. Not sure if built-ins should even be tested. Would make some very heavy duty outputs.
         return {"Not Implemented": "_inspect_built_in"}
-    
-    def _quick_helper_function(self, thing_to_inspect):
-        if type(thing_to_inspect) == dict:
-            for key, value in thing_to_inspect.items():
-                print(f"{key}, {value}")   
-            return  
-        print(dir(thing_to_inspect))
-        if thing_to_inspect.__dict__:
-            for key, value in thing_to_inspect.__dict__.items():
-                print(f"{key}, {value}")
     
