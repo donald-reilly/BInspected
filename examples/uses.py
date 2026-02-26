@@ -1,7 +1,7 @@
 from pathlib import Path
 import json
 
-from binspected import instrospection
+from binspected import BInspected
 
 class DescriptorExample:
     """Simple descriptor to test descriptor behavior."""
@@ -111,6 +111,7 @@ def save_inspection(data, filename="test_inspections/inspection_output.json"):
         json.dump(data, f, indent=4, default= str)
     return path
 
-inspector = instrospection.BInspected()
+inspector = BInspected()
 save_inspection(inspector(GoldenClass), "examples/GoldenClass.json")
 save_inspection(inspector(DescriptorExample), "examples/DescriptorExample.json")
+save_inspection(inspector(GoldenClass()), "examples/GoldenClassInstance.json")

@@ -1,4 +1,4 @@
-from classifier import Classifier
+from binspected.classifier import Classifier
 class Parser:
     """
     Parser: Extracts meta data from python objects.
