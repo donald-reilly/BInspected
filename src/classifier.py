@@ -14,6 +14,7 @@ class Classifier:
             string representation of the classification of the provided object.
         """
         return self.classify_initial_object(object_to_classify)
+    
     def classify_initial_object(self, object_to_classify: ModuleType | type | MethodType | FunctionType | property)-> str:
         """
         Classifies objects and all of it's attributes and returns a dictionary representation of the classification.
@@ -23,7 +24,6 @@ class Classifier:
         return:
             dictionary representation of the classification of the provided object and all of it's attributes.
         """
-
 
         if isinstance(object_to_classify, ModuleType):
             return "module"
@@ -38,6 +38,7 @@ class Classifier:
         if object_to_classify.__class__.__module__ == "builtins":
             return "built-in"
         return "instance"
+    
     def classify_module(self, module_to_classify: ModuleType)-> str:
         """
         Classifies modules and all of it's attributes and returns a dictionary representation of the classification.
@@ -61,6 +62,7 @@ class Classifier:
         """
         
         return "instance of user-defined class"
+    
     def classify_class(self, class_to_classify: type)-> str:
         """
         Classifies classes and all of it's attributes and returns a dictionary representation of the classification.
@@ -72,6 +74,7 @@ class Classifier:
         """
 
         return "class"
+    
     def classify_method(self, method_to_classify: MethodType)-> str:
         """
         Classifies methods and all of it's attributes and returns a dictionary representation of the classification.
@@ -83,6 +86,7 @@ class Classifier:
         """
 
         return "method"
+    
     def classify_function(self, function_to_classify: FunctionType)-> str:
         """
         Classifies functions and all of it's attributes and returns a dictionary representation of the classification.
@@ -94,6 +98,7 @@ class Classifier:
         """
         
         return "function"
+    
     def classify_property(self, property_to_classify: property)-> str:
         """
         Classifies properties and all of it's attributes and returns a dictionary representation of the classification.

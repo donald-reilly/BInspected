@@ -198,6 +198,7 @@ class BInspected:
         """
 
         return {"type variable": "variable type"}
+    
     def _inspect_arguments(self, arguments_to_inspect)-> dict:
         """
         Inspect an arguments underlying data structure and provide an introspection dictionary.
@@ -209,6 +210,7 @@ class BInspected:
         """
 
         return {"type argument": "argument type"}
+    
     def _inspect_class_instance(self, instance_to_inspect)-> dict:
         """
         Inspect an instances underlying data structure and provide an introspection dictionary.
@@ -220,6 +222,7 @@ class BInspected:
         """
 
         return {"Not Implemented": instance_to_inspect}
+    
     def _inspect_built_in(self, instance_to_inspect)-> dict:
         """
         Inspect the built_in underlying data structure and provide an introspection dictionary.
@@ -231,3 +234,4 @@ class BInspected:
         """
 
         return {"Not Implemented": instance_to_inspect}
+    
