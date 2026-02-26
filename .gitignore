@@ -20,3 +20,10 @@ object_research/<figman.FigMan object at 0x78060c49da90>_instance_dir.txt
 BInspected/object_research/
 src/__pycache__/parser.cpython-313.pyc
 src/__pycache__/golden_class.cpython-313.pyc
+todo
+src/binspected.egg-info/dependency_links.txt
+src/binspected.egg-info/PKG-INFO
+src/binspected.egg-info/SOURCES.txt
+src/binspected.egg-info/top_level.txt
+dist/binspected-0.1.0-py3-none-any.whl
+dist/binspected-0.1.0.tar.gz
