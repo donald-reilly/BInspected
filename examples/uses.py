@@ -1,7 +1,7 @@
 from pathlib import Path
 import json
 
-from BInspected import instrospection
+from binspected import instrospection
 
 class DescriptorExample:
     """Simple descriptor to test descriptor behavior."""
