@@ -27,3 +27,5 @@ src/binspected.egg-info/SOURCES.txt
 src/binspected.egg-info/top_level.txt
 dist/binspected-0.1.0-py3-none-any.whl
 dist/binspected-0.1.0.tar.gz
+dist/binspected-0.1.1-py3-none-any.whl
+dist/binspected-0.1.1.tar.gz
