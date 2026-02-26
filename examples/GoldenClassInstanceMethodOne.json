@@ -1,0 +1,26 @@
+{
+    "Class Instance": "<__main__.GoldenClass object at 0x77770e9a9010>",
+    "fully qualified name": "GoldenClass.method_one",
+    "module name": "__main__",
+    "function docstring": "This is method one",
+    "variables": {
+        "arguments": {
+            "self": {
+                "type": "None",
+                "default value": "None"
+            },
+            "param1": {
+                "type": "None",
+                "default value": "None"
+            },
+            "param2": {
+                "type": "{<class 'int'>}",
+                "default value": 10
+            }
+        },
+        "Local Variables": [
+            "local_variable"
+        ],
+        "return type": "<class 'str'>"
+    }
+}
