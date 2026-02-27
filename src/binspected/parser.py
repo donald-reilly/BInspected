@@ -23,7 +23,7 @@ class Parser:
         }
         self.classifier = Classifier() # An instance of the classifier.
 
-    def __call__(self, object_to_parse, object_type)-> dict:
+    def __call__(self, object_to_parse)-> dict:
         """
         Parse an object of a given type and return a dictionary representation.
 
@@ -35,8 +35,10 @@ class Parser:
         """
         
         # The only call to the dispatcher.
-        return self.dispatcher[object_type](object_to_parse)
-    def _extract_meta_data(self, object_to_parse, object_type)-> dict:
+        #return self.dispatcher[object_type](object_to_parse)
+        meta_data_dict = self._extract_meta_data(object_to_parse)
+        return meta_data_dict
+    def _extract_meta_data(self, object_to_parse)-> dict:
         """
         Parse an object, extract meta-data and format it into a dictionary.
         
@@ -47,7 +49,23 @@ class Parser:
             A dictionary representation of the meta data.
         """
 
-        return {"The meta data": "example meta data"}
+        meta_data_map = {
+            "name" : lambda: object_to_parse.__name__,
+            "qualified name" : lambda: object_to_parse.__qualname__,
+            "module name" : lambda: object_to_parse.__module__,
+            "bases" : lambda: object_to_parse.__bases__,
+            "doc string" : lambda: object_to_parse.__doc__,
+            "type hints" : lambda: object_to_parse.__annotations__,
+            "Class Instance": lambda: object_to_parse.__self__
+        }
+        meta_data_dict = {}
+        for meta_data in meta_data_map:
+            try:
+                meta_data_dict[meta_data] = meta_data_map[meta_data]()
+            except:
+                meta_data_dict[meta_data] = None
+        
+        return meta_data_dict
     def parse_module(self, module_to_parse)-> dict:
         """
         Parse a module and return a dictionary representation.
@@ -78,13 +96,7 @@ class Parser:
         #TODO: This meta data extraciton could all happen in one fucking go.
         #TODO: Need to pull class level variables. Using some sort of helper function to parse the dict of a class.
         # Pulls the meta data and sorts the class' introspection dictionary.
-        class_dict = {
-            "Qualified Name" : class_to_parse.__qualname__, # Pulls the qualified name of the class.
-            "Module Name" : class_to_parse.__module__, # Pulls the module name of the class.
-            "Bases" : class_to_parse.__bases__, # Pulls bases of the class.
-            "DocString" : class_to_parse.__doc__, # Pulls the documentation of the class.
-            "Type Hints" : class_to_parse.__annotations__, # Pulls any type hints of the class.
-        }
+        class_dict = self._extract_meta_data(class_to_parse)
         return class_dict
     
     def parse_class_instance(self, instance_to_parse)-> dict:
@@ -113,9 +125,7 @@ class Parser:
              A dictionary representation of the parsed method.
         """
         
-        method_dict = {
-            "Class Instance": method_to_parse.__self__
-        }
+        method_dict = self(method_to_parse)
         return method_dict
     
     def parse_function(self, function_to_parse)-> dict:
