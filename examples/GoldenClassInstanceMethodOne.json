@@ -1,33 +1,1583 @@
 {
-    "Qualified Name": "GoldenClass",
-    "Module Name": "__main__",
-    "Bases": [
-        "<class '__main__.GoldenBase'>"
-    ],
-    "DocString": "A fully loaded class for introspection testing.",
-    "Type Hints": {
-        "another_class_variable": "<class 'int'>"
-    },
+    "name": "binspected",
+    "doc string": "\ncan't figure this one out\n\n",
+    "type hints": {},
     "children": {
-        "module": {},
+        "module": {
+            "classifier": {
+                "name": "binspected.classifier",
+                "doc string": null,
+                "type hints": {},
+                "children": {
+                    "module": {},
+                    "class": {
+                        "ModuleType": {
+                            "name": "module",
+                            "qualified name": "module",
+                            "module name": "builtins",
+                            "bases": [
+                                "<class 'object'>"
+                            ],
+                            "doc string": "Create a module object.\n\nThe name must be a string; the optional doc argument can have any type.",
+                            "children": {
+                                "module": {},
+                                "class": {},
+                                "method": {},
+                                "function": {},
+                                "property": {},
+                                "instance": {}
+                            }
+                        },
+                        "MethodType": {
+                            "name": "method",
+                            "qualified name": "method",
+                            "module name": "builtins",
+                            "bases": [
+                                "<class 'object'>"
+                            ],
+                            "doc string": "Create a bound instance method object.",
+                            "children": {
+                                "module": {},
+                                "class": {},
+                                "method": {},
+                                "function": {},
+                                "property": {},
+                                "instance": {}
+                            }
+                        },
+                        "FunctionType": {
+                            "name": "function",
+                            "qualified name": "function",
+                            "module name": "builtins",
+                            "bases": [
+                                "<class 'object'>"
+                            ],
+                            "doc string": "Create a function object.\n\n  code\n    a code object\n  globals\n    the globals dictionary\n  name\n    a string that overrides the name from the code object\n  argdefs\n    a tuple that specifies the default argument values\n  closure\n    a tuple that supplies the bindings for free variables\n  kwdefaults\n    a dictionary that specifies the default keyword argument values",
+                            "children": {
+                                "module": {},
+                                "class": {},
+                                "method": {},
+                                "function": {},
+                                "property": {},
+                                "instance": {}
+                            }
+                        },
+                        "BuiltinFunctionType": {
+                            "name": "builtin_function_or_method",
+                            "qualified name": "builtin_function_or_method",
+                            "module name": "builtins",
+                            "bases": [
+                                "<class 'object'>"
+                            ],
+                            "doc string": "<attribute '__doc__' of 'builtin_function_or_method' objects>",
+                            "children": {
+                                "module": {},
+                                "class": {},
+                                "method": {},
+                                "function": {},
+                                "property": {},
+                                "instance": {}
+                            }
+                        },
+                        "BuiltinMethodType": {
+                            "name": "builtin_function_or_method",
+                            "qualified name": "builtin_function_or_method",
+                            "module name": "builtins",
+                            "bases": [
+                                "<class 'object'>"
+                            ],
+                            "doc string": "<attribute '__doc__' of 'builtin_function_or_method' objects>",
+                            "children": {
+                                "module": {},
+                                "class": {},
+                                "method": {},
+                                "function": {},
+                                "property": {},
+                                "instance": {}
+                            }
+                        },
+                        "Classifier": {
+                            "name": "Classifier",
+                            "qualified name": "Classifier",
+                            "module name": "binspected.classifier",
+                            "bases": [
+                                "<class 'object'>"
+                            ],
+                            "doc string": null,
+                            "type hints": {},
+                            "children": {
+                                "module": {},
+                                "class": {},
+                                "method": {},
+                                "function": {
+                                    "__init__": {
+                                        "name": "__init__",
+                                        "qualified name": "Classifier.__init__",
+                                        "module name": "binspected.classifier",
+                                        "doc string": null,
+                                        "type hints": {},
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "None"
+                                        }
+                                    },
+                                    "__call__": {
+                                        "name": "__call__",
+                                        "qualified name": "Classifier.__call__",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nCalls the classifier on an object and returns a string representation of the classification.\n\nparams:\n    object_to_classify: Object to be classified.\nreturn:\n    string representation of the classification of the provided object.\n",
+                                        "type hints": {
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "object_to_classify": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    },
+                                    "classify_initial_object": {
+                                        "name": "classify_initial_object",
+                                        "qualified name": "Classifier.classify_initial_object",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nClassifies objects and all of it's attributes and returns a dictionary representation of the classification.\n\nparams:\n    object_to_classify: Object to be classified.\nreturn:\n    dictionary representation of the classification of the provided object and all of it's attributes.\n",
+                                        "type hints": {
+                                            "object_to_classify": "module | type | method | function | property",
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "object_to_classify": {
+                                                    "type": "{module | type | method | function | property}",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    },
+                                    "classify_module": {
+                                        "name": "classify_module",
+                                        "qualified name": "Classifier.classify_module",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nClassifies modules and all of it's attributes and returns a dictionary representation of the classification.\n\nparams:\n    module_to_classify: Module to be classified.\nreturn:\n    dictionary representation of the classification of the provided module and all of it's attributes.\n",
+                                        "type hints": {
+                                            "module_to_classify": "<class 'module'>",
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "module_to_classify": {
+                                                    "type": "{<class 'module'>}",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    },
+                                    "classify_instance_of_user_defined_class": {
+                                        "name": "classify_instance_of_user_defined_class",
+                                        "qualified name": "Classifier.classify_instance_of_user_defined_class",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nClassifies instances of user-defined classes and all of it's attributes and returns a dictionary representation of the classification.\n\nparams:\n    instance_to_classify: Instance of a user-defined class to be classified.\nreturn:\n    dictionary representation of the classification of the provided instance of a user-defined class and all of it's attributes.\n",
+                                        "type hints": {
+                                            "instance_to_classify": "<class 'object'>",
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "instance_to_classify": {
+                                                    "type": "{<class 'object'>}",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    },
+                                    "classify_class": {
+                                        "name": "classify_class",
+                                        "qualified name": "Classifier.classify_class",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nClassifies classes and all of it's attributes and returns a dictionary representation of the classification.\n\nparams:\n    class_to_classify: Class to be classified.\nreturn:\n    dictionary representation of the classification of the provided class and all of it's attributes.\n",
+                                        "type hints": {
+                                            "class_to_classify": "<class 'type'>",
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "class_to_classify": {
+                                                    "type": "{<class 'type'>}",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    },
+                                    "classify_method": {
+                                        "name": "classify_method",
+                                        "qualified name": "Classifier.classify_method",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nClassifies methods and all of it's attributes and returns a dictionary representation of the classification.\n\nparams:\n    method_to_classify: Method to be classified.\nreturn:\n    dictionary representation of the classification of the provided method and all of it's attributes.\n",
+                                        "type hints": {
+                                            "method_to_classify": "<class 'method'>",
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "method_to_classify": {
+                                                    "type": "{<class 'method'>}",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    },
+                                    "classify_function": {
+                                        "name": "classify_function",
+                                        "qualified name": "Classifier.classify_function",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nClassifies functions and all of it's attributes and returns a dictionary representation of the classification.\n\nparams:\n    function_to_classify: Function to be classified.\nreturn:\n    dictionary representation of the classification of the provided function and all of it's attributes.\n",
+                                        "type hints": {
+                                            "function_to_classify": "<class 'function'>",
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "function_to_classify": {
+                                                    "type": "{<class 'function'>}",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    },
+                                    "classify_property": {
+                                        "name": "classify_property",
+                                        "qualified name": "Classifier.classify_property",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nClassifies properties and all of it's attributes and returns a dictionary representation of the classification.\n\nparams:\n    property_to_classify: Property to be classified.\nreturn:\n    dictionary representation of the classification of the provided property and all of it's attributes.\n",
+                                        "type hints": {
+                                            "property_to_classify": "<class 'property'>",
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "property_to_classify": {
+                                                    "type": "{<class 'property'>}",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    }
+                                },
+                                "property": {},
+                                "instance": {}
+                            }
+                        }
+                    },
+                    "method": {},
+                    "function": {},
+                    "property": {},
+                    "instance": {}
+                }
+            },
+            "parser": {
+                "name": "binspected.parser",
+                "doc string": null,
+                "type hints": {},
+                "children": {
+                    "module": {},
+                    "class": {
+                        "Parser": {
+                            "name": "Parser",
+                            "qualified name": "Parser",
+                            "module name": "binspected.parser",
+                            "bases": [
+                                "<class 'object'>"
+                            ],
+                            "doc string": "\nParser: Extracts meta data from python objects.\n\nThis class parses python objects to provide clean and readable meta data.\n",
+                            "type hints": {},
+                            "children": {
+                                "module": {},
+                                "class": {},
+                                "method": {},
+                                "function": {
+                                    "__init__": {
+                                        "name": "__init__",
+                                        "qualified name": "Parser.__init__",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nInitializes the Parser class.\n",
+                                        "type hints": {},
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "None"
+                                        }
+                                    },
+                                    "__call__": {
+                                        "name": "__call__",
+                                        "qualified name": "Parser.__call__",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse an object of a given type and return a dictionary representation.\n\nParams:\n    object_to_parse: The object to be parsed.\n    object_type: The type of the object to be parsed.\nReturns:\n    A dictionary representation of the parsed object.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "object_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "meta_data_dict"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "_extract_meta_data": {
+                                        "name": "_extract_meta_data",
+                                        "qualified name": "Parser._extract_meta_data",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse an object, extract meta-data and format it into a dictionary.\n\nParams:\n    object_to_parse: The object to be parsed.\n    object_type: The Name of the object to be parsed.\nReturns:\n    A dictionary representation of the meta data.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "object_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "meta_data_map",
+                                                "meta_data_dict",
+                                                "meta_data"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "parse_module": {
+                                        "name": "parse_module",
+                                        "qualified name": "Parser.parse_module",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse a module and return a dictionary representation.\n\nParams:\n    module_to_parse: The module to be parsed.\nReturns:\n    A dictionary representation of the parsed module.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "module_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "parsed_module"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "parse_class": {
+                                        "name": "parse_class",
+                                        "qualified name": "Parser.parse_class",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse a class and return a dictionary representation of it.\n\nParams:\n    class_to_parse: The class to be parsed.\nReturns:\n    A dictionary representation of the parsed class.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "class_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "class_dict"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "parse_class_instance": {
+                                        "name": "parse_class_instance",
+                                        "qualified name": "Parser.parse_class_instance",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse an instance of a class and return a dictionary representation of it.\n\nParams:\n    instance_to_parse: The instance of a class to be parsed.\nReturns:\n    A dictionary representation of the parsed instance of a class.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "instance_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "instance_dict"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "parse_method": {
+                                        "name": "parse_method",
+                                        "qualified name": "Parser.parse_method",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse a method and return a dictionary representation of it.\nParams:\n    method_to_parse: The method to be parsed.\nReturns:\n     A dictionary representation of the parsed method.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "method_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "method_dict"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "parse_function": {
+                                        "name": "parse_function",
+                                        "qualified name": "Parser.parse_function",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse a function and return a dictionary representation of it.\nParams:\n    function_to_parse: The function to be parsed.\nReturns:\n     A dictionary representation of the parsed function.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "function_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "parsed_function"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "parse_property": {
+                                        "name": "parse_property",
+                                        "qualified name": "Parser.parse_property",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse a property and return a dictionary representation of it.\nParams:\n    property_to_parse: The property to be parsed.\nReturns:\n     A dictionary representation of the parsed property.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "property_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "parsed_property"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "parse_variables": {
+                                        "name": "parse_variables",
+                                        "qualified name": "Parser.parse_variables",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse the variables of a function.\n\nParams:\n    function_to_parse: The functions whose variables need parsing.\nReturns:\n    A dictionary representation of the parsed variables.\n",
+                                        "type hints": {},
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "function_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "all_variables",
+                                                "argument_count",
+                                                "argument_types",
+                                                "argument_default_values",
+                                                "local_variables",
+                                                "arguments",
+                                                "parsed_variables"
+                                            ],
+                                            "return type": "None"
+                                        }
+                                    },
+                                    "parse_arguments": {
+                                        "name": "parse_arguments",
+                                        "qualified name": "Parser.parse_arguments",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse the arguments of a function and return a dictionary representation of them.\n\nParams:\n    arguments: The arguments to be parsed.\n    types: the argument type hints.\n    default_values: Any default values for the arguements.\nReturns:\n     A dictionary representation of the parsed arguments of the function.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "arguments": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "types": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "default_values": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "num_defaults",
+                                                "args_with_defaults",
+                                                "default_map",
+                                                "argument_map",
+                                                "arg"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    }
+                                },
+                                "property": {},
+                                "instance": {}
+                            }
+                        }
+                    },
+                    "method": {},
+                    "function": {},
+                    "property": {},
+                    "instance": {}
+                }
+            },
+            "introspection": {
+                "name": "binspected.introspection",
+                "doc string": "\nLets see if this fucking works, it might belong in the __init__\n",
+                "type hints": {},
+                "children": {
+                    "module": {},
+                    "class": {
+                        "Classifier": {
+                            "name": "Classifier",
+                            "qualified name": "Classifier",
+                            "module name": "binspected.classifier",
+                            "bases": [
+                                "<class 'object'>"
+                            ],
+                            "doc string": null,
+                            "type hints": {},
+                            "children": {
+                                "module": {},
+                                "class": {},
+                                "method": {},
+                                "function": {
+                                    "__init__": {
+                                        "name": "__init__",
+                                        "qualified name": "Classifier.__init__",
+                                        "module name": "binspected.classifier",
+                                        "doc string": null,
+                                        "type hints": {},
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "None"
+                                        }
+                                    },
+                                    "__call__": {
+                                        "name": "__call__",
+                                        "qualified name": "Classifier.__call__",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nCalls the classifier on an object and returns a string representation of the classification.\n\nparams:\n    object_to_classify: Object to be classified.\nreturn:\n    string representation of the classification of the provided object.\n",
+                                        "type hints": {
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "object_to_classify": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    },
+                                    "classify_initial_object": {
+                                        "name": "classify_initial_object",
+                                        "qualified name": "Classifier.classify_initial_object",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nClassifies objects and all of it's attributes and returns a dictionary representation of the classification.\n\nparams:\n    object_to_classify: Object to be classified.\nreturn:\n    dictionary representation of the classification of the provided object and all of it's attributes.\n",
+                                        "type hints": {
+                                            "object_to_classify": "module | type | method | function | property",
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "object_to_classify": {
+                                                    "type": "{module | type | method | function | property}",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    },
+                                    "classify_module": {
+                                        "name": "classify_module",
+                                        "qualified name": "Classifier.classify_module",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nClassifies modules and all of it's attributes and returns a dictionary representation of the classification.\n\nparams:\n    module_to_classify: Module to be classified.\nreturn:\n    dictionary representation of the classification of the provided module and all of it's attributes.\n",
+                                        "type hints": {
+                                            "module_to_classify": "<class 'module'>",
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "module_to_classify": {
+                                                    "type": "{<class 'module'>}",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    },
+                                    "classify_instance_of_user_defined_class": {
+                                        "name": "classify_instance_of_user_defined_class",
+                                        "qualified name": "Classifier.classify_instance_of_user_defined_class",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nClassifies instances of user-defined classes and all of it's attributes and returns a dictionary representation of the classification.\n\nparams:\n    instance_to_classify: Instance of a user-defined class to be classified.\nreturn:\n    dictionary representation of the classification of the provided instance of a user-defined class and all of it's attributes.\n",
+                                        "type hints": {
+                                            "instance_to_classify": "<class 'object'>",
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "instance_to_classify": {
+                                                    "type": "{<class 'object'>}",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    },
+                                    "classify_class": {
+                                        "name": "classify_class",
+                                        "qualified name": "Classifier.classify_class",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nClassifies classes and all of it's attributes and returns a dictionary representation of the classification.\n\nparams:\n    class_to_classify: Class to be classified.\nreturn:\n    dictionary representation of the classification of the provided class and all of it's attributes.\n",
+                                        "type hints": {
+                                            "class_to_classify": "<class 'type'>",
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "class_to_classify": {
+                                                    "type": "{<class 'type'>}",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    },
+                                    "classify_method": {
+                                        "name": "classify_method",
+                                        "qualified name": "Classifier.classify_method",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nClassifies methods and all of it's attributes and returns a dictionary representation of the classification.\n\nparams:\n    method_to_classify: Method to be classified.\nreturn:\n    dictionary representation of the classification of the provided method and all of it's attributes.\n",
+                                        "type hints": {
+                                            "method_to_classify": "<class 'method'>",
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "method_to_classify": {
+                                                    "type": "{<class 'method'>}",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    },
+                                    "classify_function": {
+                                        "name": "classify_function",
+                                        "qualified name": "Classifier.classify_function",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nClassifies functions and all of it's attributes and returns a dictionary representation of the classification.\n\nparams:\n    function_to_classify: Function to be classified.\nreturn:\n    dictionary representation of the classification of the provided function and all of it's attributes.\n",
+                                        "type hints": {
+                                            "function_to_classify": "<class 'function'>",
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "function_to_classify": {
+                                                    "type": "{<class 'function'>}",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    },
+                                    "classify_property": {
+                                        "name": "classify_property",
+                                        "qualified name": "Classifier.classify_property",
+                                        "module name": "binspected.classifier",
+                                        "doc string": "\nClassifies properties and all of it's attributes and returns a dictionary representation of the classification.\n\nparams:\n    property_to_classify: Property to be classified.\nreturn:\n    dictionary representation of the classification of the provided property and all of it's attributes.\n",
+                                        "type hints": {
+                                            "property_to_classify": "<class 'property'>",
+                                            "return": "<class 'str'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "property_to_classify": {
+                                                    "type": "{<class 'property'>}",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'str'>"
+                                        }
+                                    }
+                                },
+                                "property": {},
+                                "instance": {}
+                            }
+                        },
+                        "Parser": {
+                            "name": "Parser",
+                            "qualified name": "Parser",
+                            "module name": "binspected.parser",
+                            "bases": [
+                                "<class 'object'>"
+                            ],
+                            "doc string": "\nParser: Extracts meta data from python objects.\n\nThis class parses python objects to provide clean and readable meta data.\n",
+                            "type hints": {},
+                            "children": {
+                                "module": {},
+                                "class": {},
+                                "method": {},
+                                "function": {
+                                    "__init__": {
+                                        "name": "__init__",
+                                        "qualified name": "Parser.__init__",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nInitializes the Parser class.\n",
+                                        "type hints": {},
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "None"
+                                        }
+                                    },
+                                    "__call__": {
+                                        "name": "__call__",
+                                        "qualified name": "Parser.__call__",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse an object of a given type and return a dictionary representation.\n\nParams:\n    object_to_parse: The object to be parsed.\n    object_type: The type of the object to be parsed.\nReturns:\n    A dictionary representation of the parsed object.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "object_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "meta_data_dict"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "_extract_meta_data": {
+                                        "name": "_extract_meta_data",
+                                        "qualified name": "Parser._extract_meta_data",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse an object, extract meta-data and format it into a dictionary.\n\nParams:\n    object_to_parse: The object to be parsed.\n    object_type: The Name of the object to be parsed.\nReturns:\n    A dictionary representation of the meta data.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "object_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "meta_data_map",
+                                                "meta_data_dict",
+                                                "meta_data"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "parse_module": {
+                                        "name": "parse_module",
+                                        "qualified name": "Parser.parse_module",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse a module and return a dictionary representation.\n\nParams:\n    module_to_parse: The module to be parsed.\nReturns:\n    A dictionary representation of the parsed module.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "module_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "parsed_module"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "parse_class": {
+                                        "name": "parse_class",
+                                        "qualified name": "Parser.parse_class",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse a class and return a dictionary representation of it.\n\nParams:\n    class_to_parse: The class to be parsed.\nReturns:\n    A dictionary representation of the parsed class.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "class_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "class_dict"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "parse_class_instance": {
+                                        "name": "parse_class_instance",
+                                        "qualified name": "Parser.parse_class_instance",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse an instance of a class and return a dictionary representation of it.\n\nParams:\n    instance_to_parse: The instance of a class to be parsed.\nReturns:\n    A dictionary representation of the parsed instance of a class.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "instance_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "instance_dict"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "parse_method": {
+                                        "name": "parse_method",
+                                        "qualified name": "Parser.parse_method",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse a method and return a dictionary representation of it.\nParams:\n    method_to_parse: The method to be parsed.\nReturns:\n     A dictionary representation of the parsed method.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "method_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "method_dict"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "parse_function": {
+                                        "name": "parse_function",
+                                        "qualified name": "Parser.parse_function",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse a function and return a dictionary representation of it.\nParams:\n    function_to_parse: The function to be parsed.\nReturns:\n     A dictionary representation of the parsed function.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "function_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "parsed_function"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "parse_property": {
+                                        "name": "parse_property",
+                                        "qualified name": "Parser.parse_property",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse a property and return a dictionary representation of it.\nParams:\n    property_to_parse: The property to be parsed.\nReturns:\n     A dictionary representation of the parsed property.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "property_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "parsed_property"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "parse_variables": {
+                                        "name": "parse_variables",
+                                        "qualified name": "Parser.parse_variables",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse the variables of a function.\n\nParams:\n    function_to_parse: The functions whose variables need parsing.\nReturns:\n    A dictionary representation of the parsed variables.\n",
+                                        "type hints": {},
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "function_to_parse": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "all_variables",
+                                                "argument_count",
+                                                "argument_types",
+                                                "argument_default_values",
+                                                "local_variables",
+                                                "arguments",
+                                                "parsed_variables"
+                                            ],
+                                            "return type": "None"
+                                        }
+                                    },
+                                    "parse_arguments": {
+                                        "name": "parse_arguments",
+                                        "qualified name": "Parser.parse_arguments",
+                                        "module name": "binspected.parser",
+                                        "doc string": "\nParse the arguments of a function and return a dictionary representation of them.\n\nParams:\n    arguments: The arguments to be parsed.\n    types: the argument type hints.\n    default_values: Any default values for the arguements.\nReturns:\n     A dictionary representation of the parsed arguments of the function.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "arguments": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "types": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "default_values": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "num_defaults",
+                                                "args_with_defaults",
+                                                "default_map",
+                                                "argument_map",
+                                                "arg"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    }
+                                },
+                                "property": {},
+                                "instance": {}
+                            }
+                        },
+                        "BInspected": {
+                            "name": "BInspected",
+                            "qualified name": "BInspected",
+                            "module name": "binspected.introspection",
+                            "bases": [
+                                "<class 'object'>"
+                            ],
+                            "doc string": "\nBInspected: A recursive Python object introspection engine.\n\nThis module provides the BInspected class, which classifies Python\nobjects, extracts metadata, groups children, and recursively builds\na structured introspection dictionary.\n",
+                            "type hints": {},
+                            "children": {
+                                "module": {},
+                                "class": {},
+                                "method": {},
+                                "function": {
+                                    "__init__": {
+                                        "name": "__init__",
+                                        "qualified name": "BInspected.__init__",
+                                        "module name": "binspected.introspection",
+                                        "doc string": "\nInitializes the BInspected class.\n",
+                                        "type hints": {},
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "None"
+                                        }
+                                    },
+                                    "__call__": {
+                                        "name": "__call__",
+                                        "qualified name": "BInspected.__call__",
+                                        "module name": "binspected.introspection",
+                                        "doc string": "\nClassify an object and return it's introspection dictionary.\n\nParams:\n    object_to_inspect: Object to be inspected.\nReturns:\n    An introspection dictionary.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "object_to_inspect": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "_build_inspection": {
+                                        "name": "_build_inspection",
+                                        "qualified name": "BInspected._build_inspection",
+                                        "module name": "binspected.introspection",
+                                        "doc string": "\nComplete object inspection and formation of the objects underlying structure\n\nParams:\n    object_to_inspect: Object to inspect\nReturns:\n    An introspection dictionary\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "object_to_inspect": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "object_type",
+                                                "parsed_object"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "_group_children": {
+                                        "name": "_group_children",
+                                        "qualified name": "BInspected._group_children",
+                                        "module name": "binspected.introspection",
+                                        "doc string": "\nSort an objects __dict__\n\nParams:\n    dict_to_group: __dict__ of the object that needs sorting\nReturns:\n    A dictionary of the sorted objects. Example structure: \n    grouped_dict ={\n        \"module\": {},\n        \"class\": {},\n        \"method\": {},\n        \"function\": {},\n        \"property\": {},\n        \"instance\": {}\n    }\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "dict_to_group": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "skip_children",
+                                                "grouped_dict",
+                                                "key",
+                                                "value",
+                                                "object_type"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "_get_children": {
+                                        "name": "_get_children",
+                                        "qualified name": "BInspected._get_children",
+                                        "module name": "binspected.introspection",
+                                        "doc string": "\nGets the children objects and recursively sorts and produces dictionaries.\n\nParams:\n    object_to_get_children: The object whose children need sorting and parsing.\nReturns:\n    The parsed dictionary of each child object.\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "object_to_get_children": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "children_dict",
+                                                "children_objects",
+                                                "object_name",
+                                                "object_ref"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "_inspect_module": {
+                                        "name": "_inspect_module",
+                                        "qualified name": "BInspected._inspect_module",
+                                        "module name": "binspected.introspection",
+                                        "doc string": "\nInspect a modules underlying data structure and provide an introspection dictionary.\n\nParams:\n    module_to_inspect: Module to inspect\nReturns:\n    An introspection dictionary\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "module_to_inspect": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "module_dict"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "_inspect_class": {
+                                        "name": "_inspect_class",
+                                        "qualified name": "BInspected._inspect_class",
+                                        "module name": "binspected.introspection",
+                                        "doc string": "\nInspect a class' underlying data structure and provide an introspection dictionary.\n\nParams:\n    class_to_inspect: Class to inspect\nReturns:\n    An introspection dictionary\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "class_to_inspect": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "class_dict"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "_inspect_method": {
+                                        "name": "_inspect_method",
+                                        "qualified name": "BInspected._inspect_method",
+                                        "module name": "binspected.introspection",
+                                        "doc string": "\nInspect a methods underlying data structure and provide an introspection dictionary.\n\nParams:\n    method_to_inspect: Method to inspect\nReturns:\n    An introspection dictionary\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "method_to_inspect": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "method_dict",
+                                                "function_dict"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "_inspect_function": {
+                                        "name": "_inspect_function",
+                                        "qualified name": "BInspected._inspect_function",
+                                        "module name": "binspected.introspection",
+                                        "doc string": "\nInspect a functions underlying data structure and provide an introspection dictionary.\n\nParams:\n    function_to_inspect: Function to inspect\nReturns:\n    An introspection dictionary\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "function_to_inspect": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "function_dict"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "_inspect_property": {
+                                        "name": "_inspect_property",
+                                        "qualified name": "BInspected._inspect_property",
+                                        "module name": "binspected.introspection",
+                                        "doc string": "\nInspect a property's underlying data structure and provide an introspection dictionary.\n\nParams:\n    property_to_inspect: Property to inspect\nReturns:\n    An introspection dictionary\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "property_to_inspect": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "property_dict"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "_inspect_variables": {
+                                        "name": "_inspect_variables",
+                                        "qualified name": "BInspected._inspect_variables",
+                                        "module name": "binspected.introspection",
+                                        "doc string": "\nInspect a variables underlying data structure and provide an introspection dictionary.\n\nParams:\n    variable_to_inspect: Variable to inspect\nReturns:\n    An introspection dictionary\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "variables_to_inspect": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "_inspect_arguments": {
+                                        "name": "_inspect_arguments",
+                                        "qualified name": "BInspected._inspect_arguments",
+                                        "module name": "binspected.introspection",
+                                        "doc string": "\nInspect an arguments underlying data structure and provide an introspection dictionary.\n\nParams:\n    argument_to_inspect: Argument to inspect\nReturns:\n    An introspection dictionary\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "arguments_to_inspect": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "_inspect_class_instance": {
+                                        "name": "_inspect_class_instance",
+                                        "qualified name": "BInspected._inspect_class_instance",
+                                        "module name": "binspected.introspection",
+                                        "doc string": "\nInspect an instances underlying data structure and provide an introspection dictionary.\n\nParams:\n    instance_to_inspect: instance to inspect\nReturns:\n    An introspection dictionary\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "instance_to_inspect": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [
+                                                "instance_dict",
+                                                "class_dict"
+                                            ],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    },
+                                    "_inspect_built_in": {
+                                        "name": "_inspect_built_in",
+                                        "qualified name": "BInspected._inspect_built_in",
+                                        "module name": "binspected.introspection",
+                                        "doc string": "\nInspect the built_in underlying data structure and provide an introspection dictionary.\n\nParams:\n    built_in_to_inspect: built_in to inspect\nReturns:\n    An introspection dictionary\n",
+                                        "type hints": {
+                                            "return": "<class 'dict'>"
+                                        },
+                                        "variables": {
+                                            "arguments": {
+                                                "self": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                },
+                                                "instance_to_inspect": {
+                                                    "type": "None",
+                                                    "default value": "None"
+                                                }
+                                            },
+                                            "Local Variables": [],
+                                            "return type": "<class 'dict'>"
+                                        }
+                                    }
+                                },
+                                "property": {},
+                                "instance": {}
+                            }
+                        }
+                    },
+                    "method": {},
+                    "function": {},
+                    "property": {},
+                    "instance": {}
+                }
+            }
+        },
         "class": {
-            "Nested": {
-                "Qualified Name": "GoldenClass.Nested",
-                "Module Name": "__main__",
-                "Bases": [
+            "BInspected": {
+                "name": "BInspected",
+                "qualified name": "BInspected",
+                "module name": "binspected.introspection",
+                "bases": [
                     "<class 'object'>"
                 ],
-                "DocString": "Nested class inside GoldenClass.",
-                "Type Hints": {},
+                "doc string": "\nBInspected: A recursive Python object introspection engine.\n\nThis module provides the BInspected class, which classifies Python\nobjects, extracts metadata, groups children, and recursively builds\na structured introspection dictionary.\n",
+                "type hints": {},
                 "children": {
                     "module": {},
                     "class": {},
                     "method": {},
                     "function": {
-                        "nested_method": {
-                            "fully qualified name": "GoldenClass.Nested.nested_method",
-                            "module name": "__main__",
-                            "function docstring": null,
+                        "__init__": {
+                            "name": "__init__",
+                            "qualified name": "BInspected.__init__",
+                            "module name": "binspected.introspection",
+                            "doc string": "\nInitializes the BInspected class.\n",
+                            "type hints": {},
                             "variables": {
                                 "arguments": {
                                     "self": {
@@ -37,6 +1587,333 @@
                                 },
                                 "Local Variables": [],
                                 "return type": "None"
+                            }
+                        },
+                        "__call__": {
+                            "name": "__call__",
+                            "qualified name": "BInspected.__call__",
+                            "module name": "binspected.introspection",
+                            "doc string": "\nClassify an object and return it's introspection dictionary.\n\nParams:\n    object_to_inspect: Object to be inspected.\nReturns:\n    An introspection dictionary.\n",
+                            "type hints": {
+                                "return": "<class 'dict'>"
+                            },
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "object_to_inspect": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [],
+                                "return type": "<class 'dict'>"
+                            }
+                        },
+                        "_build_inspection": {
+                            "name": "_build_inspection",
+                            "qualified name": "BInspected._build_inspection",
+                            "module name": "binspected.introspection",
+                            "doc string": "\nComplete object inspection and formation of the objects underlying structure\n\nParams:\n    object_to_inspect: Object to inspect\nReturns:\n    An introspection dictionary\n",
+                            "type hints": {
+                                "return": "<class 'dict'>"
+                            },
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "object_to_inspect": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [
+                                    "object_type",
+                                    "parsed_object"
+                                ],
+                                "return type": "<class 'dict'>"
+                            }
+                        },
+                        "_group_children": {
+                            "name": "_group_children",
+                            "qualified name": "BInspected._group_children",
+                            "module name": "binspected.introspection",
+                            "doc string": "\nSort an objects __dict__\n\nParams:\n    dict_to_group: __dict__ of the object that needs sorting\nReturns:\n    A dictionary of the sorted objects. Example structure: \n    grouped_dict ={\n        \"module\": {},\n        \"class\": {},\n        \"method\": {},\n        \"function\": {},\n        \"property\": {},\n        \"instance\": {}\n    }\n",
+                            "type hints": {
+                                "return": "<class 'dict'>"
+                            },
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "dict_to_group": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [
+                                    "skip_children",
+                                    "grouped_dict",
+                                    "key",
+                                    "value",
+                                    "object_type"
+                                ],
+                                "return type": "<class 'dict'>"
+                            }
+                        },
+                        "_get_children": {
+                            "name": "_get_children",
+                            "qualified name": "BInspected._get_children",
+                            "module name": "binspected.introspection",
+                            "doc string": "\nGets the children objects and recursively sorts and produces dictionaries.\n\nParams:\n    object_to_get_children: The object whose children need sorting and parsing.\nReturns:\n    The parsed dictionary of each child object.\n",
+                            "type hints": {
+                                "return": "<class 'dict'>"
+                            },
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "object_to_get_children": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [
+                                    "children_dict",
+                                    "children_objects",
+                                    "object_name",
+                                    "object_ref"
+                                ],
+                                "return type": "<class 'dict'>"
+                            }
+                        },
+                        "_inspect_module": {
+                            "name": "_inspect_module",
+                            "qualified name": "BInspected._inspect_module",
+                            "module name": "binspected.introspection",
+                            "doc string": "\nInspect a modules underlying data structure and provide an introspection dictionary.\n\nParams:\n    module_to_inspect: Module to inspect\nReturns:\n    An introspection dictionary\n",
+                            "type hints": {
+                                "return": "<class 'dict'>"
+                            },
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "module_to_inspect": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [
+                                    "module_dict"
+                                ],
+                                "return type": "<class 'dict'>"
+                            }
+                        },
+                        "_inspect_class": {
+                            "name": "_inspect_class",
+                            "qualified name": "BInspected._inspect_class",
+                            "module name": "binspected.introspection",
+                            "doc string": "\nInspect a class' underlying data structure and provide an introspection dictionary.\n\nParams:\n    class_to_inspect: Class to inspect\nReturns:\n    An introspection dictionary\n",
+                            "type hints": {
+                                "return": "<class 'dict'>"
+                            },
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "class_to_inspect": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [
+                                    "class_dict"
+                                ],
+                                "return type": "<class 'dict'>"
+                            }
+                        },
+                        "_inspect_method": {
+                            "name": "_inspect_method",
+                            "qualified name": "BInspected._inspect_method",
+                            "module name": "binspected.introspection",
+                            "doc string": "\nInspect a methods underlying data structure and provide an introspection dictionary.\n\nParams:\n    method_to_inspect: Method to inspect\nReturns:\n    An introspection dictionary\n",
+                            "type hints": {
+                                "return": "<class 'dict'>"
+                            },
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "method_to_inspect": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [
+                                    "method_dict",
+                                    "function_dict"
+                                ],
+                                "return type": "<class 'dict'>"
+                            }
+                        },
+                        "_inspect_function": {
+                            "name": "_inspect_function",
+                            "qualified name": "BInspected._inspect_function",
+                            "module name": "binspected.introspection",
+                            "doc string": "\nInspect a functions underlying data structure and provide an introspection dictionary.\n\nParams:\n    function_to_inspect: Function to inspect\nReturns:\n    An introspection dictionary\n",
+                            "type hints": {
+                                "return": "<class 'dict'>"
+                            },
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "function_to_inspect": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [
+                                    "function_dict"
+                                ],
+                                "return type": "<class 'dict'>"
+                            }
+                        },
+                        "_inspect_property": {
+                            "name": "_inspect_property",
+                            "qualified name": "BInspected._inspect_property",
+                            "module name": "binspected.introspection",
+                            "doc string": "\nInspect a property's underlying data structure and provide an introspection dictionary.\n\nParams:\n    property_to_inspect: Property to inspect\nReturns:\n    An introspection dictionary\n",
+                            "type hints": {
+                                "return": "<class 'dict'>"
+                            },
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "property_to_inspect": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [
+                                    "property_dict"
+                                ],
+                                "return type": "<class 'dict'>"
+                            }
+                        },
+                        "_inspect_variables": {
+                            "name": "_inspect_variables",
+                            "qualified name": "BInspected._inspect_variables",
+                            "module name": "binspected.introspection",
+                            "doc string": "\nInspect a variables underlying data structure and provide an introspection dictionary.\n\nParams:\n    variable_to_inspect: Variable to inspect\nReturns:\n    An introspection dictionary\n",
+                            "type hints": {
+                                "return": "<class 'dict'>"
+                            },
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "variables_to_inspect": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [],
+                                "return type": "<class 'dict'>"
+                            }
+                        },
+                        "_inspect_arguments": {
+                            "name": "_inspect_arguments",
+                            "qualified name": "BInspected._inspect_arguments",
+                            "module name": "binspected.introspection",
+                            "doc string": "\nInspect an arguments underlying data structure and provide an introspection dictionary.\n\nParams:\n    argument_to_inspect: Argument to inspect\nReturns:\n    An introspection dictionary\n",
+                            "type hints": {
+                                "return": "<class 'dict'>"
+                            },
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "arguments_to_inspect": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [],
+                                "return type": "<class 'dict'>"
+                            }
+                        },
+                        "_inspect_class_instance": {
+                            "name": "_inspect_class_instance",
+                            "qualified name": "BInspected._inspect_class_instance",
+                            "module name": "binspected.introspection",
+                            "doc string": "\nInspect an instances underlying data structure and provide an introspection dictionary.\n\nParams:\n    instance_to_inspect: instance to inspect\nReturns:\n    An introspection dictionary\n",
+                            "type hints": {
+                                "return": "<class 'dict'>"
+                            },
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "instance_to_inspect": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [
+                                    "instance_dict",
+                                    "class_dict"
+                                ],
+                                "return type": "<class 'dict'>"
+                            }
+                        },
+                        "_inspect_built_in": {
+                            "name": "_inspect_built_in",
+                            "qualified name": "BInspected._inspect_built_in",
+                            "module name": "binspected.introspection",
+                            "doc string": "\nInspect the built_in underlying data structure and provide an introspection dictionary.\n\nParams:\n    built_in_to_inspect: built_in to inspect\nReturns:\n    An introspection dictionary\n",
+                            "type hints": {
+                                "return": "<class 'dict'>"
+                            },
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "instance_to_inspect": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [],
+                                "return type": "<class 'dict'>"
                             }
                         }
                     },
@@ -46,288 +1923,8 @@
             }
         },
         "method": {},
-        "function": {
-            "__init__": {
-                "fully qualified name": "GoldenClass.__init__",
-                "module name": "__main__",
-                "function docstring": null,
-                "variables": {
-                    "arguments": {
-                        "self": {
-                            "type": "None",
-                            "default value": "None"
-                        },
-                        "x": {
-                            "type": "{<class 'int'>}",
-                            "default value": 5
-                        },
-                        "y": {
-                            "type": "{<class 'str'>}",
-                            "default value": "hello"
-                        }
-                    },
-                    "Local Variables": [
-                        "args",
-                        "kwargs"
-                    ],
-                    "return type": "None"
-                }
-            },
-            "method_one": {
-                "fully qualified name": "GoldenClass.method_one",
-                "module name": "__main__",
-                "function docstring": "This is method one",
-                "variables": {
-                    "arguments": {
-                        "self": {
-                            "type": "None",
-                            "default value": "None"
-                        },
-                        "param1": {
-                            "type": "None",
-                            "default value": "None"
-                        },
-                        "param2": {
-                            "type": "{<class 'int'>}",
-                            "default value": 10
-                        }
-                    },
-                    "Local Variables": [
-                        "local_variable"
-                    ],
-                    "return type": "<class 'str'>"
-                }
-            },
-            "method_two": {
-                "fully qualified name": "GoldenClass.method_two",
-                "module name": "__main__",
-                "function docstring": "Method with complex signature",
-                "variables": {
-                    "arguments": {
-                        "self": {
-                            "type": "None",
-                            "default value": "None"
-                        },
-                        "a": {
-                            "type": "None",
-                            "default value": "None"
-                        },
-                        "b": {
-                            "type": "None",
-                            "default value": 3
-                        }
-                    },
-                    "Local Variables": [
-                        "c",
-                        "d",
-                        "args",
-                        "kwargs",
-                        "local_variable"
-                    ],
-                    "return type": "None"
-                }
-            },
-            "create_nested": {
-                "fully qualified name": "GoldenClass.create_nested",
-                "module name": "__main__",
-                "function docstring": "Returns an instance of the nested class.",
-                "variables": {
-                    "arguments": {
-                        "self": {
-                            "type": "None",
-                            "default value": "None"
-                        }
-                    },
-                    "Local Variables": [],
-                    "return type": "None"
-                }
-            },
-            "lambda_factory": {
-                "fully qualified name": "GoldenClass.lambda_factory",
-                "module name": "__main__",
-                "function docstring": "Returns a lambda function.",
-                "variables": {
-                    "arguments": {
-                        "self": {
-                            "type": "None",
-                            "default value": "None"
-                        }
-                    },
-                    "Local Variables": [],
-                    "return type": "None"
-                }
-            }
-        },
-        "property": {
-            "my_property": {
-                "doc": "This is a property",
-                "getter": {
-                    "fully qualified name": "GoldenClass.my_property",
-                    "module name": "__main__",
-                    "function docstring": "This is a property",
-                    "variables": {
-                        "arguments": {
-                            "self": {
-                                "type": "None",
-                                "default value": "None"
-                            }
-                        },
-                        "Local Variables": [
-                            "some_local_variable"
-                        ],
-                        "return type": "<class 'str'>"
-                    }
-                },
-                "setter": {
-                    "fully qualified name": "GoldenClass.my_property",
-                    "module name": "__main__",
-                    "function docstring": "Setter for my_property",
-                    "variables": {
-                        "arguments": {
-                            "self": {
-                                "type": "None",
-                                "default value": "None"
-                            },
-                            "value": {
-                                "type": "{<class 'str'>}",
-                                "default value": "that"
-                            },
-                            "other_value": {
-                                "type": "{<class 'str'>}",
-                                "default value": "this"
-                            }
-                        },
-                        "Local Variables": [
-                            "x",
-                            "y",
-                            "some_local_variable"
-                        ],
-                        "return type": null
-                    }
-                },
-                "deleter": {
-                    "fully qualified name": "GoldenClass.my_property",
-                    "module name": "__main__",
-                    "function docstring": "Deleter for my_property",
-                    "variables": {
-                        "arguments": {
-                            "self": {
-                                "type": "None",
-                                "default value": "None"
-                            }
-                        },
-                        "Local Variables": [],
-                        "return type": null
-                    }
-                }
-            }
-        },
-        "instance": {
-            "descriptor_field": {
-                "Instance Variables": {
-                    "name": "descriptor_field"
-                },
-                "Qualified Name": "DescriptorExample",
-                "Module Name": "__main__",
-                "Bases": [
-                    "<class 'object'>"
-                ],
-                "DocString": "Simple descriptor to test descriptor behavior.",
-                "Type Hints": {},
-                "children": {
-                    "module": {},
-                    "class": {},
-                    "method": {},
-                    "function": {
-                        "__init__": {
-                            "fully qualified name": "DescriptorExample.__init__",
-                            "module name": "__main__",
-                            "function docstring": null,
-                            "variables": {
-                                "arguments": {
-                                    "self": {
-                                        "type": "None",
-                                        "default value": "None"
-                                    },
-                                    "name": {
-                                        "type": "None",
-                                        "default value": "None"
-                                    }
-                                },
-                                "Local Variables": [],
-                                "return type": "None"
-                            }
-                        },
-                        "__get__": {
-                            "fully qualified name": "DescriptorExample.__get__",
-                            "module name": "__main__",
-                            "function docstring": null,
-                            "variables": {
-                                "arguments": {
-                                    "self": {
-                                        "type": "None",
-                                        "default value": "None"
-                                    },
-                                    "instance": {
-                                        "type": "None",
-                                        "default value": "None"
-                                    },
-                                    "owner": {
-                                        "type": "None",
-                                        "default value": "None"
-                                    }
-                                },
-                                "Local Variables": [],
-                                "return type": "None"
-                            }
-                        },
-                        "__set__": {
-                            "fully qualified name": "DescriptorExample.__set__",
-                            "module name": "__main__",
-                            "function docstring": null,
-                            "variables": {
-                                "arguments": {
-                                    "self": {
-                                        "type": "None",
-                                        "default value": "None"
-                                    },
-                                    "instance": {
-                                        "type": "None",
-                                        "default value": "None"
-                                    },
-                                    "value": {
-                                        "type": "None",
-                                        "default value": "None"
-                                    }
-                                },
-                                "Local Variables": [],
-                                "return type": "None"
-                            }
-                        },
-                        "__delete__": {
-                            "fully qualified name": "DescriptorExample.__delete__",
-                            "module name": "__main__",
-                            "function docstring": null,
-                            "variables": {
-                                "arguments": {
-                                    "self": {
-                                        "type": "None",
-                                        "default value": "None"
-                                    },
-                                    "instance": {
-                                        "type": "None",
-                                        "default value": "None"
-                                    }
-                                },
-                                "Local Variables": [],
-                                "return type": "None"
-                            }
-                        }
-                    },
-                    "property": {},
-                    "instance": {}
-                }
-            }
-        }
+        "function": {},
+        "property": {},
+        "instance": {}
     }
 }

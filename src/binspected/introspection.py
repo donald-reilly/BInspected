@@ -1,5 +1,6 @@
 from binspected.classifier import Classifier
 from binspected.parser import Parser
+
 class BInspected:
     """
     BInspected: A recursive Python object introspection engine.
