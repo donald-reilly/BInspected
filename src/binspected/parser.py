@@ -11,6 +11,8 @@ class Parser:
         Initializes the Parser class.
         """
 
+        #TODO: Need to look into the acutal application of this. Both the dispatcher and the instance of classifier.
+        # The method dispatcher, currently not in use, would like to add for easy extension.
         self.dispatcher = {
             "module": self.parse_module,
             "class": self.parse_class,
@@ -19,7 +21,7 @@ class Parser:
             "function": self.parse_function,
             "property": self.parse_property
         }
-        self.classifier = Classifier()
+        self.classifier = Classifier() # An instance of the classifier.
 
     def __call__(self, object_to_parse, object_type)-> dict:
         """
@@ -31,7 +33,8 @@ class Parser:
         Returns:
             A dictionary representation of the parsed object.
         """
-
+        
+        # The only call to the dispatcher.
         return self.dispatcher[object_type](object_to_parse)
     
     def parse_module(self, module_to_parse)-> dict:
@@ -44,10 +47,11 @@ class Parser:
             A dictionary representation of the parsed module.
         """
 
+        # Pulls the meta data and sorts the modules introspection dictionary.
         parsed_module = {
-                "name": module_to_parse.__name__,
-                "type": "Module",
-                "children": {}
+                "name": module_to_parse.__name__, # Pulls the name of the module.
+                "type": "Module", # Classifies the object.
+                "children": {} # Creates a space to hold the children of the module.
             }
         return parsed_module
     
@@ -60,13 +64,15 @@ class Parser:
         Returns:
             A dictionary representation of the parsed class.
         """
-
+        #TODO: This meta data extraciton could all happen in one fucking go.
+        #TODO: Need to pull class level variables. Using some sort of helper function to parse the dict of a class.
+        # Pulls the meta data and sorts the class' introspection dictionary.
         class_dict = {
-            "Qualified Name" : class_to_parse.__qualname__,
-            "Module Name" : class_to_parse.__module__,
-            "Bases" : class_to_parse.__bases__,
-            "DocString" : class_to_parse.__doc__,
-            "Type Hints" : class_to_parse.__annotations__,
+            "Qualified Name" : class_to_parse.__qualname__, # Pulls the qualified name of the class.
+            "Module Name" : class_to_parse.__module__, # Pulls the module name of the class.
+            "Bases" : class_to_parse.__bases__, # Pulls bases of the class.
+            "DocString" : class_to_parse.__doc__, # Pulls the documentation of the class.
+            "Type Hints" : class_to_parse.__annotations__, # Pulls any type hints of the class.
         }
         return class_dict
     
@@ -81,6 +87,7 @@ class Parser:
         """
     
         #TODO: Complete and add instance parsing.
+        # Pulls the instance variables.
         instance_dict = {
                 "Instance Variables": instance_to_parse.__dict__
             }
@@ -94,7 +101,7 @@ class Parser:
         Returns:
              A dictionary representation of the parsed method.
         """
-
+        
         method_dict = {
             "Class Instance": method_to_parse.__self__
         }
@@ -109,6 +116,7 @@ class Parser:
              A dictionary representation of the parsed function.
         """
 
+        # Pulls the meta data and sorts the class' introspection dictionary.
         parsed_function = {
                 "fully qualified name": function_to_parse.__qualname__,
                 "module name": function_to_parse.__module__,
