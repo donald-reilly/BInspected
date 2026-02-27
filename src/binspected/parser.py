@@ -36,7 +36,18 @@ class Parser:
         
         # The only call to the dispatcher.
         return self.dispatcher[object_type](object_to_parse)
-    
+    def _extract_meta_data(self, object_to_parse, object_type)-> dict:
+        """
+        Parse an object, extract meta-data and format it into a dictionary.
+        
+        Params:
+            object_to_parse: The object to be parsed.
+            object_type: The Name of the object to be parsed.
+        Returns:
+            A dictionary representation of the meta data.
+        """
+
+        return {"The meta data": "example meta data"}
     def parse_module(self, module_to_parse)-> dict:
         """
         Parse a module and return a dictionary representation.
