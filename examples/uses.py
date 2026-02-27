@@ -112,6 +112,6 @@ def save_inspection(data, filename="test_inspections/inspection_output.json"):
     return path
 
 inspector = BInspected()
-save_inspection(inspector(GoldenClass), "examples/GoldenClass.json")
-save_inspection(inspector(DescriptorExample), "examples/DescriptorExample.json")
-save_inspection(inspector(GoldenClass()), "examples/GoldenClassInstance.json")
+test_class = GoldenClass()
+
+save_inspection(inspector(GoldenClass), "examples/GoldenClassInstanceMethodOne.json")

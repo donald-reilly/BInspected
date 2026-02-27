@@ -1,26 +1,333 @@
 {
-    "Class Instance": "<__main__.GoldenClass object at 0x77770e9a9010>",
-    "fully qualified name": "GoldenClass.method_one",
-    "module name": "__main__",
-    "function docstring": "This is method one",
-    "variables": {
-        "arguments": {
-            "self": {
-                "type": "None",
-                "default value": "None"
-            },
-            "param1": {
-                "type": "None",
-                "default value": "None"
-            },
-            "param2": {
-                "type": "{<class 'int'>}",
-                "default value": 10
+    "Qualified Name": "GoldenClass",
+    "Module Name": "__main__",
+    "Bases": [
+        "<class '__main__.GoldenBase'>"
+    ],
+    "DocString": "A fully loaded class for introspection testing.",
+    "Type Hints": {
+        "another_class_variable": "<class 'int'>"
+    },
+    "children": {
+        "module": {},
+        "class": {
+            "Nested": {
+                "Qualified Name": "GoldenClass.Nested",
+                "Module Name": "__main__",
+                "Bases": [
+                    "<class 'object'>"
+                ],
+                "DocString": "Nested class inside GoldenClass.",
+                "Type Hints": {},
+                "children": {
+                    "module": {},
+                    "class": {},
+                    "method": {},
+                    "function": {
+                        "nested_method": {
+                            "fully qualified name": "GoldenClass.Nested.nested_method",
+                            "module name": "__main__",
+                            "function docstring": null,
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [],
+                                "return type": "None"
+                            }
+                        }
+                    },
+                    "property": {},
+                    "instance": {}
+                }
             }
         },
-        "Local Variables": [
-            "local_variable"
-        ],
-        "return type": "<class 'str'>"
+        "method": {},
+        "function": {
+            "__init__": {
+                "fully qualified name": "GoldenClass.__init__",
+                "module name": "__main__",
+                "function docstring": null,
+                "variables": {
+                    "arguments": {
+                        "self": {
+                            "type": "None",
+                            "default value": "None"
+                        },
+                        "x": {
+                            "type": "{<class 'int'>}",
+                            "default value": 5
+                        },
+                        "y": {
+                            "type": "{<class 'str'>}",
+                            "default value": "hello"
+                        }
+                    },
+                    "Local Variables": [
+                        "args",
+                        "kwargs"
+                    ],
+                    "return type": "None"
+                }
+            },
+            "method_one": {
+                "fully qualified name": "GoldenClass.method_one",
+                "module name": "__main__",
+                "function docstring": "This is method one",
+                "variables": {
+                    "arguments": {
+                        "self": {
+                            "type": "None",
+                            "default value": "None"
+                        },
+                        "param1": {
+                            "type": "None",
+                            "default value": "None"
+                        },
+                        "param2": {
+                            "type": "{<class 'int'>}",
+                            "default value": 10
+                        }
+                    },
+                    "Local Variables": [
+                        "local_variable"
+                    ],
+                    "return type": "<class 'str'>"
+                }
+            },
+            "method_two": {
+                "fully qualified name": "GoldenClass.method_two",
+                "module name": "__main__",
+                "function docstring": "Method with complex signature",
+                "variables": {
+                    "arguments": {
+                        "self": {
+                            "type": "None",
+                            "default value": "None"
+                        },
+                        "a": {
+                            "type": "None",
+                            "default value": "None"
+                        },
+                        "b": {
+                            "type": "None",
+                            "default value": 3
+                        }
+                    },
+                    "Local Variables": [
+                        "c",
+                        "d",
+                        "args",
+                        "kwargs",
+                        "local_variable"
+                    ],
+                    "return type": "None"
+                }
+            },
+            "create_nested": {
+                "fully qualified name": "GoldenClass.create_nested",
+                "module name": "__main__",
+                "function docstring": "Returns an instance of the nested class.",
+                "variables": {
+                    "arguments": {
+                        "self": {
+                            "type": "None",
+                            "default value": "None"
+                        }
+                    },
+                    "Local Variables": [],
+                    "return type": "None"
+                }
+            },
+            "lambda_factory": {
+                "fully qualified name": "GoldenClass.lambda_factory",
+                "module name": "__main__",
+                "function docstring": "Returns a lambda function.",
+                "variables": {
+                    "arguments": {
+                        "self": {
+                            "type": "None",
+                            "default value": "None"
+                        }
+                    },
+                    "Local Variables": [],
+                    "return type": "None"
+                }
+            }
+        },
+        "property": {
+            "my_property": {
+                "doc": "This is a property",
+                "getter": {
+                    "fully qualified name": "GoldenClass.my_property",
+                    "module name": "__main__",
+                    "function docstring": "This is a property",
+                    "variables": {
+                        "arguments": {
+                            "self": {
+                                "type": "None",
+                                "default value": "None"
+                            }
+                        },
+                        "Local Variables": [
+                            "some_local_variable"
+                        ],
+                        "return type": "<class 'str'>"
+                    }
+                },
+                "setter": {
+                    "fully qualified name": "GoldenClass.my_property",
+                    "module name": "__main__",
+                    "function docstring": "Setter for my_property",
+                    "variables": {
+                        "arguments": {
+                            "self": {
+                                "type": "None",
+                                "default value": "None"
+                            },
+                            "value": {
+                                "type": "{<class 'str'>}",
+                                "default value": "that"
+                            },
+                            "other_value": {
+                                "type": "{<class 'str'>}",
+                                "default value": "this"
+                            }
+                        },
+                        "Local Variables": [
+                            "x",
+                            "y",
+                            "some_local_variable"
+                        ],
+                        "return type": null
+                    }
+                },
+                "deleter": {
+                    "fully qualified name": "GoldenClass.my_property",
+                    "module name": "__main__",
+                    "function docstring": "Deleter for my_property",
+                    "variables": {
+                        "arguments": {
+                            "self": {
+                                "type": "None",
+                                "default value": "None"
+                            }
+                        },
+                        "Local Variables": [],
+                        "return type": null
+                    }
+                }
+            }
+        },
+        "instance": {
+            "descriptor_field": {
+                "Instance Variables": {
+                    "name": "descriptor_field"
+                },
+                "Qualified Name": "DescriptorExample",
+                "Module Name": "__main__",
+                "Bases": [
+                    "<class 'object'>"
+                ],
+                "DocString": "Simple descriptor to test descriptor behavior.",
+                "Type Hints": {},
+                "children": {
+                    "module": {},
+                    "class": {},
+                    "method": {},
+                    "function": {
+                        "__init__": {
+                            "fully qualified name": "DescriptorExample.__init__",
+                            "module name": "__main__",
+                            "function docstring": null,
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "name": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [],
+                                "return type": "None"
+                            }
+                        },
+                        "__get__": {
+                            "fully qualified name": "DescriptorExample.__get__",
+                            "module name": "__main__",
+                            "function docstring": null,
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "instance": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "owner": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [],
+                                "return type": "None"
+                            }
+                        },
+                        "__set__": {
+                            "fully qualified name": "DescriptorExample.__set__",
+                            "module name": "__main__",
+                            "function docstring": null,
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "instance": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "value": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [],
+                                "return type": "None"
+                            }
+                        },
+                        "__delete__": {
+                            "fully qualified name": "DescriptorExample.__delete__",
+                            "module name": "__main__",
+                            "function docstring": null,
+                            "variables": {
+                                "arguments": {
+                                    "self": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    },
+                                    "instance": {
+                                        "type": "None",
+                                        "default value": "None"
+                                    }
+                                },
+                                "Local Variables": [],
+                                "return type": "None"
+                            }
+                        }
+                    },
+                    "property": {},
+                    "instance": {}
+                }
+            }
+        }
     }
 }
