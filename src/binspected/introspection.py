@@ -140,8 +140,10 @@ class BInspected:
         Returns:
             An introspection dictionary
         """
-
-        class_dict = self.parser.parse_class(class_to_inspect) # Creates the dictionary representation of the provided class.
+        class_dict = {
+            "name" : class_to_inspect.__name__,
+        }
+        class_dict |= self.parser.parse_class(class_to_inspect) # Creates the dictionary representation of the provided class.
         class_dict["children"] = self._get_children(class_to_inspect) # Pulls out the children of the provided class and sorts them accordingly.
         return class_dict
     

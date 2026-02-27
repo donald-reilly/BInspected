@@ -50,7 +50,6 @@ class Parser:
         """
 
         meta_data_map = {
-            "name" : lambda: object_to_parse.__name__,
             "qualified name" : lambda: object_to_parse.__qualname__,
             "module name" : lambda: object_to_parse.__module__,
             "bases" : lambda: object_to_parse.__bases__,
@@ -96,7 +95,7 @@ class Parser:
         #TODO: This meta data extraciton could all happen in one fucking go.
         #TODO: Need to pull class level variables. Using some sort of helper function to parse the dict of a class.
         # Pulls the meta data and sorts the class' introspection dictionary.
-        class_dict = self._extract_meta_data(class_to_parse)
+        class_dict = self(class_to_parse)
         return class_dict
     
     def parse_class_instance(self, instance_to_parse)-> dict:
@@ -150,9 +149,7 @@ class Parser:
              A dictionary representation of the parsed property.
         """
 
-        parsed_property = {
-                "doc": property_to_parse.__doc__ if property_to_parse.__doc__ else "No Document"
-            }
+        parsed_property = self(property_to_parse)
         return parsed_property
 
     def parse_variables(self, function_to_parse):
