@@ -37,6 +37,7 @@ class Parser:
         #return self.dispatcher[object_type](object_to_parse)
         meta_data_dict = self._extract_meta_data(object_to_parse)
         return meta_data_dict
+    
     def _extract_meta_data(self, object_to_parse)-> dict:
         """
         Parse an object, extract meta-data and format it into a dictionary.
@@ -174,6 +175,7 @@ class Parser:
             "return type": argument_types["return"] if "return" in argument_types else "None"
         }
         return parsed_variables
+    
     def parse_arguments(self, arguments, types, default_values)-> dict:
         """
         Parse the arguments of a function and return a dictionary representation of them.
