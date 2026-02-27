@@ -138,11 +138,7 @@ class Parser:
         """
 
         # Pulls the meta data and sorts the class' introspection dictionary.
-        parsed_function = {
-                "fully qualified name": function_to_parse.__qualname__,
-                "module name": function_to_parse.__module__,
-                "function docstring": function_to_parse.__doc__
-        }
+        parsed_function = self(function_to_parse)
         return parsed_function
     
     def parse_property(self, property_to_parse)-> dict:
