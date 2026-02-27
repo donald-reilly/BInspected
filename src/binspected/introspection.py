@@ -140,6 +140,7 @@ class BInspected:
         Returns:
             An introspection dictionary
         """
+
         class_dict = {
             "name" : class_to_inspect.__name__,
         }
@@ -214,6 +215,7 @@ class BInspected:
         Returns:
             An introspection dictionary
         """
+        
         #TODO: Decide if this needs to exist or if the code should exist in parser.
         return {"type argument": "argument type"}
     
