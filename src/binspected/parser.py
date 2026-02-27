@@ -4,7 +4,7 @@ class Parser:
     
     This class parses python objects to provide clean and readable meta data.
     """
-    
+
     #TODO: Now that the meta data is extracted. There are some functions I can do away with. Need to look at introspection.py now and see how this is all going to work.
     def __init__(self):
         """
@@ -113,6 +113,7 @@ class Parser:
     def parse_method(self, method_to_parse)-> dict:
         """
         Parse a method and return a dictionary representation of it.
+
         Params:
             method_to_parse: The method to be parsed.
         Returns:
@@ -125,6 +126,7 @@ class Parser:
     def parse_function(self, function_to_parse)-> dict:
         """
         Parse a function and return a dictionary representation of it.
+
         Params:
             function_to_parse: The function to be parsed.
         Returns:
@@ -138,6 +140,7 @@ class Parser:
     def parse_property(self, property_to_parse)-> dict:
         """
         Parse a property and return a dictionary representation of it.
+        
         Params:
             property_to_parse: The property to be parsed.
         Returns:
