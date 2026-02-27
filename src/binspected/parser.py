@@ -1,10 +1,10 @@
-from binspected.classifier import Classifier
 class Parser:
     """
     Parser: Extracts meta data from python objects.
     
     This class parses python objects to provide clean and readable meta data.
     """
+    
     #TODO: Now that the meta data is extracted. There are some functions I can do away with. Need to look at introspection.py now and see how this is all going to work.
     def __init__(self):
         """
@@ -20,7 +20,6 @@ class Parser:
             "function": self.parse_function,
             "property": self.parse_property
         }
-        self.classifier = Classifier() # An instance of the classifier.
 
     def __call__(self, object_to_parse)-> dict:
         """
@@ -56,8 +55,7 @@ class Parser:
             "module name" : lambda: object_to_parse.__module__, # Objects module name
             "bases" : lambda: object_to_parse.__bases__, # Base class names
             "doc string" : lambda: object_to_parse.__doc__, # Doc String
-            "type hints" : lambda: object_to_parse.__annotations__, # Any type hinting of variables
-            "Class Instance": lambda: object_to_parse.__self__
+            "type hints" : lambda: object_to_parse.__annotations__ # Any type hinting of variables
         }
         meta_data_dict = {} # Initializng the meta data dictionary.
         for meta_data in meta_data_map: # For loop that cycles the meta data map and updates the meta_data dict if an expection isn't encountred.
