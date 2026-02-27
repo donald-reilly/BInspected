@@ -5,13 +5,12 @@ class Parser:
     
     This class parses python objects to provide clean and readable meta data.
     """
-    #TODO: Unify meta data extraction to a single method. 
+    #TODO: Now that the meta data is extracted. There are some functions I can do away with. Need to look at introspection.py now and see how this is all going to work.
     def __init__(self):
         """
         Initializes the Parser class.
         """
 
-        #TODO: Need to look into the acutal application of this. Both the dispatcher and the instance of classifier.
         # The method dispatcher, currently not in use, would like to add for easy extension.
         self.dispatcher = {
             "module": self.parse_module,
@@ -49,22 +48,24 @@ class Parser:
             A dictionary representation of the meta data.
         """
 
+        # Calls to meta data to be extracted.
         meta_data_map = {
-            "qualified name" : lambda: object_to_parse.__qualname__,
-            "module name" : lambda: object_to_parse.__module__,
-            "bases" : lambda: object_to_parse.__bases__,
-            "doc string" : lambda: object_to_parse.__doc__,
-            "type hints" : lambda: object_to_parse.__annotations__,
+            "name" : lambda: object_to_parse.__name__, # Object name
+            "qualified name" : lambda: object_to_parse.__qualname__, # Qualified object name
+            "module name" : lambda: object_to_parse.__module__, # Objects module name
+            "bases" : lambda: object_to_parse.__bases__, # Base class names
+            "doc string" : lambda: object_to_parse.__doc__, # Doc String
+            "type hints" : lambda: object_to_parse.__annotations__, # Any type hinting of variables
             "Class Instance": lambda: object_to_parse.__self__
         }
-        meta_data_dict = {}
-        for meta_data in meta_data_map:
+        meta_data_dict = {} # Initializng the meta data dictionary.
+        for meta_data in meta_data_map: # For loop that cycles the meta data map and updates the meta_data dict if an expection isn't encountred.
             try:
                 meta_data_dict[meta_data] = meta_data_map[meta_data]()
             except:
-                meta_data_dict[meta_data] = None
-        
+                continue
         return meta_data_dict
+    
     def parse_module(self, module_to_parse)-> dict:
         """
         Parse a module and return a dictionary representation.
@@ -76,11 +77,7 @@ class Parser:
         """
 
         # Pulls the meta data and sorts the modules introspection dictionary.
-        parsed_module = {
-                "name": module_to_parse.__name__, # Pulls the name of the module.
-                "type": "Module", # Classifies the object.
-                "children": {} # Creates a space to hold the children of the module.
-            }
+        parsed_module = self(module_to_parse)
         return parsed_module
     
     def parse_class(self, class_to_parse)-> dict:
@@ -92,8 +89,8 @@ class Parser:
         Returns:
             A dictionary representation of the parsed class.
         """
-        #TODO: This meta data extraciton could all happen in one fucking go.
-        #TODO: Need to pull class level variables. Using some sort of helper function to parse the dict of a class.
+
+
         # Pulls the meta data and sorts the class' introspection dictionary.
         class_dict = self(class_to_parse)
         return class_dict
@@ -107,8 +104,7 @@ class Parser:
         Returns:
             A dictionary representation of the parsed instance of a class.
         """
-    
-        #TODO: Complete and add instance parsing.
+
         # Pulls the instance variables.
         instance_dict = {
                 "Instance Variables": instance_to_parse.__dict__
@@ -149,6 +145,7 @@ class Parser:
              A dictionary representation of the parsed property.
         """
 
+        # Pull property meta data
         parsed_property = self(property_to_parse)
         return parsed_property
 
