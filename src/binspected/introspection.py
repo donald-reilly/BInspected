@@ -50,7 +50,7 @@ class BInspected:
         """
 
         object_type = self.classifier(object_to_inspect)
-        parsed_object = self.dispatcher[object_type](object_to_inspect)
+        parsed_object = self.dispatcher[object_type](object_to_inspect, object_type)
 
         return parsed_object
     
@@ -118,7 +118,7 @@ class BInspected:
                 children_objects[object_name] = self(object_ref)# call back to inspected to start the loop over again.
         return children_dict
     
-    def _inspect_module(self, module_to_inspect)-> dict:
+    def _inspect_module(self, module_to_inspect, object_type)-> dict:
         """
         Inspect a modules underlying data structure and provide an introspection dictionary.
         
@@ -128,11 +128,11 @@ class BInspected:
             An introspection dictionary
         """
 
-        module_dict = self.parser.parse_module(module_to_inspect) # Gets meta data and build dictionary.
+        module_dict = self.parser(module_to_inspect, object_type) # Gets meta data and build dictionary.
         module_dict["children"] = self._get_children(module_to_inspect)# Starts recursion.
         return module_dict
     
-    def _inspect_class(self, class_to_inspect)-> dict:
+    def _inspect_class(self, class_to_inspect, object_type)-> dict:
         """
         Inspect a class' underlying data structure and provide an introspection dictionary.
         
@@ -145,11 +145,11 @@ class BInspected:
         class_dict = {
             "name" : class_to_inspect.__name__,
         }
-        class_dict |= self.parser.parse_class(class_to_inspect) # Creates the dictionary representation of the provided class.
+        class_dict |= self.parser(class_to_inspect, object_type) # Creates the dictionary representation of the provided class.
         class_dict["children"] = self._get_children(class_to_inspect) # Pulls out the children of the provided class and sorts them accordingly.
         return class_dict
     
-    def _inspect_method(self, method_to_inspect)-> dict:
+    def _inspect_method(self, method_to_inspect, object_type)-> dict:
         """
         Inspect a methods underlying data structure and provide an introspection dictionary.
         
@@ -159,12 +159,12 @@ class BInspected:
             An introspection dictionary
         """
 
-        method_dict = self.parser.parse_method(method_to_inspect) # Creates the dicitonary representation of the provided method.
+        method_dict = self.parser(method_to_inspect, object_type) # Creates the dicitonary representation of the provided method.
         function_dict = self(method_to_inspect.__func__) # Sends the underlying function to the correct inspecetion method.
         method_dict |= function_dict # Merges the two introspection dictionaries.
         return method_dict
     
-    def _inspect_function(self, function_to_inspect)-> dict:
+    def _inspect_function(self, function_to_inspect, object_type)-> dict:
         """
         Inspect a functions underlying data structure and provide an introspection dictionary.
         
@@ -174,11 +174,11 @@ class BInspected:
             An introspection dictionary
         """
 
-        function_dict = self.parser.parse_function(function_to_inspect) # Create the dictionary representation of the provided function.
-        function_dict["variables"] = self.parser.parse_variables(function_to_inspect) # Sends the functions variables for parsing.
+        function_dict = self.parser(function_to_inspect, object_type) # Create the dictionary representation of the provided function.
+        function_dict["variables"] = self.parser._parse_variables(function_to_inspect) # Sends the functions variables for parsing.
         return function_dict
     
-    def _inspect_property(self, property_to_inspect)-> dict:
+    def _inspect_property(self, property_to_inspect, object_type)-> dict:
         """
         Inspect a property's underlying data structure and provide an introspection dictionary.
         
@@ -188,13 +188,13 @@ class BInspected:
             An introspection dictionary
         """
 
-        property_dict = self.parser.parse_property(property_to_inspect) # Creates the dictionary representation of the provided property.
+        property_dict = self.parser(property_to_inspect, object_type) # Creates the dictionary representation of the provided property.
         property_dict["getter"] = self(property_to_inspect.fget) if  property_to_inspect.fget else None # Sends the underlying functions to the correct inspection method. 
         property_dict["setter"] = self(property_to_inspect.fset) if property_to_inspect.fset else None # Sends the underlying functions to the correct inspection method.
         property_dict["deleter"] = self(property_to_inspect.fdel) if property_to_inspect.fdel else None # Sends the underlying functions to the correct inspection method.
         return property_dict    
       
-    def _inspect_variables(self, variables_to_inspect)-> dict:
+    def _inspect_variables(self, variables_to_inspect, object_type)-> dict:
         """
         Inspect a variables underlying data structure and provide an introspection dictionary.
         
@@ -220,7 +220,7 @@ class BInspected:
         #TODO: Decide if this needs to exist or if the code should exist in parser.
         return {"type argument": "argument type"}
     
-    def _inspect_class_instance(self, instance_to_inspect)-> dict:
+    def _inspect_class_instance(self, instance_to_inspect, object_type)-> dict:
         """
         Inspect an instances underlying data structure and provide an introspection dictionary.
         
@@ -230,7 +230,7 @@ class BInspected:
             An introspection dictionary
         """
 
-        instance_dict = self.parser.parse_class_instance(instance_to_inspect) # Creates the dictionary representation of the provided instance of a class.
+        instance_dict = self.parser(instance_to_inspect, object_type) # Creates the dictionary representation of the provided instance of a class.
         class_dict = self(instance_to_inspect.__class__) # Sends the underlying class by through self for classification and parsing.
         instance_dict = instance_dict | class_dict # Merges the two dictionaries.
         return instance_dict

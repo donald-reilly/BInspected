@@ -13,15 +13,15 @@ class Parser:
 
         # The method dispatcher, currently not in use, would like to add for easy extension.
         self.dispatcher = {
-            "module": self.parse_module,
-            "class": self.parse_class,
-            "method": self.parse_method,
-            "instance": self.parse_class_instance,
-            "function": self.parse_function,
-            "property": self.parse_property
+            #"module": self.parse_module,
+            #"class": self.parse_class,
+            #"method": self.parse_method,
+            "instance": self._parse_class_instance
+            #"function": self.parse_function,
+            #"property": self.parse_property
         }
 
-    def __call__(self, object_to_parse)-> dict:
+    def __call__(self, object_to_parse, object_type = None)-> dict:
         """
         Parse an object of a given type and return a dictionary representation.
 
@@ -33,8 +33,10 @@ class Parser:
         """
         
         # The only call to the dispatcher.
-        #return self.dispatcher[object_type](object_to_parse)
         meta_data_dict = self._extract_meta_data(object_to_parse)
+        #TODO: So far this is the only type that has different parsing. Need to move all the parsing code into the parser and out of the python API.
+        if object_type == "instance":
+            meta_data_dict |= self._parse_class_instance(object_to_parse)
         return meta_data_dict
     
     def _extract_meta_data(self, object_to_parse)-> dict:
@@ -65,36 +67,7 @@ class Parser:
                 continue
         return meta_data_dict
     
-    def parse_module(self, module_to_parse)-> dict:
-        """
-        Parse a module and return a dictionary representation.
-
-        Params:
-            module_to_parse: The module to be parsed.
-        Returns:
-            A dictionary representation of the parsed module.
-        """
-
-        # Pulls the meta data and sorts the modules introspection dictionary.
-        parsed_module = self(module_to_parse)
-        return parsed_module
-    
-    def parse_class(self, class_to_parse)-> dict:
-        """
-        Parse a class and return a dictionary representation of it.
-
-        Params:
-            class_to_parse: The class to be parsed.
-        Returns:
-            A dictionary representation of the parsed class.
-        """
-
-
-        # Pulls the meta data and sorts the class' introspection dictionary.
-        class_dict = self(class_to_parse)
-        return class_dict
-    
-    def parse_class_instance(self, instance_to_parse)-> dict:
+    def _parse_class_instance(self, instance_to_parse)-> dict:
         """
         Parse an instance of a class and return a dictionary representation of it.
 
@@ -110,48 +83,7 @@ class Parser:
             }
         return instance_dict
     
-    def parse_method(self, method_to_parse)-> dict:
-        """
-        Parse a method and return a dictionary representation of it.
-
-        Params:
-            method_to_parse: The method to be parsed.
-        Returns:
-             A dictionary representation of the parsed method.
-        """
-        
-        method_dict = self(method_to_parse)
-        return method_dict
-    
-    def parse_function(self, function_to_parse)-> dict:
-        """
-        Parse a function and return a dictionary representation of it.
-
-        Params:
-            function_to_parse: The function to be parsed.
-        Returns:
-             A dictionary representation of the parsed function.
-        """
-
-        # Pulls the meta data and sorts the class' introspection dictionary.
-        parsed_function = self(function_to_parse)
-        return parsed_function
-    
-    def parse_property(self, property_to_parse)-> dict:
-        """
-        Parse a property and return a dictionary representation of it.
-        
-        Params:
-            property_to_parse: The property to be parsed.
-        Returns:
-             A dictionary representation of the parsed property.
-        """
-
-        # Pull property meta data
-        parsed_property = self(property_to_parse)
-        return parsed_property
-
-    def parse_variables(self, function_to_parse):
+    def _parse_variables(self, function_to_parse):
         """
         Parse the variables of a function.
         
@@ -169,7 +101,7 @@ class Parser:
         local_variables = all_variables[argument_count:] # Pull local variables and kwvars from all vars
         arguments = all_variables[:argument_count] # pull arguments from all vars
 
-        arguments = self.parse_arguments(arguments, argument_types, argument_default_values) # Parse the arguments
+        arguments = self._parse_arguments(arguments, argument_types, argument_default_values) # Parse the arguments
         parsed_variables = {
             "arguments": arguments,
             "Local Variables": local_variables,
@@ -177,7 +109,7 @@ class Parser:
         }
         return parsed_variables
     
-    def parse_arguments(self, arguments, types, default_values)-> dict:
+    def _parse_arguments(self, arguments, types, default_values)-> dict:
         """
         Parse the arguments of a function and return a dictionary representation of them.
 

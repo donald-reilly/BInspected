@@ -38,3 +38,4 @@ src/binspected/__pycache__/parser.cpython-313.pyc
 examples/GoldenClassInstance.json
 examples/GoldenClassInstanceMethodOne.json
 .gitignore
+examples/GoldenClassInstanceMethodOne.json
