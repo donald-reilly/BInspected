@@ -38,8 +38,9 @@ class BInspected:
         """
 
         return self._build_inspection(object_to_inspect)
+    
     def _build_inspection_tree(self, object_to_inspect)-> dict:
-        pass
+        return {}
     def _build_inspection(self, object_to_inspect)-> dict:
         """
         Complete object inspection and formation of the objects underlying structure
