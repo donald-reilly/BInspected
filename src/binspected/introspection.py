@@ -37,10 +37,61 @@ class BInspected:
             An introspection dictionary.
         """
 
+        #TODO: This needs fresh eyes I think. Recursion is a tough one and my brain is having a hard time seeing it correctly. It's building the working tree. Need to either clean the tree up or 
+        #return {"object": object_to_inspect, "children" : self._build_inspection_tree(object_to_inspect)}
         return self._build_inspection(object_to_inspect)
-    
     def _build_inspection_tree(self, object_to_inspect)-> dict:
-        return {}
+        #TODO: Ok i need to build a real recursive function that travels through the dictionaries and sorts everything. This is key. This keeps sorting logic seperate.
+        """
+        Sort an objects __dict__
+        
+        Params:
+            dict_to_group: __dict__ of the object that needs sorting
+        Returns:
+            A dictionary of the sorted objects. Example structure: 
+            grouped_dict ={
+                "module": {},
+                "class": {},
+                "method": {},
+                "function": {},
+                "property": {},
+                "instance": {}
+            }
+        """
+
+        # System specific children who don't need to be inspected... yet..
+        skip_children = [
+            "__loader__",
+            "__spec__",
+            "__package__",
+            "__builtins__",
+            "__cached__",
+            "__file__"
+        ]
+        # The layout of the returned dictionary needs to be removed eventually and be formed at creation
+        grouped_dict ={
+            "module": {},
+            "class": {},
+            "method": {},
+            "function": {},
+            "property": {},
+            "instance": {}
+        }
+        new_lambda = lambda: object_to_inspect.__dict__
+        new_grouped_dict = {}
+        # Loop for sorting the __dict__
+        try:
+            for key, value in object_to_inspect.__dict__.items():
+                object_type = self.classifier(value) # Classifies each child object
+                if object_type == "built-in" or key in skip_children:
+                    continue
+                if object_type not in new_grouped_dict:
+                    new_grouped_dict[object_type] = {}
+                new_grouped_dict[object_type][key] = {"object" :value, "children" : self._build_inspection_tree(value)} # Sorts each object in correct dictionary entry.
+            return new_grouped_dict     
+        except:
+            return {}
+
     def _build_inspection(self, object_to_inspect)-> dict:
         """
         Complete object inspection and formation of the objects underlying structure
