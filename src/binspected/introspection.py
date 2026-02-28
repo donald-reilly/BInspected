@@ -38,7 +38,8 @@ class BInspected:
         """
 
         return self._build_inspection(object_to_inspect)
-    
+    def _build_inspection_tree(self, object_to_inspect)-> dict:
+        pass
     def _build_inspection(self, object_to_inspect)-> dict:
         """
         Complete object inspection and formation of the objects underlying structure
@@ -142,12 +143,24 @@ class BInspected:
             An introspection dictionary
         """
 
-        class_dict = {
-            "name" : class_to_inspect.__name__,
-        }
-        class_dict |= self.parser(class_to_inspect, object_type) # Creates the dictionary representation of the provided class.
+        class_dict = self.parser(class_to_inspect, object_type) # Creates the dictionary representation of the provided class.
         class_dict["children"] = self._get_children(class_to_inspect) # Pulls out the children of the provided class and sorts them accordingly.
         return class_dict
+    
+    def _inspect_class_instance(self, instance_to_inspect, object_type)-> dict:
+        """
+        Inspect an instances underlying data structure and provide an introspection dictionary.
+        
+        Params:
+            instance_to_inspect: instance to inspect
+        Returns:
+            An introspection dictionary
+        """
+
+        instance_dict = self.parser(instance_to_inspect, object_type) # Creates the dictionary representation of the provided instance of a class.
+        class_dict = self(instance_to_inspect.__class__) # Sends the underlying class by through self for classification and parsing.
+        instance_dict = instance_dict | class_dict # Merges the two dictionaries.
+        return instance_dict
     
     def _inspect_method(self, method_to_inspect, object_type)-> dict:
         """
@@ -194,18 +207,18 @@ class BInspected:
         property_dict["deleter"] = self(property_to_inspect.fdel) if property_to_inspect.fdel else None # Sends the underlying functions to the correct inspection method.
         return property_dict    
       
-    def _inspect_variables(self, variables_to_inspect, object_type)-> dict:
+    def _inspect_built_in(self, instance_to_inspect)-> dict:
         """
-        Inspect a variables underlying data structure and provide an introspection dictionary.
+        Inspect the built_in underlying data structure and provide an introspection dictionary.
         
         Params:
-            variable_to_inspect: Variable to inspect
+            built_in_to_inspect: built_in to inspect
         Returns:
             An introspection dictionary
         """
 
-        #TODO: Decide if this needs to exist or if the code should exist in parser.
-        return {"type variable": "variable type"}
+        #TODO: Possible feature, and flag. Not sure if built-ins should even be tested. Would make some very heavy duty outputs.
+        return {"Not Implemented": "_inspect_built_in"}
     
     def _inspect_arguments(self, arguments_to_inspect)-> dict:
         """
@@ -220,30 +233,16 @@ class BInspected:
         #TODO: Decide if this needs to exist or if the code should exist in parser.
         return {"type argument": "argument type"}
     
-    def _inspect_class_instance(self, instance_to_inspect, object_type)-> dict:
+    def _inspect_variables(self, variables_to_inspect, object_type)-> dict:
         """
-        Inspect an instances underlying data structure and provide an introspection dictionary.
+        Inspect a variables underlying data structure and provide an introspection dictionary.
         
         Params:
-            instance_to_inspect: instance to inspect
+            variable_to_inspect: Variable to inspect
         Returns:
             An introspection dictionary
         """
 
-        instance_dict = self.parser(instance_to_inspect, object_type) # Creates the dictionary representation of the provided instance of a class.
-        class_dict = self(instance_to_inspect.__class__) # Sends the underlying class by through self for classification and parsing.
-        instance_dict = instance_dict | class_dict # Merges the two dictionaries.
-        return instance_dict
-    def _inspect_built_in(self, instance_to_inspect)-> dict:
-        """
-        Inspect the built_in underlying data structure and provide an introspection dictionary.
-        
-        Params:
-            built_in_to_inspect: built_in to inspect
-        Returns:
-            An introspection dictionary
-        """
-
-        #TODO: Possible feature, and flag. Not sure if built-ins should even be tested. Would make some very heavy duty outputs.
-        return {"Not Implemented": "_inspect_built_in"}
+        #TODO: Decide if this needs to exist or if the code should exist in parser.
+        return {"type variable": "variable type"}
     
