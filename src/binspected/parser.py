@@ -5,7 +5,6 @@ class Parser:
     This class parses python objects to provide clean and readable meta data.
     """
 
-    #TODO: Now that the meta data is extracted. There are some functions I can do away with. Need to look at introspection.py now and see how this is all going to work.
     def __init__(self):
         """
         Initializes the Parser class.
@@ -32,13 +31,23 @@ class Parser:
             A dictionary representation of the parsed object.
         """
         
-        # The only call to the dispatcher.
+        return self._parse_object(object_to_parse, object_type)
+    
+    def _parse_object(self, object_to_parse, object_type = None)-> dict:
+        """Parse an object of a given type and return a dictionary representation
+        
+        Params:
+            object_to_parse: The object to be parsed.
+            object_type: The type of the object to be parsed.
+        Returns:
+            A dicitonary representation of the parsed object.
+            
+        """
         meta_data_dict = self._extract_meta_data(object_to_parse)
         #TODO: So far this is the only type that has different parsing. Need to move all the parsing code into the parser and out of the python API.
-        if object_type == "instance":
-            meta_data_dict |= self._parse_class_instance(object_to_parse)
+        if object_type in self.dispatcher:
+            meta_data_dict |= self.dispatcher[object_type](object_type)
         return meta_data_dict
-    
     def _extract_meta_data(self, object_to_parse)-> dict:
         """
         Parse an object, extract meta-data and format it into a dictionary.
