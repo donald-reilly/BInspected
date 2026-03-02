@@ -1,3 +1,0 @@
--e git+https://github.com/donald-reilly/BInspected.git@1bd0221781ea366e348620d7e0a9f30b373e9854#egg=BInspected
--e git+ssh://git@github.com/donald-reilly/FigMan.git@218973f05a90c4ff152ebad3b6b91b0bd105b877#egg=ESMFigMan
-PyYAML==6.0.2
