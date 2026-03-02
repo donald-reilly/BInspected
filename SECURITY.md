@@ -80,5 +80,12 @@ to the most recent release to receive fixes.
 ---
 
 Security issues should be reported privately so they can be evaluated and addressed responsibly.
-  - Where to report: Open a private security advisory or email the maintainer at 
-
+  - Where to report: Open a private security advisory or email the maintainer at 6sb4cr6g9@mozmail.com
+  - What to include: A clear description, reproduction steps if possible, and any context about impact.
+  - Response expectations:
+        - Acknowledgment within 72 hours.
+        - Initial assessment within 7 days.
+        - Coordinated disclosure if the issue is confirmed.
+    
+If a report is accepted, a fix will be issued in the next patch release. If a report is declined, you’ll receive a brief
+explanation of why (e.g., out of scope, expected behavior, or not reproducible).
