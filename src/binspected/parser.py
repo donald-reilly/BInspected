@@ -5,7 +5,7 @@ class Parser:
     This class parses python objects to provide clean and readable meta data.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initializes the Parser class.
         """
@@ -31,7 +31,9 @@ class Parser:
             A dictionary representation of the parsed object.
         """
 
-        return self._parse_object(object_to_parse, object_type)
+        return self._parse_object(
+            object_to_parse=object_to_parse, object_type=object_type
+        )
 
     def _parse_object(self, object_to_parse, object_type=None) -> dict:
         """Parse an object of a given type and return a dictionary representation
@@ -96,7 +98,7 @@ class Parser:
         instance_dict = {"Instance Variables": instance_to_parse.__dict__}
         return instance_dict
 
-    def _parse_variables(self, function_to_parse):
+    def _parse_variables(self, function_to_parse) -> dict[str, Any]:
         """
         Parse the variables of a function.
 
