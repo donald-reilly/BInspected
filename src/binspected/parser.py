@@ -46,7 +46,7 @@ class Parser:
         meta_data_dict = self._extract_meta_data(object_to_parse)
         #TODO: So far this is the only type that has different parsing. Need to move all the parsing code into the parser and out of the python API.
         if object_type in self.dispatcher:
-            meta_data_dict |= self.dispatcher[object_type](object_type)
+            meta_data_dict |= self.dispatcher[object_type](object_to_parse)
         return meta_data_dict
     def _extract_meta_data(self, object_to_parse)-> dict:
         """
@@ -87,6 +87,7 @@ class Parser:
         """
 
         # Pulls the instance variables.
+        print(instance_to_parse)
         instance_dict = {
                 "Instance Variables": instance_to_parse.__dict__
             }
