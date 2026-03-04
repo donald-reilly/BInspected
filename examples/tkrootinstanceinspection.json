@@ -1,0 +1,20 @@
+{
+    "module name": "tkinter",
+    "doc string": "Toplevel widget of Tk which represents mostly the main window\nof an application. It has an associated Tcl interpreter.",
+    "instance Variables": {
+        "master": null,
+        "children": {
+            "!frame": ".!frame"
+        },
+        "_tkloaded": true,
+        "tk": "<_tkinter.tkapp object at 0x7cf38e20c660>",
+        "_tclCommands": [
+            "tkerror",
+            "exit",
+            "137385512405312destroy"
+        ],
+        "_last_child_ids": {
+            "frame": 1
+        }
+    }
+}

@@ -3,9 +3,7 @@ from tkinter import ttk
 from pathlib import Path
 import json
 
-from binspected import introspection
-
-inspector = introspection.BInspected()
+from binspected.just_starting_over import extract_meta_data
 
 def save_inspection(data, filename="test_inspections/inspection_output.json"):
     path = Path(filename)
@@ -53,7 +51,10 @@ select_btn = ttk.Button(right_frame, text="Select", command=lambda: print("Selec
 select_btn.pack(pady=5)
 
 
-first_inspection = inspector(root)
-save_inspection(first_inspection, filename ="examples/tkrootinspection.json")
-
+first_inspection = extract_meta_data(root)
+save_inspection(first_inspection, filename ="examples/tkrootinstanceinspection.json")
+second_inspection = extract_meta_data(tk.Tk)
+save_inspection(second_inspection, filename ="examples/tkrootinspection.json")
+save_inspection(extract_meta_data(main_frame), filename = "examples/mainframe.json")
+save_inspection(extract_meta_data(entry), filename = "examples/entry.json")
 root.mainloop()

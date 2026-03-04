@@ -1,0 +1,19 @@
+{
+    "module name": "tkinter.ttk",
+    "doc string": "Ttk Frame widget is a container, used to group other widgets\ntogether.",
+    "instance Variables": {
+        "widgetName": "ttk::frame",
+        "master": ".",
+        "tk": "<_tkinter.tkapp object at 0x7cf38e20c660>",
+        "_name": "!frame",
+        "_w": ".!frame",
+        "children": {
+            "!labelframe": ".!frame.!labelframe",
+            "!labelframe2": ".!frame.!labelframe2"
+        },
+        "_tclCommands": [],
+        "_last_child_ids": {
+            "labelframe": 2
+        }
+    }
+}
