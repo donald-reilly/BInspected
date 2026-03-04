@@ -11,7 +11,11 @@ class BInspected:
     a structured introspection dictionary.
     """
 
+<<<<<<< HEAD
     def __init__(self):
+=======
+    def __init__(self) -> None:
+>>>>>>> Parser-Refactor
         """
         Initializes the BInspected class.
         """
