@@ -5,7 +5,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "binspected"
 version = "0.1.1"
-description = "Recursive Python introspection engine"
+description = "BInspected is a Python package for deep runtime introspection of Python objects. It exposes constructor signatures, default values, annotations, docstrings, and structural metadata for modules, classes, functions, methods, and properties.
+The project originally began as a tool to support dynamic testing, but it has evolved into a personal exploration of Python’s meta‑programming capabilities and runtime internals."
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "Donald Reilly", email = "donald.reilly.jr@outlook.com" }]
