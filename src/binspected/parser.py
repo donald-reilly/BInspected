@@ -97,7 +97,7 @@ class Parser:
         instance_dict = {"Instance Variables": instance_to_parse.__dict__}
         return instance_dict
 
-    def _parse_variables(self, function_to_parse) -> dict[str, Any]:
+    def _parse_variables(self, function_to_parse) -> dict:
         """
         Parse the variables of a function.
 
