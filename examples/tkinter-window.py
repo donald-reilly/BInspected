@@ -14,6 +14,11 @@ def save_inspection(data, filename="test_inspections/inspection_output.json"):
 def on_submit():
     print("Submitted:", entry.get())
 
+def test_function(no_default_str: str, default_int_10: int = 10)-> str:
+    local_variable = 10
+
+    return "return string"
+
 root = tk.Tk()
 root.title("Nested Tkinter GUI")
 root.geometry("400x300")
@@ -57,4 +62,5 @@ second_inspection = extract_meta_data(tk.Tk)
 save_inspection(second_inspection, filename ="examples/tkrootinspection.json")
 save_inspection(extract_meta_data(main_frame), filename = "examples/mainframe.json")
 save_inspection(extract_meta_data(entry), filename = "examples/entry.json")
+save_inspection(extract_meta_data(save_inspection), filename = "examples/saveinspection().json")
 root.mainloop()
