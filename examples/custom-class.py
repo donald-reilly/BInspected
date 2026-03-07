@@ -1,9 +1,7 @@
 from pathlib import Path
 import json
-
-from binspected import BInspected
-import binspected
-
+from binspected.just_starting_over import master_config
+from types import BuiltinFunctionType, BuiltinMethodType, MethodWrapperType
 class DescriptorExample:
     """Simple descriptor to test descriptor behavior."""
     def __init__(self, name):
@@ -106,13 +104,14 @@ class GoldenClass(GoldenBase):
         return lambda z: z * 2
 
 
-def save_inspection(data, filename="test_inspections/inspection_output.json"):
+def save_inspection(data, filename="examples/inspection_output.json"):
     path = Path(filename)
     with path.open("w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, default= str)
     return path
+new_class = GoldenClass()
 
-inspector = BInspected()
-test_class = GoldenClass()
+instance_dict = master_config(new_class)
 
-save_inspection(inspector(BInspected()), "examples/GoldenClassInstanceMethodOne.json")
+save_inspection(instance_dict.to_dict())
+

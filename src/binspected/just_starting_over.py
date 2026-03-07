@@ -65,17 +65,6 @@ def build_introspect(object_to_inspect, current_level, search, inspect_methods, 
     Test function to see how I want to use generators
     """
 
-    attributes_to_skip =[
-        "__class__",
-        "__builtins__"
-    ]
-    types_to_skip = (
-        MethodDescriptorType,
-        BuiltinFunctionType,
-        BuiltinMethodType,
-        MethodWrapperType,
-        WrapperDescriptorType
-    )
     attributes = (
         int,
         float,
@@ -91,12 +80,11 @@ def build_introspect(object_to_inspect, current_level, search, inspect_methods, 
     )
     if type(object_to_inspect) is not dict:
         object_to_recurse = extract_meta_data(object_to_inspect)
+        print(type(object_to_recurse))
     else:
         object_to_recurse = object_to_inspect
     for name, value in object_to_recurse:
-        if isinstance(value, types_to_skip) or name in attributes_to_skip:
-            continue
-        elif isinstance(value, attributes):
+        if isinstance(value, attributes):
             new_group = current_level("attributes")
             if name.startswith("__") and name.endswith("__"):
                 new_group1 = new_group("special attributes")
@@ -123,8 +111,6 @@ def build_introspect(object_to_inspect, current_level, search, inspect_methods, 
                 new_group = current_level(key)
                 build_introspect(item, new_group, search, inspect_methods, inspect_arguments)
         else:
-            print(f"{name}, {value}")
-            print(f"{type(value)}")
             current_level(name, value)
 
 def master_config(object_to_inspect, search = "", inspect_methods = False, inspect_arguments = False):

@@ -3,22 +3,31 @@ from tkinter import ttk
 from pathlib import Path
 import json
 
-from binspected.just_starting_over import extract_meta_data
+from figman import FigMan
+from binspected.binspected import BInspected
 
-def save_inspection(data, filename="test_inspections/inspection_output.json"):
+def save_inspection(data, filename="examples/inspection_output.json"):
     path = Path(filename)
     with path.open("w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, default= str)
     return path
 
 def on_submit():
-    print("Submitted:", entry.get())
+    print(submit_btn.config())
 
-def test_function(no_default_str: str, default_int_10: int = 10)-> str:
-    local_variable = 10
-
-    return "return string"
-
+def print_info(choice):
+    call_map = {
+        "Root": root.config(),
+        "Main Frame": main_frame.config(),
+        "Left Frame": left_frame.config(),
+        "Entry": entry.config(),
+        "Submit Button": submit_btn.config(),
+        "Right Frame": right_frame.config(),
+        "List Label": list_label.config(),
+        "List Box": listbox.config(),
+        "Label": label.config()
+    }
+    print(call_map[choice])
 root = tk.Tk()
 root.title("Nested Tkinter GUI")
 root.geometry("400x300")
@@ -48,19 +57,22 @@ list_label = ttk.Label(right_frame, text="Pick an option:")
 list_label.pack(anchor="w")
 
 listbox = tk.Listbox(right_frame, height=5)
-for item in ["Alpha", "Beta", "Gamma", "Delta"]:
+for item in ["Root", "Main Frame", "Left_Frame", "Label", "Entry", "Submit Button", "Right Frame", "List Label", "List Box"]:
     listbox.insert("end", item)
 listbox.pack(fill="both", expand=True, pady=5)
 
-select_btn = ttk.Button(right_frame, text="Select", command=lambda: print("Selected:", listbox.get("active")))
+
+select_btn = ttk.Button(right_frame, text="Select",command = lambda: print_info(listbox.get("active")))
 select_btn.pack(pady=5)
 
-
-first_inspection = extract_meta_data(root)
-save_inspection(first_inspection, filename ="examples/tkrootinstanceinspection.json")
-second_inspection = extract_meta_data(tk.Tk)
-save_inspection(second_inspection, filename ="examples/tkrootinspection.json")
-save_inspection(extract_meta_data(main_frame), filename = "examples/mainframe.json")
-save_inspection(extract_meta_data(entry), filename = "examples/entry.json")
-save_inspection(extract_meta_data(save_inspection), filename = "examples/saveinspection().json")
-root.mainloop()
+figman_instance = FigMan()
+first_config = BInspected(root)
+save_inspection(first_config.introspection_dict.to_dict(), "examples/root_inspection.json")
+new_config = BInspected(main_frame)
+save_inspection(new_config.introspection_dict.to_dict(), "examples/main_frame_inspection.json")
+new_config = BInspected(entry)
+save_inspection(new_config.introspection_dict.to_dict(), "examples/entry_inspection.json")
+new_config = BInspected(select_btn)
+save_inspection(new_config.introspection_dict.to_dict(), "examples/select_btn_inspection.json")
+new_config = BInspected(figman_instance)
+save_inspection(new_config.introspection_dict.to_dict(), "examples/figman_inspection.json")
