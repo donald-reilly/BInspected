@@ -5,6 +5,5 @@ objects, extracts metadata, groups children, and recursively builds
 a structured introspection dictionary.
 """
 
-from binspected.introspection import BInspected
+from binspected import just_starting_over
 
-__all__ = ["BInspected"]
