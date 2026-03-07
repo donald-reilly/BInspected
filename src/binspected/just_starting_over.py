@@ -1,5 +1,5 @@
 from figman import FigMan
-from types import BuiltinFunctionType, BuiltinMethodType, MethodDescriptorType, MethodWrapperType, FunctionType, MethodType, WrapperDescriptorType, CodeType
+from types import BuiltinFunctionType, BuiltinMethodType, MethodDescriptorType, MethodWrapperType, FunctionType, MethodType, WrapperDescriptorType, CodeType, NoneType
 def extract_meta_data(object_to_parse):
     """
     Parse an object, extract meta-data and format it into a dictionary.
@@ -69,13 +69,25 @@ def build_introspect(object_to_inspect, current_level, search, inspect_methods, 
         "__class__",
         "__builtins__"
     ]
-
     types_to_skip = (
         MethodDescriptorType,
         BuiltinFunctionType,
         BuiltinMethodType,
         MethodWrapperType,
         WrapperDescriptorType
+    )
+    attributes = (
+        int,
+        float,
+        str,
+        bytearray,
+        NoneType,
+        bool,
+        list,
+        tuple,
+        dict,
+        set,
+        frozenset
     )
     if type(object_to_inspect) is not dict:
         object_to_recurse = extract_meta_data(object_to_inspect)
@@ -84,16 +96,35 @@ def build_introspect(object_to_inspect, current_level, search, inspect_methods, 
     for name, value in object_to_recurse:
         if isinstance(value, types_to_skip) or name in attributes_to_skip:
             continue
-        if isinstance(value, MethodType) and inspect_methods:
+        elif isinstance(value, attributes):
+            new_group = current_level("attributes")
+            if name.startswith("__") and name.endswith("__"):
+                new_group1 = new_group("special attributes")
+                new_group1(name, value)
+            elif name.startswith("_"):
+                new_group1 = new_group("private attributes")
+                new_group1(name, value)
+            else:
+                new_group1 = new_group("public attributes")
+                new_group1(name, value)
+        elif isinstance(value, MethodType) and inspect_methods:
             new_group = current_level("methods")
             if name.startswith("__") and name.endswith("__"):
                 new_group1 = new_group("special methods")
                 new_group1(name, value)
-        if search == name:
+            elif name.startswith("_"):
+                new_group1 = new_group("private methods")
+                new_group1(name,value)
+            else:
+                new_group1 = new_group("public methods")
+                new_group1(name, value)
+        elif search == name:
             for key, item in value.items():
                 new_group = current_level(key)
                 build_introspect(item, new_group, search, inspect_methods, inspect_arguments)
         else:
+            print(f"{name}, {value}")
+            print(f"{type(value)}")
             current_level(name, value)
 
 def master_config(object_to_inspect, search = "", inspect_methods = False, inspect_arguments = False):
