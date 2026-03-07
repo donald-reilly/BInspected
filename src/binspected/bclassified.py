@@ -40,10 +40,10 @@ class BClassified:
             set,
             frozenset
         )
-    def __call__(self, name: str, object_to_classiy: Any)-> tuple[str, str]:
-        return self._classify(object_to_classify)
+    def __call__(self, name: str, object_to_classify: Any)-> tuple[str, str]:
+        return self._classify(name, object_to_classify)
     def _classify(self, name: str, object_to_classify: Any)->tuple[str, str]:
-        object_type: Any = type(object_to_classify)
+        object_type = type(object_to_classify)
         if object_type in self.branch:
             object_classification = self.branch[object_type]
         elif object_type in self.leaf:
