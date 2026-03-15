@@ -1,5 +1,4 @@
 {
-    "id": ".!frame.!labelframe2.!button",
     "config": {
         ".!frame.!labelframe2.!button": {
             "Method": {
@@ -218,21 +217,21 @@
                 },
                 "Public": {
                     "master": ".!frame.!labelframe2",
-                    "tk": "<_tkinter.tkapp object at 0x73c3aa6cf360>"
+                    "tk": "<_tkinter.tkapp object at 0x7acec5b47510>"
                 }
             },
             "Method Wrapper": {
                 "Special": {
-                    "__delattr__": "<method-wrapper '__delattr__' of Button object at 0x73c3aa5aca50>",
-                    "__eq__": "<method-wrapper '__eq__' of Button object at 0x73c3aa5aca50>",
-                    "__ge__": "<method-wrapper '__ge__' of Button object at 0x73c3aa5aca50>",
-                    "__getattribute__": "<method-wrapper '__getattribute__' of Button object at 0x73c3aa5aca50>",
-                    "__gt__": "<method-wrapper '__gt__' of Button object at 0x73c3aa5aca50>",
-                    "__hash__": "<method-wrapper '__hash__' of Button object at 0x73c3aa5aca50>",
-                    "__le__": "<method-wrapper '__le__' of Button object at 0x73c3aa5aca50>",
-                    "__lt__": "<method-wrapper '__lt__' of Button object at 0x73c3aa5aca50>",
-                    "__ne__": "<method-wrapper '__ne__' of Button object at 0x73c3aa5aca50>",
-                    "__setattr__": "<method-wrapper '__setattr__' of Button object at 0x73c3aa5aca50>"
+                    "__delattr__": "<method-wrapper '__delattr__' of Button object at 0x7acec5a14b90>",
+                    "__eq__": "<method-wrapper '__eq__' of Button object at 0x7acec5a14b90>",
+                    "__ge__": "<method-wrapper '__ge__' of Button object at 0x7acec5a14b90>",
+                    "__getattribute__": "<method-wrapper '__getattribute__' of Button object at 0x7acec5a14b90>",
+                    "__gt__": "<method-wrapper '__gt__' of Button object at 0x7acec5a14b90>",
+                    "__hash__": "<method-wrapper '__hash__' of Button object at 0x7acec5a14b90>",
+                    "__le__": "<method-wrapper '__le__' of Button object at 0x7acec5a14b90>",
+                    "__lt__": "<method-wrapper '__lt__' of Button object at 0x7acec5a14b90>",
+                    "__ne__": "<method-wrapper '__ne__' of Button object at 0x7acec5a14b90>",
+                    "__setattr__": "<method-wrapper '__setattr__' of Button object at 0x7acec5a14b90>"
                 }
             },
             "Attribute": {
@@ -240,12 +239,12 @@
                     "__dict__": {
                         "widgetName": "ttk::button",
                         "master": ".!frame.!labelframe2",
-                        "tk": "<_tkinter.tkapp object at 0x73c3aa6cf360>",
+                        "tk": "<_tkinter.tkapp object at 0x7acec5b47510>",
                         "_name": "!button",
                         "_w": ".!frame.!labelframe2.!button",
                         "children": {},
                         "_tclCommands": [
-                            "127284213995904<lambda>"
+                            "135028497669376<lambda>"
                         ]
                     },
                     "__doc__": "Ttk Button widget, displays a textual label and/or image, and\nevaluates a command when pressed.",
@@ -283,7 +282,7 @@
                     ],
                     "_subst_format_str": "%# %b %f %h %k %s %t %w %x %y %A %E %K %N %W %T %X %Y %D",
                     "_tclCommands": [
-                        "127284213995904<lambda>"
+                        "135028497669376<lambda>"
                     ],
                     "_w": ".!frame.!labelframe2.!button",
                     "_windowingsystem": "x11"
@@ -295,15 +294,15 @@
             },
             "Builtin Method": {
                 "Special": {
-                    "__dir__": "<built-in method __dir__ of Button object at 0x73c3aa5aca50>",
-                    "__format__": "<built-in method __format__ of Button object at 0x73c3aa5aca50>",
-                    "__getstate__": "<built-in method __getstate__ of Button object at 0x73c3aa5aca50>",
-                    "__init_subclass__": "<built-in method __init_subclass__ of type object at 0x27704ff0>",
+                    "__dir__": "<built-in method __dir__ of Button object at 0x7acec5a14b90>",
+                    "__format__": "<built-in method __format__ of Button object at 0x7acec5a14b90>",
+                    "__getstate__": "<built-in method __getstate__ of Button object at 0x7acec5a14b90>",
+                    "__init_subclass__": "<built-in method __init_subclass__ of type object at 0x132fdff0>",
                     "__new__": "<built-in method __new__ of type object at 0xa6fd80>",
-                    "__reduce__": "<built-in method __reduce__ of Button object at 0x73c3aa5aca50>",
-                    "__reduce_ex__": "<built-in method __reduce_ex__ of Button object at 0x73c3aa5aca50>",
-                    "__sizeof__": "<built-in method __sizeof__ of Button object at 0x73c3aa5aca50>",
-                    "__subclasshook__": "<built-in method __subclasshook__ of type object at 0x27704ff0>"
+                    "__reduce__": "<built-in method __reduce__ of Button object at 0x7acec5a14b90>",
+                    "__reduce_ex__": "<built-in method __reduce_ex__ of Button object at 0x7acec5a14b90>",
+                    "__sizeof__": "<built-in method __sizeof__ of Button object at 0x7acec5a14b90>",
+                    "__subclasshook__": "<built-in method __subclasshook__ of type object at 0x132fdff0>"
                 }
             }
         }

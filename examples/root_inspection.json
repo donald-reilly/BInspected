@@ -1,5 +1,4 @@
 {
-    "id": ".",
     "config": {
         ".": {
             "Method": {
@@ -262,21 +261,21 @@
                     "__class__": "<class 'tkinter.Tk'>"
                 },
                 "Public": {
-                    "tk": "<_tkinter.tkapp object at 0x73c3aa6cf360>"
+                    "tk": "<_tkinter.tkapp object at 0x7acec5b47510>"
                 }
             },
             "Method Wrapper": {
                 "Special": {
-                    "__delattr__": "<method-wrapper '__delattr__' of Tk object at 0x73c3aa565160>",
-                    "__eq__": "<method-wrapper '__eq__' of Tk object at 0x73c3aa565160>",
-                    "__ge__": "<method-wrapper '__ge__' of Tk object at 0x73c3aa565160>",
-                    "__getattribute__": "<method-wrapper '__getattribute__' of Tk object at 0x73c3aa565160>",
-                    "__gt__": "<method-wrapper '__gt__' of Tk object at 0x73c3aa565160>",
-                    "__hash__": "<method-wrapper '__hash__' of Tk object at 0x73c3aa565160>",
-                    "__le__": "<method-wrapper '__le__' of Tk object at 0x73c3aa565160>",
-                    "__lt__": "<method-wrapper '__lt__' of Tk object at 0x73c3aa565160>",
-                    "__ne__": "<method-wrapper '__ne__' of Tk object at 0x73c3aa565160>",
-                    "__setattr__": "<method-wrapper '__setattr__' of Tk object at 0x73c3aa565160>"
+                    "__delattr__": "<method-wrapper '__delattr__' of Tk object at 0x7acec5a0d160>",
+                    "__eq__": "<method-wrapper '__eq__' of Tk object at 0x7acec5a0d160>",
+                    "__ge__": "<method-wrapper '__ge__' of Tk object at 0x7acec5a0d160>",
+                    "__getattribute__": "<method-wrapper '__getattribute__' of Tk object at 0x7acec5a0d160>",
+                    "__gt__": "<method-wrapper '__gt__' of Tk object at 0x7acec5a0d160>",
+                    "__hash__": "<method-wrapper '__hash__' of Tk object at 0x7acec5a0d160>",
+                    "__le__": "<method-wrapper '__le__' of Tk object at 0x7acec5a0d160>",
+                    "__lt__": "<method-wrapper '__lt__' of Tk object at 0x7acec5a0d160>",
+                    "__ne__": "<method-wrapper '__ne__' of Tk object at 0x7acec5a0d160>",
+                    "__setattr__": "<method-wrapper '__setattr__' of Tk object at 0x7acec5a0d160>"
                 }
             },
             "Attribute": {
@@ -287,11 +286,11 @@
                             "!frame": ".!frame"
                         },
                         "_tkloaded": true,
-                        "tk": "<_tkinter.tkapp object at 0x73c3aa6cf360>",
+                        "tk": "<_tkinter.tkapp object at 0x7acec5b47510>",
                         "_tclCommands": [
                             "tkerror",
                             "exit",
-                            "127284224656448destroy"
+                            "135028507889216destroy"
                         ],
                         "_last_child_ids": {
                             "frame": 1
@@ -342,7 +341,7 @@
                     "_tclCommands": [
                         "tkerror",
                         "exit",
-                        "127284224656448destroy"
+                        "135028507889216destroy"
                     ],
                     "_tkloaded": true,
                     "_w": ".",
@@ -357,15 +356,15 @@
             },
             "Builtin Method": {
                 "Special": {
-                    "__dir__": "<built-in method __dir__ of Tk object at 0x73c3aa565160>",
-                    "__format__": "<built-in method __format__ of Tk object at 0x73c3aa565160>",
-                    "__getstate__": "<built-in method __getstate__ of Tk object at 0x73c3aa565160>",
-                    "__init_subclass__": "<built-in method __init_subclass__ of type object at 0x277b1490>",
+                    "__dir__": "<built-in method __dir__ of Tk object at 0x7acec5a0d160>",
+                    "__format__": "<built-in method __format__ of Tk object at 0x7acec5a0d160>",
+                    "__getstate__": "<built-in method __getstate__ of Tk object at 0x7acec5a0d160>",
+                    "__init_subclass__": "<built-in method __init_subclass__ of type object at 0x132ea9e0>",
                     "__new__": "<built-in method __new__ of type object at 0xa6fd80>",
-                    "__reduce__": "<built-in method __reduce__ of Tk object at 0x73c3aa565160>",
-                    "__reduce_ex__": "<built-in method __reduce_ex__ of Tk object at 0x73c3aa565160>",
-                    "__sizeof__": "<built-in method __sizeof__ of Tk object at 0x73c3aa565160>",
-                    "__subclasshook__": "<built-in method __subclasshook__ of type object at 0x277b1490>"
+                    "__reduce__": "<built-in method __reduce__ of Tk object at 0x7acec5a0d160>",
+                    "__reduce_ex__": "<built-in method __reduce_ex__ of Tk object at 0x7acec5a0d160>",
+                    "__sizeof__": "<built-in method __sizeof__ of Tk object at 0x7acec5a0d160>",
+                    "__subclasshook__": "<built-in method __subclasshook__ of type object at 0x132ea9e0>"
                 }
             }
         }

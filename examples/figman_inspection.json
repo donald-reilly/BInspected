@@ -1,35 +1,34 @@
 {
-    "id": "<figman.FigMan object at 0x73c3aa565be0>",
     "config": {
-        "<figman.FigMan object at 0x73c3aa565be0>": {
+        "<figman.FigMan object at 0x7acec5a0dbe0>": {
             "Unknown": {
                 "Special": {
                     "__class__": "<class 'figman.FigMan'>"
                 },
                 "Public": {
-                    "lcm": "<lifecycle_manager.LifeCycleManager object at 0x73c3aa565d30>"
+                    "lcm": "<lifecycle_manager.LifeCycleManager object at 0x7acec5a0dd30>"
                 }
             },
             "Method Wrapper": {
                 "Special": {
-                    "__delattr__": "<method-wrapper '__delattr__' of FigMan object at 0x73c3aa565be0>",
-                    "__eq__": "<method-wrapper '__eq__' of FigMan object at 0x73c3aa565be0>",
-                    "__ge__": "<method-wrapper '__ge__' of FigMan object at 0x73c3aa565be0>",
-                    "__getattribute__": "<method-wrapper '__getattribute__' of FigMan object at 0x73c3aa565be0>",
-                    "__gt__": "<method-wrapper '__gt__' of FigMan object at 0x73c3aa565be0>",
-                    "__hash__": "<method-wrapper '__hash__' of FigMan object at 0x73c3aa565be0>",
-                    "__le__": "<method-wrapper '__le__' of FigMan object at 0x73c3aa565be0>",
-                    "__lt__": "<method-wrapper '__lt__' of FigMan object at 0x73c3aa565be0>",
-                    "__ne__": "<method-wrapper '__ne__' of FigMan object at 0x73c3aa565be0>",
-                    "__repr__": "<method-wrapper '__repr__' of FigMan object at 0x73c3aa565be0>",
-                    "__setattr__": "<method-wrapper '__setattr__' of FigMan object at 0x73c3aa565be0>",
-                    "__str__": "<method-wrapper '__str__' of FigMan object at 0x73c3aa565be0>"
+                    "__delattr__": "<method-wrapper '__delattr__' of FigMan object at 0x7acec5a0dbe0>",
+                    "__eq__": "<method-wrapper '__eq__' of FigMan object at 0x7acec5a0dbe0>",
+                    "__ge__": "<method-wrapper '__ge__' of FigMan object at 0x7acec5a0dbe0>",
+                    "__getattribute__": "<method-wrapper '__getattribute__' of FigMan object at 0x7acec5a0dbe0>",
+                    "__gt__": "<method-wrapper '__gt__' of FigMan object at 0x7acec5a0dbe0>",
+                    "__hash__": "<method-wrapper '__hash__' of FigMan object at 0x7acec5a0dbe0>",
+                    "__le__": "<method-wrapper '__le__' of FigMan object at 0x7acec5a0dbe0>",
+                    "__lt__": "<method-wrapper '__lt__' of FigMan object at 0x7acec5a0dbe0>",
+                    "__ne__": "<method-wrapper '__ne__' of FigMan object at 0x7acec5a0dbe0>",
+                    "__repr__": "<method-wrapper '__repr__' of FigMan object at 0x7acec5a0dbe0>",
+                    "__setattr__": "<method-wrapper '__setattr__' of FigMan object at 0x7acec5a0dbe0>",
+                    "__str__": "<method-wrapper '__str__' of FigMan object at 0x7acec5a0dbe0>"
                 }
             },
             "Attribute": {
                 "Special": {
                     "__dict__": {
-                        "lcm": "<lifecycle_manager.LifeCycleManager object at 0x73c3aa565d30>"
+                        "lcm": "<lifecycle_manager.LifeCycleManager object at 0x7acec5a0dd30>"
                     },
                     "__doc__": "\nFigMan (Configuration Manager) is the main interface for managing configurations.\n\nThis class provides a high-level interface for creating, loading, and saving\nconfiguration objects. It manages the lifecycle of configuration objects and\nprovides access to configuration groups.\n",
                     "__firstlineno__": 5,
@@ -42,25 +41,25 @@
             },
             "Builtin Method": {
                 "Special": {
-                    "__dir__": "<built-in method __dir__ of FigMan object at 0x73c3aa565be0>",
-                    "__format__": "<built-in method __format__ of FigMan object at 0x73c3aa565be0>",
-                    "__getstate__": "<built-in method __getstate__ of FigMan object at 0x73c3aa565be0>",
-                    "__init_subclass__": "<built-in method __init_subclass__ of type object at 0x278486c0>",
+                    "__dir__": "<built-in method __dir__ of FigMan object at 0x7acec5a0dbe0>",
+                    "__format__": "<built-in method __format__ of FigMan object at 0x7acec5a0dbe0>",
+                    "__getstate__": "<built-in method __getstate__ of FigMan object at 0x7acec5a0dbe0>",
+                    "__init_subclass__": "<built-in method __init_subclass__ of type object at 0x1339fa90>",
                     "__new__": "<built-in method __new__ of type object at 0xa6fd80>",
-                    "__reduce__": "<built-in method __reduce__ of FigMan object at 0x73c3aa565be0>",
-                    "__reduce_ex__": "<built-in method __reduce_ex__ of FigMan object at 0x73c3aa565be0>",
-                    "__sizeof__": "<built-in method __sizeof__ of FigMan object at 0x73c3aa565be0>",
-                    "__subclasshook__": "<built-in method __subclasshook__ of type object at 0x278486c0>"
+                    "__reduce__": "<built-in method __reduce__ of FigMan object at 0x7acec5a0dbe0>",
+                    "__reduce_ex__": "<built-in method __reduce_ex__ of FigMan object at 0x7acec5a0dbe0>",
+                    "__sizeof__": "<built-in method __sizeof__ of FigMan object at 0x7acec5a0dbe0>",
+                    "__subclasshook__": "<built-in method __subclasshook__ of type object at 0x1339fa90>"
                 }
             },
             "Method": {
                 "Special": {
-                    "__init__": "<bound method FigMan.__init__ of <figman.FigMan object at 0x73c3aa565be0>>"
+                    "__init__": "<bound method FigMan.__init__ of <figman.FigMan object at 0x7acec5a0dbe0>>"
                 },
                 "Public": {
-                    "configuration": "<bound method FigMan.configuration of <figman.FigMan object at 0x73c3aa565be0>>",
-                    "load": "<bound method FigMan.load of <figman.FigMan object at 0x73c3aa565be0>>",
-                    "save": "<bound method FigMan.save of <figman.FigMan object at 0x73c3aa565be0>>"
+                    "configuration": "<bound method FigMan.configuration of <figman.FigMan object at 0x7acec5a0dbe0>>",
+                    "load": "<bound method FigMan.load of <figman.FigMan object at 0x7acec5a0dbe0>>",
+                    "save": "<bound method FigMan.save of <figman.FigMan object at 0x7acec5a0dbe0>>"
                 }
             }
         }

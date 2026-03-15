@@ -1,5 +1,4 @@
 {
-    "id": ".!frame.!labelframe.!entry",
     "config": {
         ".!frame.!labelframe.!entry": {
             "Method": {
@@ -239,21 +238,21 @@
                 },
                 "Public": {
                     "master": ".!frame.!labelframe",
-                    "tk": "<_tkinter.tkapp object at 0x73c3aa6cf360>"
+                    "tk": "<_tkinter.tkapp object at 0x7acec5b47510>"
                 }
             },
             "Method Wrapper": {
                 "Special": {
-                    "__delattr__": "<method-wrapper '__delattr__' of Entry object at 0x73c3aa5657f0>",
-                    "__eq__": "<method-wrapper '__eq__' of Entry object at 0x73c3aa5657f0>",
-                    "__ge__": "<method-wrapper '__ge__' of Entry object at 0x73c3aa5657f0>",
-                    "__getattribute__": "<method-wrapper '__getattribute__' of Entry object at 0x73c3aa5657f0>",
-                    "__gt__": "<method-wrapper '__gt__' of Entry object at 0x73c3aa5657f0>",
-                    "__hash__": "<method-wrapper '__hash__' of Entry object at 0x73c3aa5657f0>",
-                    "__le__": "<method-wrapper '__le__' of Entry object at 0x73c3aa5657f0>",
-                    "__lt__": "<method-wrapper '__lt__' of Entry object at 0x73c3aa5657f0>",
-                    "__ne__": "<method-wrapper '__ne__' of Entry object at 0x73c3aa5657f0>",
-                    "__setattr__": "<method-wrapper '__setattr__' of Entry object at 0x73c3aa5657f0>"
+                    "__delattr__": "<method-wrapper '__delattr__' of Entry object at 0x7acec5a0d7f0>",
+                    "__eq__": "<method-wrapper '__eq__' of Entry object at 0x7acec5a0d7f0>",
+                    "__ge__": "<method-wrapper '__ge__' of Entry object at 0x7acec5a0d7f0>",
+                    "__getattribute__": "<method-wrapper '__getattribute__' of Entry object at 0x7acec5a0d7f0>",
+                    "__gt__": "<method-wrapper '__gt__' of Entry object at 0x7acec5a0d7f0>",
+                    "__hash__": "<method-wrapper '__hash__' of Entry object at 0x7acec5a0d7f0>",
+                    "__le__": "<method-wrapper '__le__' of Entry object at 0x7acec5a0d7f0>",
+                    "__lt__": "<method-wrapper '__lt__' of Entry object at 0x7acec5a0d7f0>",
+                    "__ne__": "<method-wrapper '__ne__' of Entry object at 0x7acec5a0d7f0>",
+                    "__setattr__": "<method-wrapper '__setattr__' of Entry object at 0x7acec5a0d7f0>"
                 }
             },
             "Attribute": {
@@ -261,7 +260,7 @@
                     "__dict__": {
                         "widgetName": "ttk::entry",
                         "master": ".!frame.!labelframe",
-                        "tk": "<_tkinter.tkapp object at 0x73c3aa6cf360>",
+                        "tk": "<_tkinter.tkapp object at 0x7acec5b47510>",
                         "_name": "!entry",
                         "_w": ".!frame.!labelframe.!entry",
                         "children": {},
@@ -312,15 +311,15 @@
             },
             "Builtin Method": {
                 "Special": {
-                    "__dir__": "<built-in method __dir__ of Entry object at 0x73c3aa5657f0>",
-                    "__format__": "<built-in method __format__ of Entry object at 0x73c3aa5657f0>",
-                    "__getstate__": "<built-in method __getstate__ of Entry object at 0x73c3aa5657f0>",
-                    "__init_subclass__": "<built-in method __init_subclass__ of type object at 0x277c54a0>",
+                    "__dir__": "<built-in method __dir__ of Entry object at 0x7acec5a0d7f0>",
+                    "__format__": "<built-in method __format__ of Entry object at 0x7acec5a0d7f0>",
+                    "__getstate__": "<built-in method __getstate__ of Entry object at 0x7acec5a0d7f0>",
+                    "__init_subclass__": "<built-in method __init_subclass__ of type object at 0x132fedd0>",
                     "__new__": "<built-in method __new__ of type object at 0xa6fd80>",
-                    "__reduce__": "<built-in method __reduce__ of Entry object at 0x73c3aa5657f0>",
-                    "__reduce_ex__": "<built-in method __reduce_ex__ of Entry object at 0x73c3aa5657f0>",
-                    "__sizeof__": "<built-in method __sizeof__ of Entry object at 0x73c3aa5657f0>",
-                    "__subclasshook__": "<built-in method __subclasshook__ of type object at 0x277c54a0>"
+                    "__reduce__": "<built-in method __reduce__ of Entry object at 0x7acec5a0d7f0>",
+                    "__reduce_ex__": "<built-in method __reduce_ex__ of Entry object at 0x7acec5a0d7f0>",
+                    "__sizeof__": "<built-in method __sizeof__ of Entry object at 0x7acec5a0d7f0>",
+                    "__subclasshook__": "<built-in method __subclasshook__ of type object at 0x132fedd0>"
                 }
             }
         }
