@@ -72,11 +72,7 @@ class Parser:
             "type hints": lambda: object_to_parse.__annotations__,  # Any type hinting of variables
         }
         meta_data_dict = {}  # Initializng the meta data dictionary.
-        for (
-            meta_data
-        ) in (
-            meta_data_map
-        ):  # For loop that cycles the meta data map and updates the meta_data dict if an expection isn't encountred.
+        for (meta_data) in (meta_data_map):  # For loop that cycles the meta data map and updates the meta_data dict if an expection isn't encountred.
             try:
                 meta_data_dict[meta_data] = meta_data_map[meta_data]()
             except:
@@ -108,24 +104,14 @@ class Parser:
         """
 
         all_variables = function_to_parse.__code__.co_varnames  # Assign all variables
-        argument_count = (
-            function_to_parse.__code__.co_argcount
-        )  # Assign the count of arguments
-        argument_types = (
-            function_to_parse.__annotations__ or {}
-        )  # Assign the defulat types or an empty dict
-        argument_default_values = (
-            function_to_parse.__defaults__ or ()
-        )  # Assign the default values or an empty list
+        argument_count = (function_to_parse.__code__.co_argcount)  # Assign the count of arguments
+        argument_types = (function_to_parse.__annotations__ or {})  # Assign the defulat types or an empty dict
+        argument_default_values = (function_to_parse.__defaults__ or ())  # Assign the default values or an empty list
 
-        local_variables = all_variables[
-            argument_count:
-        ]  # Pull local variables and kwvars from all vars
+        local_variables = all_variables[argument_count:]  # Pull local variables and kwvars from all vars
         arguments = all_variables[:argument_count]  # pull arguments from all vars
 
-        arguments = self._parse_arguments(
-            arguments, argument_types, argument_default_values
-        )  # Parse the arguments
+        arguments = self._parse_arguments(arguments, argument_types, argument_default_values)  # Parse the arguments
         parsed_variables = {
             "arguments": arguments,
             "Local Variables": local_variables,
@@ -147,15 +133,9 @@ class Parser:
              A dictionary representation of the parsed arguments of the function.
         """
 
-        num_defaults = len(
-            default_values
-        )  # Get the number of vars with default values.
-        args_with_defaults = arguments[
-            -num_defaults:
-        ]  # Get the arguments that have default values
-        default_map = dict(
-            zip(args_with_defaults, default_values)
-        )  # Assign the defualt values to the correct arguments
+        num_defaults = len(default_values)  # Get the number of vars with default values.
+        args_with_defaults = arguments[-num_defaults:]  # Get the arguments that have default values
+        default_map = dict(zip(args_with_defaults, default_values))  # Assign the defualt values to the correct arguments
         argument_map = {}
         # create the dictionary representation of the parsed arguments.
         for arg in arguments:

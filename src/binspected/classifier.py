@@ -25,10 +25,7 @@ class Classifier:
 
         return self.classify_initial_object(object_to_classify)
 
-    def classify_initial_object(
-        self,
-        object_to_classify: ModuleType | type | MethodType | FunctionType | property,
-    ) -> str:
+    def classify_initial_object(self, object_to_classify) -> str:
         """
         Classifies objects and all of it's attributes and returns a dictionary representation of the classification.
 
@@ -64,9 +61,7 @@ class Classifier:
 
         return "module"
 
-    def classify_instance_of_user_defined_class(
-        self, instance_to_classify: object
-    ) -> str:
+    def classify_instance_of_user_defined_class(self, instance_to_classify: object) -> str:
         """
         Classifies instances of user-defined classes and all of it's attributes and returns a dictionary representation of the classification.
 
