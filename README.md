@@ -1,5 +1,8 @@
 # BInspected
 
+> [!WARNING]
+> This project is under active development and is untested. The API is unstable and breaking changes may occur without notice.
+
 BInspected is a Python package for deep runtime introspection of Python objects. It exposes constructor signatures, default values, annotations, docstrings, and structural metadata for modules, classes, functions, methods, and properties.
 
 The project originally began as a tool to support dynamic testing, but it has evolved into a personal exploration of Python’s meta‑programming capabilities and runtime internals.
